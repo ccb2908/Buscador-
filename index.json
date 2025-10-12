@@ -1,16 +1,21 @@
-function buscar() {
-  const termo = document.getElementById('campoBusca').value.toLowerCase();
-  fetch('index.json')
-    .then(res => res.json())
-    .then(dados => {
-      let html = '';
-      for (let chave in dados) {
-        if (chave.includes(termo)) {
-          html += `<h2>${dados[chave].titulo}</h2>
-                   <p>${dados[chave].descricao}</p>
-                   <a href="${dados[chave].link}">Ver mais</a><hr>`;
-        }
-      }
-      document.getElementById('resultados').innerHTML = html || '<p>Nenhum resultado encontrado.</p>';
-    });
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+}
+
+input {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+#resultados {
+  margin-top: 30px;
 }
