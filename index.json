@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Buscador</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Buscador</h1>
-
-  <input type="text" id="campoBusca" placeholder="Digite sua pesquisa...">
-  <button onclick="buscar()">Buscar</button>
-
-  <div id="resultados"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+function buscar() {
+  const termo = document.getElementById('campoBusca').value.toLowerCase();
+  fetch('index.json')
+    .then(res => res.json())
+    .then(dados => {
+      let html = '';
+      for (let chave in dados) {
+        if (chave.includes(termo)) {
+          html += `<h2>${dados[chave].titulo}</h2>
+                   <p>${dados[chave].descricao}</p>
+                   <a href="${dados[chave].link}">Ver mais</a><hr>`;
+        }
+      }
+      document.getElementById('resultados').innerHTML = html || '<p>Nenhum resultado encontrado.</p>';
+    });
+}
