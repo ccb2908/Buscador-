@@ -1,0 +1,12 @@
+{
+  "stalin": {
+    "titulo": "Joseph Stalin",
+    "descricao": "Líder da União Soviética no século XX.",
+    "link": "stalin.html"
+  },
+  "guerra_fria": {
+    "titulo": "Guerra Fria",
+    "descricao": "Conflito geopolítico entre EUA e URSS.",
+    "link": "guerra_fria.html"
+  }
+}
