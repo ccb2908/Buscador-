@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resultados - Buscador Persa Latino</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Lupa! — Resultados</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="topo-busca">
-    <div class="logo">Persa<span class="destaque">Latino</span></div>
-    <form id="form-busca">
-      <input type="text" id="barra-pesquisa" placeholder="Pesquisar..." />
-      <button type="submit" id="btn-busca">🔍</button>
-    </form>
+  <header class="topo">
+    <div class="logo">¡Lupa! <span class="subtitulo">by Persa Latino</span></div>
+    <div class="barra-busca">
+      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus />
+      <button id="botaoBusca">🔍</button>
+    </div>
+    <nav class="abas">
+      <button class="aba ativa">Tudo</button>
+      <button class="aba">Imagens</button>
+      <button class="aba">Vídeos</button>
+      <button class="aba">Notícias</button>
+    </nav>
   </header>
 
-  <nav class="abas">
-    <button class="aba ativa">Tudo</button>
-    <button class="aba">Imagens</button>
-    <button class="aba">Vídeos</button>
-    <button class="aba">Notícias</button>
-  </nav>
+  <main class="resultados-container">
+    <div id="painel-info"></div>
+    <div id="lista-resultados"></div>
+  </main>
 
-  <main id="resultados"></main>
+  <footer>
+    <p>© 2025 ¡Lupa! — Projeto Persa Latino</p>
+  </footer>
 
-  <script src="resultados.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
