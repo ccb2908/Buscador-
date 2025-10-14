@@ -40,26 +40,3 @@ async function pesquisar() {
     resultadosDiv.innerHTML = "<p>Erro ao carregar dados.</p>";
     console.error(erro);
   }
-     <div class="resultado">
-        <h3><a href="${item.link}" target="_blank">${item.titulo}</a></h3>
-        <p>${item.descricao}</p>
-        <span>${item.categoria}</span>
-      </div>
-    `;
-  });
-}
-{ resultados.forEach(item => {
-  const card = document.createElement('div');
-  card.className = 'resultado';
-  card.innerHTML = `
-    <h3>${item.titulo}</h3>
-    <p>${item.descricao}</p>
-  `;
-  card.addEventListener('click', () => {
-    painel.innerHTML = `
-      <h2>${item.titulo}</h2>
-      <p>${item.detalhes || "Em breve mais informações..."}</p>
-    `;
-  });
-  painel.appendChild(card);
-});
