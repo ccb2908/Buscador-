@@ -1,0 +1,32 @@
+[
+  {
+    "titulo": "Filosofia Persa Antiga",
+    "descricao": "Estudo ético do Zoroastrismo e das escolas do Império Aquemênida.",
+    "link": "filosofia_persa.html",
+    "categoria": "Filosofia"
+  },
+  {
+    "titulo": "Dragon Ball Daishi – Bartiszu",
+    "descricao": "História do guerreiro que superou o SSJ6 e enfrentou o divino Goku.",
+    "link": "dragon_ball_daishi.html",
+    "categoria": "Animes"
+  },
+  {
+    "titulo": "Religiões Antigas",
+    "descricao": "Comparação entre Panteísmo, Deísmo e Budismo, focando na ética e cosmovisão.",
+    "link": "religioes_antigas.html",
+    "categoria": "Espiritualidade"
+  },
+  {
+    "titulo": "Cosmovisão Persa Latino",
+    "descricao": "Análise da literatura, filosofia e espiritualidade do Persa Latino.",
+    "link": "cosmovisao_persa_latino.html",
+    "categoria": "Linguística"
+  },
+  {
+    "titulo": "História do Império Aquemênida",
+    "descricao": "Linha do tempo e conquistas do Império Persa antigo.",
+    "link": "imperio_aquemênida.html",
+    "categoria": "História"
+  }
+]
