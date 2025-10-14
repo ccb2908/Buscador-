@@ -3,26 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Lupa!</title>
+  <title>Buscador Ético</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>🔍 ¡Lupa!</h1>
-    <div class="barra-pesquisa">
-      <input type="text" id="campo" placeholder="Digite sua pesquisa..." onkeyup="pesquisar()">
-      <span id="noticias-icono" onclick="mostrarNoticias()">📰<span id="contador"></span></span>
-    </div>
+    <h1>🔍 Buscador Ético</h1>
+    <input type="text" id="campo" placeholder="Pesquisar..." onkeyup="pesquisar()">
   </header>
 
-  <main id="resultados">
-    <!-- Resultados aparecerão aqui -->
-  </main>
-
-  <div id="noticias-container" class="oculto"></div>
+  <main id="resultados"></main>
 
   <footer>
-    <p>© 2025 – ¡Lupa! (Licença Mozilla)</p>
+    <p>© 2025 – Mini Buscador experimental sob Licença Mozilla</p>
   </footer>
 
   <script src="script.js"></script>
