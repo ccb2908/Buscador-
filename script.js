@@ -1,33 +1,57 @@
-document.getElementById("botaoBuscar").addEventListener("click", function() {
-  const termo = document.getElementById("busca").value.toLowerCase();
-  const resultadosDiv = document.getElementById("resultados");
-  resultadosDiv.innerHTML = "Buscando...";
+async function carregarDados() {
+  const resposta = await fetch('index.json');
+  const dados = await resposta.json();
+  return dados;
+}
 
-  fetch("Index.json")
-    .then(res => res.json())
-    .then(dados => {
-      const encontrados = dados.filter(item =>
-        item.titulo.toLowerCase().includes(termo) ||
-        item.texto.toLowerCase().includes(termo)
-      );
+async function buscar() {
+  const termo = document.getElementById('campoBusca').value.toLowerCase();
+  const resultadosDiv = document.getElementById('resultados');
+  resultadosDiv.innerHTML = '';
 
-      resultadosDiv.innerHTML = "";
+  const dados = await carregarDados();
+  const filtrados = dados.filter(item =>
+    item.titulo.toLowerCase().includes(termo) ||
+    item.descricao.toLowerCase().includes(termo)
+  );
 
-      if (encontrados.length === 0) {
-        resultadosDiv.innerHTML = "<p>Nenhum resultado encontrado.</p>";
-      } else {
-        encontrados.forEach(item => {
-          resultadosDiv.innerHTML += `
-            <div class="resultado">
-              <a href="${item.link}" target="_blank">${item.titulo}</a>
-              <p>${item.texto}</p>
-            </div>
-          `;
-        });
-      }
-    })
-    .catch(err => {
-      resultadosDiv.innerHTML = "<p>Erro ao carregar os dados.</p>";
-      console.error(err);
-    });
-});
+  if (filtrados.length === 0) {
+    resultadosDiv.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+    return;
+  }
+
+  filtrados.forEach(item => {
+    const card = document.createElement('div');
+    card.classList.add('resultado');
+
+    const titulo = document.createElement('h3');
+    titulo.textContent = item.titulo;
+
+    const descricao = document.createElement('p');
+    descricao.textContent = item.descricao;
+
+    const botao = document.createElement('button');
+    botao.textContent = 'Ver mais';
+    botao.onclick = () => mostrarDetalhes(item);
+
+    card.appendChild(titulo);
+    card.appendChild(descricao);
+    card.appendChild(botao);
+
+    resultadosDiv.appendChild(card);
+  });
+}
+
+function mostrarDetalhes(item) {
+  const painel = document.getElementById('painelDetalhes');
+  painel.innerHTML = `
+    <h2>${item.titulo}</h2>
+    <p>${item.conteudo}</p>
+    <button onclick="fecharPainel()">Fechar</button>
+  `;
+  painel.style.display = 'block';
+}
+
+function fecharPainel() {
+  document.getElementById('painelDetalhes').style.display = 'none';
+}
