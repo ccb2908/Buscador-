@@ -43,6 +43,220 @@
       gap: 0.5rem;
     }
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Lupa! — Resultados</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* --- Interface básica --- */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fafb;
+      color: #222;
+      text-align: center;
+    }
+
+    .barra-superior {
+      position: sticky;
+      top: 0;
+      background: #f9fafb;
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #3fa06f;
+      margin: 0;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 900px;
+      gap: 0.5rem;
+    }
+
+    .search-bar input {
+      width: 70%;
+      padding: 0.8rem 1.2rem;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .search-bar button {
+      background: #6e56cf;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .abas {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .aba {
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+
+    .aba.ativa {
+      border-bottom: 2px solid #3fa06f;
+      color: #3fa06f;
+    }
+
+    #painelResultados {
+      max-width: 900px;
+      margin: 2rem auto;
+      text-align: left;
+      padding: 0 1rem;
+    }
+
+    .painel-categoria {
+      margin-bottom: 2rem;
+    }
+
+    .painel {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .painel a.link-categoria {
+      color: #3fa06f; /* verde padrão */
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .painel a.link-categoria:visited {
+      color: #6e56cf; /* roxo quando visitado */
+    }
+
+    footer {
+      margin: 2rem 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra superior fixa -->
+  <header class="barra-superior">
+    <div class="logo">¡Lupa!</div>
+
+    <div class="search-bar">
+      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
+      <button id="botaoBusca">➡️</button>
+    </div>
+
+    <nav class="abas">
+      <button class="aba ativa">Tudo</button>
+      <button class="aba">Imagens</button>
+      <button class="aba">Vídeos</button>
+      <button class="aba">Notícias</button>
+    </nav>
+  </header>
+
+  <main id="painelResultados">
+    <div id="painel-Animes" class="painel-categoria"></div>
+    <div id="painel-Personagens" class="painel-categoria"></div>
+    <div id="painel-Figuras-Historicas" class="painel-categoria"></div>
+    <div id="painel-Paises" class="painel-categoria"></div>
+    <div id="painel-Imperios" class="painel-categoria"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q')?.toLowerCase() || '';
+
+    const paineis = {
+      'Animes': document.getElementById('painel-Animes'),
+      'Personagens': document.getElementById('painel-Personagens'),
+      'Figuras Historicas': document.getElementById('painel-Figuras-Historicas'),
+      'Paises': document.getElementById('painel-Paises'),
+      'Imperios': document.getElementById('painel-Imperios')
+    };
+
+    // Limpa todos os painéis
+    Object.values(paineis).forEach(p => p.innerHTML = '');
+
+    // Carrega resultados
+    fetch('index.json')
+      .then(res => res.json())
+      .then(data => {
+        const resultados = data.filter(item =>
+          item.titulo.toLowerCase().includes(query) ||
+          item.descricao.toLowerCase().includes(query) ||
+          item.categoria.toLowerCase().includes(query)
+        );
+
+        if(resultados.length === 0){
+          document.getElementById('painelResultados').innerHTML = '<p>Nenhum resultado encontrado.</p>';
+          return;
+        }
+
+        resultados.forEach(item => {
+          if(paineis[item.categoria]){
+            paineis[item.categoria].innerHTML += `
+              <div class="painel">
+                <a href="${item.link}" class="link-categoria">${item.titulo}</a>
+                <p>${item.descricao}</p>
+              </div>
+            `;
+          }
+        });
+      });
+
+    // Busca ao clicar no botão
+    document.getElementById('botaoBusca').addEventListener('click', () => {
+      const termo = document.getElementById('campoBusca').value;
+      if(termo.trim() !== "") {
+        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      }
+    });
+
+    // Busca ao pressionar Enter
+    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+      if(e.key === 'Enter'){
+        const termo = document.getElementById('campoBusca').value;
+        if(termo.trim() !== "") {
+          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
     .search-bar input {
       width: 70%;
       padding: 0.8rem 1.2rem;
@@ -132,83 +346,3 @@
     </div>
     <nav class="abas">
       <button class="aba ativa">Tudo</button>
-      <button class="aba">Imagens</button>
-      <button class="aba">Vídeos</button>
-      <button class="aba">Notícias</button>
-    </nav>
-  </div>
-
-  <main id="painelResultados">
-    <div id="painel-Animes" class="painel-categoria"></div>
-    <div id="painel-Personagens" class="painel-categoria"></div>
-    <div id="painel-Figuras-Historicas" class="painel-categoria"></div>
-    <div id="painel-Paises" class="painel-categoria"></div>
-    <div id="painel-Imperios" class="painel-categoria"></div>
-  </main>
-
-  <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
-  </footer>
-
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q')?.toLowerCase() || '';
-
-    const paineis = {
-      'Animes': document.getElementById('painel-Animes'),
-      'Personagens': document.getElementById('painel-Personagens'),
-      'Figuras Historicas': document.getElementById('painel-Figuras-Historicas'),
-      'Paises': document.getElementById('painel-Paises'),
-      'Imperios': document.getElementById('painel-Imperios')
-    };
-
-    // Limpa todos os painéis
-    Object.values(paineis).forEach(p => p.innerHTML = '');
-
-    // Carrega resultados
-    fetch('index.json')
-      .then(res => res.json())
-      .then(data => {
-        const resultados = data.filter(item =>
-          item.titulo.toLowerCase().includes(query) ||
-          item.descricao.toLowerCase().includes(query) ||
-          item.categoria.toLowerCase().includes(query)
-        );
-
-        if(resultados.length === 0){
-          document.getElementById('painelResultados').innerHTML = '<p>Nenhum resultado encontrado.</p>';
-          return;
-        }
-
-        resultados.forEach(item => {
-          if(paineis[item.categoria]){
-            paineis[item.categoria].innerHTML += `
-              <div class="painel">
-                <a href="${item.link}" class="link-categoria">${item.titulo}</a>
-                <p>${item.descricao}</p>
-              </div>
-            `;
-          }
-        });
-      });
-
-    // Busca ao clicar no botão
-    document.getElementById('botaoBusca').addEventListener('click', () => {
-      const termo = document.getElementById('campoBusca').value;
-      if(termo.trim() !== "") {
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-      }
-    });
-
-    // Busca ao pressionar Enter
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if(e.key === 'Enter'){
-        const termo = document.getElementById('campoBusca').value;
-        if(termo.trim() !== "") {
-          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-        }
-      }
-    });
-
-
-  
