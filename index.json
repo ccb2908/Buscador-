@@ -1,21 +1,23 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 50px;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscador Ético</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🔍 Buscador Ético</h1>
+    <input type="text" id="campo" placeholder="Pesquisar..." onkeyup="pesquisar()">
+  </header>
 
-input {
-  width: 300px;
-  padding: 10px;
-  font-size: 16px;
-}
+  <main id="resultados"></main>
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin-left: 10px;
-}
+  <footer>
+    <p>© 2025 – Mini Buscador experimental sob Licença Mozilla</p>
+  </footer>
 
-#resultados {
-  margin-top: 30px;
-}
+  <script src="script.js"></script>
+</body>
+</html>
