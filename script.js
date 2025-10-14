@@ -5,44 +5,40 @@ async function carregarDados() {
 }
 
 async function buscar() {
-  const termo = document.getElementById('campoBusca').value.toLowerCase();
-  const resultadosDiv = document.getElementById('resultados');
-  resultadosDiv.innerHTML = '';
+document.getElementById("botaoBuscar").addEventListener("click", function() {
+  const termo = document.getElementById("busca").value.toLowerCase();
+  const resultadosDiv = document.getElementById("resultados");
+  resultadosDiv.innerHTML = "Buscando...";
 
-  const dados = await carregarDados();
-  const filtrados = dados.filter(item =>
-    item.titulo.toLowerCase().includes(termo) ||
-    item.descricao.toLowerCase().includes(termo)
-  );
+  fetch("Index.json")
+    .then(res => res.json())
+    .then(dados => {
+      const encontrados = dados.filter(item =>
+        item.titulo.toLowerCase().includes(termo) ||
+        item.texto.toLowerCase().includes(termo)
+      );
 
-  if (filtrados.length === 0) {
-    resultadosDiv.innerHTML = '<p>Nenhum resultado encontrado.</p>';
-    return;
-  }
+      resultadosDiv.innerHTML = "";
 
-  filtrados.forEach(item => {
-    const card = document.createElement('div');
-    card.classList.add('resultado');
-
-    const titulo = document.createElement('h3');
-    titulo.textContent = item.titulo;
-
-    const descricao = document.createElement('p');
-    descricao.textContent = item.descricao;
-
-    const botao = document.createElement('button');
-    botao.textContent = 'Ver mais';
-    botao.onclick = () => mostrarDetalhes(item);
-
-    card.appendChild(titulo);
-    card.appendChild(descricao);
-    card.appendChild(botao);
-
-    resultadosDiv.appendChild(card);
-  });
-}
-
-function mostrarDetalhes(item) {
+      if (encontrados.length === 0) {
+        resultadosDiv.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+      } else {
+        encontrados.forEach(item => {
+          resultadosDiv.innerHTML += `
+            <div class="resultado">
+              <a href="${item.link}" target="_blank">${item.titulo}</a>
+              <p>${item.texto}</p>
+            </div>
+          `;
+        });
+      }
+    })
+    .catch(err => {
+      resultadosDiv.innerHTML = "<p>Erro ao carregar os dados.</p>";
+      console.error(err);
+    });
+});
+s(item) {
   const painel = document.getElementById('painelDetalhes');
   painel.innerHTML = `
     <h2>${item.titulo}</h2>
