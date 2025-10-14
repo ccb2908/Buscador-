@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa! — Resultados</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,8 +18,8 @@
 
   <div class="barra-superior">
     <div class="search-bar">
-      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus />
-      <button id="botaoBusca">🔍</button>
+      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
+      <button id="botaoBusca">➡️</button>
     </div>
     <nav class="abas">
       <button class="aba ativa">Tudo</button>
@@ -25,7 +30,6 @@
   </div>
 
   <main id="painelResultados">
-    <div id="painel-info"></div>
     <div id="lista-resultados"></div>
   </main>
 
@@ -33,13 +37,12 @@
     <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
   </footer>
 
-  <script src="script.js"></script>
   <script>
-    // Captura query da URL (se vier da tela inicial)
+    // Captura query da URL
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q')?.toLowerCase() || '';
 
-    // Carrega os resultados do JSON
+    // Carrega e exibe resultados do JSON
     fetch('index.json')
       .then(res => res.json())
       .then(data => {
@@ -48,16 +51,18 @@
           item.descricao.toLowerCase().includes(query) ||
           item.categoria.toLowerCase().includes(query)
         );
-        
+
         const lista = document.getElementById('lista-resultados');
         if(resultados.length === 0){
           lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
         } else {
           lista.innerHTML = resultados.map(item =>
-            `<a href="${item.link}">
-              <h3>${item.titulo}</h3>
-              <p>${item.descricao}</p>
-            </a>`
+            `<div class="painel">
+              <a href="${item.link}">
+                <h3>${item.titulo}</h3>
+                <p>${item.descricao}</p>
+              </a>
+            </div>`
           ).join('');
         }
       });
@@ -65,16 +70,20 @@
     // Busca ao clicar no botão
     document.getElementById('botaoBusca').addEventListener('click', () => {
       const termo = document.getElementById('campoBusca').value;
-      window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      if(termo.trim() !== "") {
+        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      }
     });
 
     // Busca ao pressionar Enter
     document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if(e.key === 'Enter'){
+      if(e.key === 'Enter') {
         const termo = document.getElementById('campoBusca').value;
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+        if(termo.trim() !== "") {
+          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+        }
       }
     });
   </script>
 </body>
-</html>/html>
+</html>
