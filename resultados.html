@@ -229,46 +229,4 @@
     <div class="logo">¡Lupa!</div>
   </header>
 
-  <div class="barra-superior">
-    <div class="search-bar">
-      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
-      <button id="botaoBusca">➡️</button>
-    </div>
-    <nav class="abas">
-      <button class="aba ativa">Tudo</button>
-      <button class="aba">Imagens</button>
-      <button class="aba">Vídeos</button>
-      <button class="aba">Notícias</button>
-    </nav>
-  </div>
-
-  <main id="painelResultados">
-    <div id="lista-resultados"></div>
-  </main>
-
-  <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
-  </footer>
-
-  <script>
-    // Captura query da URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q')?.toLowerCase() || '';
-
-    // Carrega e exibe resultados do JSON
-    fetch('index.json')
-      .then(res => res.json())
-      .then(data => {
-        const resultados = data.filter(item =>
-          item.titulo.toLowerCase().includes(query) ||
-getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if(e.key === 'Enter') {
-        const termo = document.getElementById('campoBusca').value;
-        if(termo.trim() !== "") {
-          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+  
