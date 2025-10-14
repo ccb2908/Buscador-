@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Buscador Ético</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🔍 Mini Buscador Ético</h1>
+    <div class="barra-pesquisa">
+      <input type="text" id="campo" placeholder="Digite sua pesquisa..." onkeyup="pesquisar()">
+      <span id="noticias-icono" onclick="mostrarNoticias()">📰<span id="contador"></span></span>
+    </div>
+  </header>
+
+  <main id="resultados">
+    <!-- Resultados aparecerão aqui -->
+  </main>
+
+  <div id="noticias-container" class="oculto"></div>
+
+  <footer>
+    <p>© 2025 – Mini Buscador Ético (Licença Mozilla)</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
