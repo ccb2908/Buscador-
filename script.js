@@ -26,28 +26,36 @@ document.getElementById("botaoBuscar").addEventListener("click", function() {
         encontrados.forEach(item => {
           resultadosDiv.innerHTML += `
             <div class="resultado">
-              <a href="${item.link}" target="_blank">${item.titulo}</a>
-              <p>${item.texto}</p>
-            </div>
-          `;
-        });
-      }
-    })
-    .catch(err => {
-      resultadosDiv.innerHTML = "<p>Erro ao carregar os dados.</p>";
-      console.error(err);
-    });
-});
-s(item) {
-  const painel = document.getElementById('painelDetalhes');
-  painel.innerHTML = `
-    <h2>${item.titulo}</h2>
-    <p>${item.conteudo}</p>
-    <button onclick="fecharPainel()">Fechar</button>
-  `;
-  painel.style.display = 'block';
+async function pesquisar() {
+  const termo = document.getElementById("campo").value.toLowerCase();
+  const resposta = await fetch("index.json");
+  const dados = await resposta.json();
+
+  const resultados = dados.filter(item =>
+    item.titulo.toLowerCase().includes(termo) ||
+    item.descricao.toLowerCase().includes(termo) ||
+    item.categoria.toLowerCase().includes(termo)
+  );
+
+  mostrarResultados(resultados);
 }
 
-function fecharPainel() {
-  document.getElementById('painelDetalhes').style.display = 'none';
+function mostrarResultados(lista) {
+  const container = document.getElementById("resultados");
+  container.innerHTML = "";
+
+  if (lista.length === 0) {
+    container.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+    return;
+  }
+
+  lista.forEach(item => {
+    container.innerHTML += `
+      <div class="resultado">
+        <h3><a href="${item.link}">${item.titulo}</a></h3>
+        <p>${item.descricao}</p>
+        <span>${item.categoria}</span>
+      </div>
+    `;
+  });
 }
