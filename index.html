@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¡Lupa! — Resultados</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>!Lupa! - Buscador Ético</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home">
   <div class="container">
-    <header>
-      <div class="logo">¡Lupa!</div>
-      <div class="search-bar">
-        <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus />
-        <button id="botaoBusca">🔍</button>
+    <img src="imagens/logo.png" alt="!Lupa!" class="logo">
+    <h1>!Lupa!</h1>
+    <p class="subtitulo">Buscador Ético e Filosófico</p>
+
+    <div class="barra-pesquisa">
+      <input id="campoBusca" type="text" placeholder="Pesquisar...">
+      <button onclick="pesquisar()">🔍</button>
     </div>
 
     <p class="creditos">Inspirado no equilíbrio entre o Ecosia e o Yahoo!</p>
