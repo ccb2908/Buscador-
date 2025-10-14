@@ -1,40 +1,66 @@
-async function pesquisar() {
-  const termo = document.getElementById("campo").value.toLowerCase().trim();
-  const container = document.getElementById("resultados");
-
-  if (!termo) {
-    container.innerHTML = "";
-    return;
-  }
-
-  try {
-    const resposta = await fetch("index.json");
-    const dados = await resposta.json();
-
-    const resultados = dados.filter(item =>
-      item.titulo.toLowerCase().includes(termo) ||
-      item.descricao.toLowerCase().includes(termo) ||
-      item.categoria.toLowerCase().includes(termo)
-    );
-
-    mostrarResultados(resultados);
-  } catch (erro) {
-    container.innerHTML = "<p>❌ Erro ao carregar o índice.</p>";
-  }
+async function carregarDados() {
+  const resposta = await fetch('index.json');
+  const dados = await resposta.json();
+  return dados;
 }
 
-function mostrarResultados(lista) {
-  const container = document.getElementById("resultados");
-  container.innerHTML = "";
+async function buscar(termoURL) {
+  const campo = document.getElementById('campoBusca');
+  const termo = termoURL || campo.value.toLowerCase();
+  if (!termo) return;
 
-  if (lista.length === 0) {
-    container.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+  const resultadosDiv = document.getElementById('resultados');
+  resultadosDiv.innerHTML = '';
+
+  const dados = await carregarDados();
+  const filtrados = dados.filter(item =>
+    item.titulo.toLowerCase().includes(termo) ||
+    item.descricao.toLowerCase().includes(termo)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosDiv.innerHTML = '<p>Nenhum resultado encontrado.</p>';
     return;
   }
 
-  lista.forEach(item => {
-    container.innerHTML += `
-      <div class="resultado">
+  filtrados.forEach(item => {
+    const card = document.createElement('div');
+    card.classList.add('resultado');
+
+    card.innerHTML = `
+      <h3>${item.titulo}</h3>
+      <p>${item.descricao}</p>
+      <button onclick='mostrarPainel(${JSON.stringify(item)})'>Ver mais</button>
+    `;
+
+    resultadosDiv.appendChild(card);
+  });
+}
+
+function mostrarPainel(item) {
+  const painel = document.getElementById('painelInfo');
+  painel.innerHTML = `
+    <div class="painel">
+      <h2>${item.titulo}</h2>
+      <p>${item.conteudo}</p>
+      <button onclick="fecharPainel()">Fechar</button>
+    </div>
+  `;
+  painel.style.display = 'block';
+}
+
+function fecharPainel() {
+  document.getElementById('painelInfo').style.display = 'none';
+}
+
+window.onload = () => {
+  const params = new URLSearchParams(window.location.search);
+  const termo = params.get('q');
+  if (termo) {
+    document.getElementById('campoBusca').value = termo;
+    buscar(termo);
+  }
+};     <div class="resultado">
         <h3><a href="${item.link}" target="_blank">${item.titulo}</a></h3>
         <p>${item.descricao}</p>
         <span>${item.categoria}</span>
