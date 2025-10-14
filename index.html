@@ -3,21 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Lupa!</title>
+  <title>!Lupa! - Buscador Ético</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header>
-    <h1>🔍 ¡Lupa!</h1>
-    <input type="text" id="campo" placeholder="Pesquisar..." onkeyup="pesquisar()">
-  </header>
+<body class="home">
+  <div class="container">
+    <img src="imagens/logo.png" alt="!Lupa!" class="logo">
+    <h1>!Lupa!</h1>
+    <p class="subtitulo">Buscador Ético e Filosófico</p>
 
-  <main id="resultados"></main>
+    <div class="barra-pesquisa">
+      <input id="campoBusca" type="text" placeholder="Pesquisar...">
+      <button onclick="pesquisar()">🔍</button>
+    </div>
 
-  <footer>
-    <p>© 2025 – Buscador (Licença Mozilla)</p>
-  </footer>
+    <p class="creditos">Inspirado no equilíbrio entre o Ecosia e o Yahoo!</p>
+  </div>
 
-  <script src="script.js"></script>
+  <script>
+    function pesquisar() {
+      const termo = document.getElementById('campoBusca').value;
+      if (termo.trim() !== '') {
+        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      }
+    }
+  </script>
 </body>
 </html>
