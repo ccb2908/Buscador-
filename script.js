@@ -1,16 +1,33 @@
-function buscar() {
-  const termo = document.getElementById('campoBusca').value.toLowerCase();
-  fetch('index.json')
+document.getElementById("botaoBuscar").addEventListener("click", function() {
+  const termo = document.getElementById("busca").value.toLowerCase();
+  const resultadosDiv = document.getElementById("resultados");
+  resultadosDiv.innerHTML = "Buscando...";
+
+  fetch("Index.json")
     .then(res => res.json())
     .then(dados => {
-      let html = '';
-      for (let chave in dados) {
-        if (chave.includes(termo)) {
-          html += `<h2>${dados[chave].titulo}</h2>
-                   <p>${dados[chave].descricao}</p>
-                   <a href="${dados[chave].link}">Ver mais</a><hr>`;
-        }
+      const encontrados = dados.filter(item =>
+        item.titulo.toLowerCase().includes(termo) ||
+        item.texto.toLowerCase().includes(termo)
+      );
+
+      resultadosDiv.innerHTML = "";
+
+      if (encontrados.length === 0) {
+        resultadosDiv.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+      } else {
+        encontrados.forEach(item => {
+          resultadosDiv.innerHTML += `
+            <div class="resultado">
+              <a href="${item.link}" target="_blank">${item.titulo}</a>
+              <p>${item.texto}</p>
+            </div>
+          `;
+        });
       }
-      document.getElementById('resultados').innerHTML = html || '<p>Nenhum resultado encontrado.</p>';
+    })
+    .catch(err => {
+      resultadosDiv.innerHTML = "<p>Erro ao carregar os dados.</p>";
+      console.error(err);
     });
-}
+});
