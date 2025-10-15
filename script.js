@@ -1,51 +1,62 @@
-// Captura query da URL
-const urlParams = new URLSearchParams(window.location.search);
-const query = urlParams.get('q')?.toLowerCase() || '';
+// Função para buscar resultados no JSON
+async function buscarResultados(termo) {
+  termo = termo.toLowerCase().trim();
+  if (!termo) return;
 
-// Carrega o index.json e exibe os resultados
-fetch('index.json')
-  .then(res => res.json())
-  .then(data => {
-    const resultados = data.filter(item => {
-      // Cada item será exibido somente se a query estiver em titulo, descricao ou categoria
-      return item.titulo.toLowerCase().includes(query) ||
-             item.descricao.toLowerCase().includes(query) ||
-             item.categoria.toLowerCase().includes(query);
-    });
+  try {
+    const res = await fetch('index.json');
+    const dados = await res.json();
+
+    const resultados = dados.filter(item =>
+      item.titulo.toLowerCase().includes(termo) ||
+      item.descricao.toLowerCase().includes(termo) ||
+      item.categoria.toLowerCase().includes(termo)
+    );
 
     const lista = document.getElementById('lista-resultados');
-    if(resultados.length === 0){
+    lista.innerHTML = ''; // limpa resultados anteriores
+
+    if (resultados.length === 0) {
       lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
     } else {
-      // Agora cada painel exibe só o que corresponde à pesquisa
-      lista.innerHTML = resultados.map(item =>
-        `<div class="painel">
+      resultados.forEach(item => {
+        const painel = document.createElement('div');
+        painel.className = 'painel';
+
+        painel.innerHTML = `
           <a href="${item.link}">
             <h3>${item.titulo}</h3>
-            <p>${item.descricao}</p>
           </a>
-        </div>`
-      ).join('');
-    }
-  })
-  .catch(err => {
-    console.error('Erro ao carregar o index.json:', err);
-  });
+          <p>${item.descricao}</p>
+          <small>${item.link}</small>
+        `;
 
-// Busca ao clicar no botão
+        lista.appendChild(painel);
+      });
+    }
+  } catch (erro) {
+    console.error('Erro ao carregar index.json:', erro);
+  }
+}
+
+// Captura evento de clique no botão
 document.getElementById('botaoBusca').addEventListener('click', () => {
   const termo = document.getElementById('campoBusca').value;
-  if(termo.trim() !== "") {
-    window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+  buscarResultados(termo);
+});
+
+// Captura tecla Enter
+document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    const termo = document.getElementById('campoBusca').value;
+    buscarResultados(termo);
   }
 });
 
-// Busca ao pressionar Enter
-document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-  if(e.key === 'Enter') {
-    const termo = document.getElementById('campoBusca').value;
-    if(termo.trim() !== "") {
-      window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-    }
-  }
-});
+// Se estiver em página de resultados com query na URL
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('q');
+if (query) {
+  document.getElementById('campoBusca').value = query;
+  buscarResultados(query);
+}
