@@ -1,68 +1,60 @@
-async function buscar(termo) {
-  const resposta = await fetch("index.json");
+async function carregarDados() {
+  const resposta = await fetch('index.json');
   const dados = await resposta.json();
-  termo = termo.toLowerCase().trim();
-
-  // Se o usuário não digitou nada, limpa os resultados
-  if (!termo) {
-    exibirResultados([]);
-    return;
-  }
-
-  // Sistema de relevância inteligente
-  const resultados = dados
-    .map(item => {
-      let relevancia = 0;
-      const titulo = item.titulo.toLowerCase();
-      const descricao = item.descricao.toLowerCase();
-
-      // Pontuação base
-      if (titulo.includes(termo)) relevancia += 3;
-      if (descricao.includes(termo)) relevancia += 2;
-
-      // Bônus se todas as palavras estiverem presentes
-      const palavras = termo.split(" ");
-      const todasPresentes = palavras.every(p => descricao.includes(p) || titulo.includes(p));
-      if (todasPresentes) relevancia += 2;
-
-      // Bônus por múltiplas ocorrências
-      const ocorrencias = (descricao.match(new RegExp(termo, "g")) || []).length;
-      relevancia += ocorrencias;
-
-      return { ...item, relevancia };
-    })
-    .filter(item => item.relevancia > 0)
-    .sort((a, b) => b.relevancia - a.relevancia);
-
-  exibirResultados(resultados);
+  return dados;
 }
 
-// Função para exibir resultados na página
-function exibirResultados(resultados) {
+function destacarTrecho(texto, termo) {
+  const termoLower = termo.toLowerCase();
+  const index = texto.toLowerCase().indexOf(termoLower);
+
+  // Se o termo não for encontrado, retorna o texto inteiro
+  if (index === -1) return texto;
+
+  // Define o trecho que será mostrado (30 caracteres antes e depois)
+  const inicio = Math.max(0, index - 30);
+  const fim = Math.min(texto.length, index + termo.length + 30);
+  const trecho = texto.substring(inicio, fim);
+
+  // Destaca o termo com a cor roxa da interface
+  return "..." + trecho.replace(
+    new RegExp(termo, "gi"),
+    match => `<mark style="background-color:#7A42F4; color:#fff; border-radius:3px; padding:1px 3px;">${match}</mark>`
+  ) + "...";
+}
+
+async function buscar(termo) {
+  const dados = await carregarDados();
+  const resultados = dados.filter(item =>
+    item.titulo.toLowerCase().includes(termo.toLowerCase()) ||
+    item.descricao.toLowerCase().includes(termo.toLowerCase())
+  );
+  exibirResultados(resultados, termo);
+}
+
+function exibirResultados(resultados, termo) {
   const container = document.getElementById("resultados");
   container.innerHTML = "";
 
   if (resultados.length === 0) {
-    // Mensagem quando não há resultados
-    const msg = document.createElement("div");
-    msg.textContent = "⚠️ Nenhum resultado encontrado.";
-    msg.style.color = "#a080ff";
-    msg.style.textAlign = "center";
-    msg.style.marginTop = "20px";
-    container.appendChild(msg);
+    container.innerHTML = `<p style="color:#ccc;">Nenhum resultado encontrado para <strong>${termo}</strong>.</p>`;
     return;
   }
 
-  // Cria cada painel de resultado
   resultados.forEach(item => {
-    const painel = document.createElement("div");
-    painel.classList.add("resultado-item");
-    painel.innerHTML = `
-      <h3><a href="${item.link}" style="color: #00cc66;">${item.titulo}</a></h3>
-      <p style="color: #ccc;">${item.descricao}</p>
-      <small style="color: #a080ff;">Categoria: ${item.categoria}</small>
-      <hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">
+    const div = document.createElement("div");
+    div.className = "resultado-item";
+    div.innerHTML = `
+      <a href="${item.link}" target="_blank" class="titulo-link">${item.titulo}</a>
+      <p style="color:#ccc;">${destacarTrecho(item.descricao, termo)}</p>
+      <p style="font-size:13px; color:#7A42F4;">Categoria: ${item.categoria}</p>
     `;
-    container.appendChild(painel);
+    container.appendChild(div);
   });
 }
+
+document.getElementById("search-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const termo = document.getElementById("search-input").value.trim();
+  if (termo) buscar(termo);
+});
