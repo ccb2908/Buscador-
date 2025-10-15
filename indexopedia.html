@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indexopedia</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 0; }
+    header { background: #4CAF50; color: white; padding: 20px; text-align: center; }
+    nav { display: flex; justify-content: center; margin: 20px 0; }
+    nav button { background: #eee; border: none; padding: 10px 20px; margin: 0 5px; cursor: pointer; border-radius: 5px; }
+    nav button.ativa { background: #4CAF50; color: white; }
+    main { max-width: 900px; margin: auto; padding: 20px; }
+    .artigo { background: white; padding: 15px; margin-bottom: 15px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .artigo a { text-decoration: none; color: #4CAF50; }
+    .artigo a:visited { color: #800080; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Indexopedia</h1>
+    <p>Seu repositório de conhecimento ético e detalhado</p>
+  </header>
+
+  <nav>
+    <button class="aba ativa" data-categoria="Animes">Animes</button>
+    <button class="aba" data-categoria="Filosofia">Filosofia</button>
+    <button class="aba" data-categoria="História">História</button>
+    <button class="aba" data-categoria="Geopolítica">Geopolítica</button>
+  </nav>
+
+  <main id="listaArtigos">
+    <!-- Artigos aparecerão aqui -->
+  </main>
+
+  <script>
+    // Dados de exemplo (pode ser substituído por fetch de JSON)
+    const artigos = [
+      { titulo: "Zaiko", categoria: "Animes", link: "zaiko.html", descricao: "Vilão de Dragon Ball AF, 1,2 Saiyajin, 1,3 Kaioshin." },
+      { titulo: "Dragon Ball Daishi", categoria: "Animes", link: "dragon_ball_daishi.html", descricao: "História do guerreiro que superou o SSJ6." },
+      { titulo: "Filosofia Persa Antiga", categoria: "Filosofia", link: "filosofia_persa.html", descricao: "Estudo ético do Zoroastrismo e escolas do Império Aquemênida." },
+      { titulo: "Império Aquemênida", categoria: "História", link: "historia_aquemênida.html", descricao: "Linha do tempo e conquistas do Império Persa antigo." },
+      { titulo: "Geopolítica Moderna", categoria: "Geopolítica", link: "#", descricao: "Análise de relações internacionais atuais." }
+    ];
+
+    const lista = document.getElementById('listaArtigos');
+    const abas = document.querySelectorAll('nav button');
+
+    function exibirArtigos(categoria) {
+      lista.innerHTML = '';
+      artigos
+        .filter(a => categoria === "Todas" || a.categoria === categoria)
+        .forEach(a => {
+          lista.innerHTML += `<div class="artigo">
+            <a href="${a.link}">
+              <h3>${a.titulo}</h3>
+              <p>${a.descricao}</p>
+            </a>
+          </div>`;
+        });
+    }
+
+    // Inicial exibe Animes
+    exibirArtigos("Animes");
+
+    // Alternar abas
+    abas.forEach(botao => {
+      botao.addEventListener('click', () => {
+        abas.forEach(b => b.classList.remove('ativa'));
+        botao.classList.add('ativa');
+        exibirArtigos(botao.getAttribute('data-categoria'));
+      });
+    });
+  </script>
+</body>
+</html>
