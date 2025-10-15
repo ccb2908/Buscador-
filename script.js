@@ -1,60 +1,79 @@
-async function carregarDados() {
-  const resposta = await fetch('index.json');
-  const dados = await resposta.json();
-  return dados;
-}
+// ------------------------------
+// Script.js do Mini Buscador ¡Lupa!
+// Versão moderna com async/await e arrow functions
+// ------------------------------
 
-function destacarTrecho(texto, termo) {
-  const termoLower = termo.toLowerCase();
-  const index = texto.toLowerCase().indexOf(termoLower);
+const campoBusca = document.getElementById('campoBusca');
+const botaoBusca = document.getElementById('botaoBusca');
+const listaResultados = document.getElementById('lista-resultados');
 
-  // Se o termo não for encontrado, retorna o texto inteiro
-  if (index === -1) return texto;
-
-  // Define o trecho que será mostrado (30 caracteres antes e depois)
-  const inicio = Math.max(0, index - 30);
-  const fim = Math.min(texto.length, index + termo.length + 30);
-  const trecho = texto.substring(inicio, fim);
-
-  // Destaca o termo com a cor roxa da interface
-  return "..." + trecho.replace(
-    new RegExp(termo, "gi"),
-    match => `<mark style="background-color:#7A42F4; color:#fff; border-radius:3px; padding:1px 3px;">${match}</mark>`
-  ) + "...";
-}
-
-async function buscar(termo) {
-  const dados = await carregarDados();
-  const resultados = dados.filter(item =>
-    item.titulo.toLowerCase().includes(termo.toLowerCase()) ||
-    item.descricao.toLowerCase().includes(termo.toLowerCase())
-  );
-  exibirResultados(resultados, termo);
-}
-
-function exibirResultados(resultados, termo) {
-  const container = document.getElementById("resultados");
-  container.innerHTML = "";
-
-  if (resultados.length === 0) {
-    container.innerHTML = `<p style="color:#ccc;">Nenhum resultado encontrado para <strong>${termo}</strong>.</p>`;
-    return;
+// Redireciona para a página de resultados
+const pesquisar = () => {
+  const termo = campoBusca.value.trim();
+  if (termo !== "") {
+    window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
   }
+};
 
-  resultados.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "resultado-item";
-    div.innerHTML = `
-      <a href="${item.link}" target="_blank" class="titulo-link">${item.titulo}</a>
-      <p style="color:#ccc;">${destacarTrecho(item.descricao, termo)}</p>
-      <p style="font-size:13px; color:#7A42F4;">Categoria: ${item.categoria}</p>
-    `;
-    container.appendChild(div);
-  });
-}
-
-document.getElementById("search-form").addEventListener("submit", e => {
-  e.preventDefault();
-  const termo = document.getElementById("search-input").value.trim();
-  if (termo) buscar(termo);
+// Eventos de pesquisa
+botaoBusca.addEventListener('click', pesquisar);
+campoBusca.addEventListener('keypress', e => {
+  if (e.key === 'Enter') pesquisar();
 });
+
+// Função para carregar e exibir resultados
+const carregarResultados = async () => {
+  if (!listaResultados) return; // Se não estiver na página de resultados, sai
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get('q')?.toLowerCase() || '';
+  campoBusca.value = query;
+
+  try {
+    const res = await fetch('index.json');
+    const data = await res.json();
+
+    // Filtra resultados por título, descrição ou categoria
+    const resultados = data.filter(item =>
+      item.titulo.toLowerCase().includes(query) ||
+      item.descricao.toLowerCase().includes(query) ||
+      item.categoria.toLowerCase().includes(query)
+    );
+
+    if (resultados.length === 0) {
+      listaResultados.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+      return;
+    }
+
+    // Agrupa resultados por categoria
+    const categorias = resultados.reduce((acc, item) => {
+      if (!acc[item.categoria]) acc[item.categoria] = [];
+      acc[item.categoria].push(item);
+      return acc;
+    }, {});
+
+    // Gera HTML dos resultados
+    let html = '';
+    Object.keys(categorias).forEach(cat => {
+      html += `<h2 class="categoria">${cat}</h2>`;
+      categorias[cat].forEach(item => {
+        html += `
+          <div class="painel">
+            <a href="${item.link}" class="titulo-link">${item.titulo}</a>
+            <div class="url-link">${item.link}</div>
+            <p class="descricao">${item.descricao}</p>
+          </div>
+        `;
+      });
+    });
+
+    listaResultados.innerHTML = html;
+
+  } catch (err) {
+    console.error(err);
+    listaResultados.innerHTML = '<p>Erro ao carregar resultados.</p>';
+  }
+};
+
+// Executa carregamento se estiver na página resultados.html
+carregarResultados();
