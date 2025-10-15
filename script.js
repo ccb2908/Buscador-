@@ -1,13 +1,13 @@
 // ------------------------------
 // Script.js do Mini Buscador ¡Lupa!
-// Versão moderna com async/await e arrow functions
+// Funciona na página inicial e resultados
 // ------------------------------
 
 const campoBusca = document.getElementById('campoBusca');
 const botaoBusca = document.getElementById('botaoBusca');
 const listaResultados = document.getElementById('lista-resultados');
 
-// Redireciona para a página de resultados
+// Função para redirecionar para resultados.html
 const pesquisar = () => {
   const termo = campoBusca.value.trim();
   if (termo !== "") {
@@ -16,24 +16,24 @@ const pesquisar = () => {
 };
 
 // Eventos de pesquisa
-botaoBusca.addEventListener('click', pesquisar);
-campoBusca.addEventListener('keypress', e => {
+if (botaoBusca) botaoBusca.addEventListener('click', pesquisar);
+if (campoBusca) campoBusca.addEventListener('keypress', e => {
   if (e.key === 'Enter') pesquisar();
 });
 
-// Função para carregar e exibir resultados
+// Função para carregar resultados na página de resultados
 const carregarResultados = async () => {
-  if (!listaResultados) return; // Se não estiver na página de resultados, sai
+  if (!listaResultados) return; // Sai se não estiver na página de resultados
 
   const urlParams = new URLSearchParams(window.location.search);
   const query = urlParams.get('q')?.toLowerCase() || '';
-  campoBusca.value = query;
+  if (campoBusca) campoBusca.value = query;
 
   try {
     const res = await fetch('index.json');
     const data = await res.json();
 
-    // Filtra resultados por título, descrição ou categoria
+    // Filtra resultados
     const resultados = data.filter(item =>
       item.titulo.toLowerCase().includes(query) ||
       item.descricao.toLowerCase().includes(query) ||
@@ -75,5 +75,5 @@ const carregarResultados = async () => {
   }
 };
 
-// Executa carregamento se estiver na página resultados.html
-carregarResultados();
+// Executa apenas na página de resultados
+document.addEventListener('DOMContentLoaded', carregarResultados);
