@@ -1,79 +1,51 @@
-// ------------------------------
-// Script.js do Mini Buscador ¡Lupa!
-// Funciona na página inicial e resultados
-// ------------------------------
+// Captura query da URL
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('q')?.toLowerCase() || '';
 
-const campoBusca = document.getElementById('campoBusca');
-const botaoBusca = document.getElementById('botaoBusca');
-const listaResultados = document.getElementById('lista-resultados');
-
-// Função para redirecionar para resultados.html
-const pesquisar = () => {
-  const termo = campoBusca.value.trim();
-  if (termo !== "") {
-    window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-  }
-};
-
-// Eventos de pesquisa
-if (botaoBusca) botaoBusca.addEventListener('click', pesquisar);
-if (campoBusca) campoBusca.addEventListener('keypress', e => {
-  if (e.key === 'Enter') pesquisar();
-});
-
-// Função para carregar resultados na página de resultados
-const carregarResultados = async () => {
-  if (!listaResultados) return; // Sai se não estiver na página de resultados
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const query = urlParams.get('q')?.toLowerCase() || '';
-  if (campoBusca) campoBusca.value = query;
-
-  try {
-    const res = await fetch('index.json');
-    const data = await res.json();
-
-    // Filtra resultados
-    const resultados = data.filter(item =>
-      item.titulo.toLowerCase().includes(query) ||
-      item.descricao.toLowerCase().includes(query) ||
-      item.categoria.toLowerCase().includes(query)
-    );
-
-    if (resultados.length === 0) {
-      listaResultados.innerHTML = '<p>Nenhum resultado encontrado.</p>';
-      return;
-    }
-
-    // Agrupa resultados por categoria
-    const categorias = resultados.reduce((acc, item) => {
-      if (!acc[item.categoria]) acc[item.categoria] = [];
-      acc[item.categoria].push(item);
-      return acc;
-    }, {});
-
-    // Gera HTML dos resultados
-    let html = '';
-    Object.keys(categorias).forEach(cat => {
-      html += `<h2 class="categoria">${cat}</h2>`;
-      categorias[cat].forEach(item => {
-        html += `
-          <div class="painel">
-            <a href="${item.link}" class="titulo-link">${item.titulo}</a>
-            <div class="url-link">${item.link}</div>
-            <p class="descricao">${item.descricao}</p>
-          </div>
-        `;
-      });
+// Carrega o index.json e exibe os resultados
+fetch('index.json')
+  .then(res => res.json())
+  .then(data => {
+    const resultados = data.filter(item => {
+      // Cada item será exibido somente se a query estiver em titulo, descricao ou categoria
+      return item.titulo.toLowerCase().includes(query) ||
+             item.descricao.toLowerCase().includes(query) ||
+             item.categoria.toLowerCase().includes(query);
     });
 
-    listaResultados.innerHTML = html;
+    const lista = document.getElementById('lista-resultados');
+    if(resultados.length === 0){
+      lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+    } else {
+      // Agora cada painel exibe só o que corresponde à pesquisa
+      lista.innerHTML = resultados.map(item =>
+        `<div class="painel">
+          <a href="${item.link}">
+            <h3>${item.titulo}</h3>
+            <p>${item.descricao}</p>
+          </a>
+        </div>`
+      ).join('');
+    }
+  })
+  .catch(err => {
+    console.error('Erro ao carregar o index.json:', err);
+  });
 
-  } catch (err) {
-    console.error(err);
-    listaResultados.innerHTML = '<p>Erro ao carregar resultados.</p>';
+// Busca ao clicar no botão
+document.getElementById('botaoBusca').addEventListener('click', () => {
+  const termo = document.getElementById('campoBusca').value;
+  if(termo.trim() !== "") {
+    window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
   }
-};
+});
 
-// Executa apenas na página de resultados
-document.addEventListener('DOMContentLoaded', carregarResultados);
+// Busca ao pressionar Enter
+document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+  if(e.key === 'Enter') {
+    const termo = document.getElementById('campoBusca').value;
+    if(termo.trim() !== "") {
+      window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+    }
+  }
+});
