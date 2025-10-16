@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Lupa! — Configurações</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #0a6f3f;
+      padding: 10px 20px;
+    }
+
+    header .logo a {
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    main.configuracoes {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .painel-config {
+      background-color: #fff;
+      border: 2px solid #0a6f3f;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    .painel-config h3 {
+      color: #0a6f3f;
+      margin-top: 0;
+    }
+
+    select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #6b2ea2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #55207d;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px 0;
+      background-color: #0a6f3f;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">¡Lupa!</a>
+    </div>
+  </header>
+
+  <main class="configuracoes">
+    <h2>Configurações</h2>
+
+    <!-- 1. Nível de Pesquisa -->
+    <div class="painel-config">
+      <h3>Nível de Pesquisa</h3>
+      <select id="nivelPesquisa">
+        <option value="restrita">Restrita</option>
+        <option value="moderada">Moderada</option>
+        <option value="segura" selected>Segura</option>
+      </select>
+    </div>
+
+    <!-- 2. Palavras Bloqueadas -->
+    <div class="painel-config">
+      <h3>Palavras Bloqueadas</h3>
+      <textarea id="palavrasBloqueadas" placeholder="Digite palavras separadas por vírgula"></textarea>
+    </div>
+
+    <!-- 3. Tema -->
+    <div class="painel-config">
+      <h3>Modo de Tema</h3>
+      <select id="modoTema">
+        <option value="claro">Claro</option>
+        <option value="escuro">Escuro</option>
+        <option value="automatico" selected>Automático</option>
+      </select>
+    </div>
+
+    <!-- 4. Idioma -->
+    <div class="painel-config">
+      <h3>Idioma</h3>
+      <select id="idioma">
+        <option value="pt-br" selected>Português Brasileiro</option>
+        <option value="gr">Grego</option>
+        <option value="es">Espanhol</option>
+        <option value="pl">Polonês</option>
+        <option value="de">Alemão</option>
+      </select>
+    </div>
+
+    <!-- 5. Limpar Cache -->
+    <div class="painel-config">
+      <h3>Limpar Cache</h3>
+      <button id="limparCache">Limpar Cache</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+  </footer>
+
+  <script>
+    // Limpar cache
+    document.getElementById('limparCache').addEventListener('click', () => {
+      localStorage.clear();
+      alert('Cache limpo com sucesso!');
+    });
+
+    // Salvar configurações localmente
+    const campos = ['nivelPesquisa', 'palavrasBloqueadas', 'modoTema', 'idioma'];
+    campos.forEach(id => {
+      const el = document.getElementById(id);
+      if(localStorage.getItem(id)) el.value = localStorage.getItem(id);
+      el.addEventListener('change', () => {
+        localStorage.setItem(id, el.value);
+      });
+    });
+  </script>
+</body>
+</html>
