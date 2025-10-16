@@ -7,34 +7,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container-inicial">
-    <div class="logo">¡Lupa!</div>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
 
+  <div class="barra-superior">
     <div class="search-bar">
-      <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
-      <button id="btnInicial">➡️</button>
+      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
+      <button id="botaoBusca">🔍</button>
     </div>
+    <nav class="abas">
+      <button class="aba ativa">Tudo</button>
+      <button class="aba">Imagens</button>
+      <button class="aba">Vídeos</button>
+      <button class="aba">Notícias</button>
+    </nav>
   </div>
 
-  <script>
-    // Redireciona para página de resultados
-    const btn = document.getElementById('btnInicial');
-    btn.addEventListener('click', () => {
-      const termo = document.getElementById('campoInicial').value;
-      if (termo.trim() !== "") {
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-      }
-    });
+  <main id="painelResultados">
+    <!-- Na tela inicial não mostra resultados -->
+  </main>
 
-    // Busca ao pressionar Enter
-    document.getElementById('campoInicial').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const termo = document.getElementById('campoInicial').value;
-        if (termo.trim() !== "") {
-          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-        }
-      }
-    });
-  </script>
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
