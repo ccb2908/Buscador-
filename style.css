@@ -85,7 +85,16 @@ body {
 
 .painel h3 {
   margin: 0;
-  color: #1a0dab;
+  color: #2ecc71; /* verde antes de clicar */
+}
+
+.painel a:visited h3 {
+  color: #8e44ad; /* roxo depois de clicar */
+}
+
+.painel a:hover h3 {
+  text-decoration: underline;
+}
 }
 
 .painel p {
