@@ -5,99 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Lupa! — Configurações</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #fff;
+      font-family: Arial, sans-serif;
+      color: #202124;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 42px;
+      font-weight: bold;
+      color: #1b9c48; /* Verde ¡Lupa! */
+      margin-top: 40px;
+    }
+
+    h2 {
+      margin-top: 20px;
+      color: #6f42c1; /* Roxo ¡Lupa! */
+    }
+
+    .config-container {
+      max-width: 500px;
+      margin: 30px auto;
+      background: #f9f9f9;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .config-container h3 {
+      color: #1b9c48;
+      margin-top: 15px;
+    }
+
+    select, input[type="text"], button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      background-color: #6f42c1;
+      color: white;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #5a34a1;
+    }
+
+    .voltar {
+      display: inline-block;
+      margin-top: 15px;
+      color: #1b9c48;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
+  <div class="logo">¡Lupa!</div>
 
-  <div class="barra-superior">
-    <div class="search-bar">
-      <input type="text" id="campoBuscaConfig" placeholder="Pesquisar...">
-      <button id="botaoBuscaConfig">🔍</button>
-    </div>
-    <nav class="abas">
-      <button class="aba ativa">Tudo</button>
-      <button class="aba">Imagens</button>
-      <button class="aba">Vídeos</button>
-      <button class="aba">Notícias</button>
-    </nav>
+  <h2>Configurações</h2>
+
+  <div class="config-container">
+    <h3>Pesquisa</h3>
+    <select id="nivelPesquisa">
+      <option value="restrita">Restrita</option>
+      <option value="moderada" selected>Moderada</option>
+      <option value="segura">Segura</option>
+    </select>
+
+    <h3>Palavras bloqueadas</h3>
+    <input type="text" id="palavrasBloqueadas" placeholder="Digite palavras separadas por vírgula">
+
+    <h3>Modo de exibição</h3>
+    <select id="modoTela">
+      <option value="claro">Claro</option>
+      <option value="escuro">Escuro</option>
+      <option value="automatico" selected>Automático</option>
+    </select>
+
+    <h3>Idioma</h3>
+    <select id="idiomaSelecionado">
+      <option value="pt-br" selected>Português Brasileiro</option>
+      <option value="greco">Grego</option>
+      <option value="es">Espanhol</option>
+      <option value="pl">Polonês</option>
+      <option value="de">Alemão</option>
+    </select>
+
+    <button id="limparCache">Limpar Cache</button>
+
+    <a href="index.html" class="voltar">⬅️ Voltar à tela inicial</a>
   </div>
-
-  <main id="painelConfiguracoes">
-    <h2>Configurações</h2>
-
-    <section>
-      <h3>Pesquisa</h3>
-      <select id="nivelPesquisa">
-        <option value="restrita">Restrita</option>
-        <option value="moderada" selected>Moderada</option>
-        <option value="segura">Segura</option>
-      </select>
-    </section>
-
-    <section>
-      <h3>Palavras bloqueadas</h3>
-      <input type="text" id="palavrasBloqueadas" placeholder="Digite palavras separadas por vírgula">
-    </section>
-
-    <section>
-      <h3>Modo</h3>
-      <select id="modoTela">
-        <option value="claro">Claro</option>
-        <option value="escuro">Escuro</option>
-        <option value="automatico" selected>Automático</option>
-      </select>
-    </section>
-
-    <section>
-      <h3>Idioma</h3>
-      <select id="idiomaSelecionado">
-        <option value="pt-br" selected>Português Brasileiro</option>
-        <option value="greco">Grego</option>
-        <option value="es">Espanhol</option>
-        <option value="pl">Polonês</option>
-        <option value="de">Alemão</option>
-      </select>
-    </section>
-
-    <section>
-      <button id="limparCache">Limpar Cache</button>
-    </section>
-  </main>
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
   <script>
-    // Redireciona busca para resultados.html
-    const botaoBusca = document.getElementById('botaoBuscaConfig');
-    botaoBusca.addEventListener('click', () => {
-      const termo = document.getElementById('campoBuscaConfig').value;
-      if (termo.trim() !== "") {
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-      }
-    });
-
-    document.getElementById('campoBuscaConfig').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const termo = document.getElementById('campoBuscaConfig').value;
-        if (termo.trim() !== "") {
-          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-        }
-      }
-    });
-
-    // Limpar Cache
     document.getElementById('limparCache').addEventListener('click', () => {
       localStorage.clear();
       alert('Cache limpo com sucesso!');
-    });
-
-    // Troca de idioma (exemplo básico)
-    document.getElementById('idiomaSelecionado').addEventListener('change', (e) => {
-      const idioma = e.target.value;
-      // Aqui você pode adicionar as traduções específicas para cada idioma
-      alert('Idioma alterado para: ' + idioma);
     });
   </script>
 </body>
