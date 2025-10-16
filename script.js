@@ -1,5 +1,8 @@
-// Função para buscar resultados no JSON
+// Função para buscar resultados apenas se existir painelResultados
 async function buscarResultados(termo) {
+  const painel = document.getElementById('lista-resultados');
+  if (!painel) return; // não faz nada se não estiver na página de resultados
+
   termo = termo.toLowerCase().trim();
   if (!termo) return;
 
@@ -13,25 +16,22 @@ async function buscarResultados(termo) {
       item.categoria.toLowerCase().includes(termo)
     );
 
-    const lista = document.getElementById('lista-resultados');
-    lista.innerHTML = ''; // limpa resultados anteriores
+    painel.innerHTML = '';
 
     if (resultados.length === 0) {
-      lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+      painel.innerHTML = '<p>Nenhum resultado encontrado.</p>';
     } else {
       resultados.forEach(item => {
-        const painel = document.createElement('div');
-        painel.className = 'painel';
-
-        painel.innerHTML = `
-          <a href="${item.link}">
+        const div = document.createElement('div');
+        div.className = 'resultado';
+        div.innerHTML = `
+          <a href="${item.link}" class="link-titulo">
             <h3>${item.titulo}</h3>
           </a>
-          <p>${item.descricao}</p>
           <small>${item.link}</small>
+          <p>${item.descricao}</p>
         `;
-
-        lista.appendChild(painel);
+        painel.appendChild(div);
       });
     }
   } catch (erro) {
@@ -40,23 +40,39 @@ async function buscarResultados(termo) {
 }
 
 // Captura evento de clique no botão
-document.getElementById('botaoBusca').addEventListener('click', () => {
-  const termo = document.getElementById('campoBusca').value;
-  buscarResultados(termo);
-});
+const btn = document.getElementById('botaoBusca');
+const campo = document.getElementById('campoBusca');
 
-// Captura tecla Enter
-document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    const termo = document.getElementById('campoBusca').value;
-    buscarResultados(termo);
-  }
-});
+if (btn && campo) {
+  btn.addEventListener('click', () => {
+    const termo = campo.value;
+    if (termo.trim() !== "") {
+      if (window.location.pathname.endsWith('index.html')) {
+        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      } else {
+        buscarResultados(termo);
+      }
+    }
+  });
+
+  campo.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      const termo = campo.value;
+      if (termo.trim() !== "") {
+        if (window.location.pathname.endsWith('index.html')) {
+          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+        } else {
+          buscarResultados(termo);
+        }
+      }
+    }
+  });
+}
 
 // Se estiver em página de resultados com query na URL
 const urlParams = new URLSearchParams(window.location.search);
 const query = urlParams.get('q');
 if (query) {
-  document.getElementById('campoBusca').value = query;
+  campo.value = query;
   buscarResultados(query);
 }
