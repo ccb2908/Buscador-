@@ -7,19 +7,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container-inicial">
-    <div class="logo">¡Lupa!</div>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
 
+  <div class="barra-superior">
     <div class="search-bar">
       <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
       <button id="btnInicial">🔍</button>
+      <a href="configuracoes.html" class="btn-config">⚙️ Configurações</a>
     </div>
-
-    <button class="btn-config" onclick="window.location.href='configuracoes.html'">Configurações ⚙️</button>
+    <nav class="abas" style="display: none;">
+      <button class="aba ativa">Tudo</button>
+      <button class="aba">Imagens</button>
+      <button class="aba">Vídeos</button>
+      <button class="aba">Notícias</button>
+    </nav>
   </div>
 
+  <footer>
+    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+  </footer>
+
   <script>
-    // Redireciona para página de resultados
     const btn = document.getElementById('btnInicial');
     btn.addEventListener('click', () => {
       const termo = document.getElementById('campoInicial').value;
