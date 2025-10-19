@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa!</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container-inicial">
-    <div class="logo" onclick="window.location.href='index.html'">¡Lupa!</div>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
 
+  <div class="barra-superior">
     <div class="search-bar">
-      <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
-      <button id="btnInicial">➡️</button>
-      <button id="btnConfig" title="Configurações">⚙️</button>
+      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
+      <button id="botaoBusca">🔍</button>
+    </div>
+    <div class="botoes-superiores">
+      <a href="configuracoes.html" class="botao-config">⚙️</a>
     </div>
   </div>
 
+  <main class="tela-inicial">
+    <h1>Bem-vindo ao ¡Lupa!</h1>
+    <p>Um motor de busca ético, limpo e centrado na verdade.</p>
+  </main>
+
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+
   <script>
-    const btn = document.getElementById('btnInicial');
-    btn.addEventListener('click', () => {
-      const termo = document.getElementById('campoInicial').value;
-      if (termo.trim() !== "") {
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-      }
-    });
-    document.getElementById('campoInicial').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const termo = document.getElementById('campoInicial').value;
-        if (termo.trim() !== "") {
-          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-        }
-      }
+    document.getElementById('botaoBusca').addEventListener('click', () => {
+      const termo = document.getElementById('campoBusca').value.trim();
+      if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
     });
 
-    document.getElementById('btnConfig').addEventListener('click', () => {
-      window.location.href = 'configuracoes.html';
+    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoBusca').value.trim();
+        if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      }
     });
   </script>
 </body>
