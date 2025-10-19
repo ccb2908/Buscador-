@@ -1,23 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa! — Configurações</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container-inicial">
-    <div class="logo" onclick="window.location.href='index.html'">¡Lupa!</div>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
 
-    <div class="search-bar">
-      <button class="btn-voltar" onclick="window.location.href='index.html'">← Voltar</button>
+  <div class="barra-superior">
+    <button class="botao-voltar" onclick="window.location.href='index.html'">← Voltar</button>
+    <h2 class="titulo-pagina">Configurações</h2>
+  </div>
+
+  <main class="painel-config">
+    <div class="opcao">
+      <label>Modo de pesquisa:</label>
+      <select>
+        <option>Desativado</option>
+        <option>Seguro</option>
+        <option>Restrito</option>
+      </select>
     </div>
 
-    <div class="config-container">
-      <h2>Configurações</h2>
+    <div class="opcao">
+      <label>Idioma:</label>
+      <select>
+        <option>Português (Brasil)</option>
+        <option>Inglês</option>
+        <option>Espanhol</option>
+        <option>Francês</option>
+      </select>
+    </div>
 
-      <label for="modoPesquisa">Modo de Pesquisa:</label>
-      <select id="modoPesquisa">
-        <option value="restrita">Restrita</option>
-        <option value="moderada">
+    <div class="opcao">
+      <label>Tema:</label>
+      <select id="temaSelect">
+        <option value="escuro">Escuro</option>
+        <option value="claro">Claro</option>
+      </select>
+    </div>
+  </main>
+
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+
+  <script>
+    document.getElementById('temaSelect').addEventListener('change', function() {
+      document.body.dataset.tema = this.value;
+    });
+  </script>
+</body>
+</html>
