@@ -218,4 +218,21 @@
     });
   </script>
 </body>
+  <script>
+  // === Aplicar idioma e tema salvos ===
+  (function() {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    const savedLang = localStorage.getItem("language") || "pt";
+
+    // Aplica o tema (escuro/claro)
+    if (savedTheme === "light") {
+      document.body.classList.add("light");
+    } else {
+      document.body.classList.remove("light");
+    }
+
+    // Define o idioma no atributo HTML (para futuras traduções)
+    document.documentElement.lang = savedLang;
+  })();
+</script>
 </html>
