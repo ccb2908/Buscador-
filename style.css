@@ -1,36 +1,43 @@
-/* Corpo e reset */
+/* Reset básico */
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
   background: #fff;
   color: #202124;
 }
 
-/* Logo - centralizado na tela inicial, normal nos resultados */
+/* Logo */
 .logo {
   font-size: 28px;
   font-weight: bold;
-  color: #1b9c48; /* Verde Lupa */
+  color: #1b9c48; /* Verde */
   text-decoration: none;
+  display: block;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-/* Tela inicial */
+/* Container Tela Inicial */
 .container-inicial {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* centraliza horizontal */
-  height: 100vh; /* ocupa toda a tela */
+  align-items: center;
+  height: 100vh;
   gap: 20px;
+  padding: 0 20px; /* garante que não saia das margens */
 }
 
-/* Barra de pesquisa - resultados e inicial */
+/* Barra de pesquisa - comum */
 .search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 100%;
   max-width: 700px;
-  margin: 0 auto; /* centraliza horizontal */
+  margin: 0 auto;
 }
 
 .search-bar input {
@@ -44,20 +51,21 @@ body {
 .search-bar button {
   border: none;
   background: #6f42c1; /* Roxo */
-  color: #fff;
+  color: white;
   border-radius: 50%;
   width: 36px;
   height: 36px;
   cursor: pointer;
 }
 
-/* Abas - resultados */
+/* Abas - só em resultados */
 .abas {
   display: flex;
   gap: 15px;
   max-width: 700px;
-  margin: 8px auto; /* ajusta para não sair da margem */
+  margin: 8px auto;
   font-size: 14px;
+  padding: 0 10px; /* garante que não saia das margens */
 }
 
 .aba {
@@ -77,7 +85,7 @@ body {
 #painelResultados {
   max-width: 700px;
   margin: 20px auto;
-  padding: 0 20px;
+  padding: 0 10px; /* padding lateral evita sair da tela */
 }
 
 .resultado {
@@ -90,12 +98,12 @@ body {
 
 .resultado h3 {
   font-size: 18px;
-  color: #1b9c48; /* Verde antes de clicar */
+  color: #1b9c48;
   margin: 0;
 }
 
 .resultado a:visited h3 {
-  color: #6f42c1; /* Roxo depois de clicar */
+  color: #6f42c1;
 }
 
 .resultado small {
