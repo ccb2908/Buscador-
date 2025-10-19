@@ -1,238 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurações</title>
+  <title>Configurações — ¡Lupa!</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    :root {
-      --bg-color: #222;
-      --text-color: #fff;
-      --container-bg: rgba(255, 255, 255, 0.05);
-      --button-bg: #555;
-      --button-hover: #666;
-      --accent: #1e88e5;
-    }
-
-    body.light {
-      --bg-color: #f5f5f5;
-      --text-color: #222;
-      --container-bg: #ffffffd9;
-      --button-bg: #ddd;
-      --button-hover: #ccc;
-      --accent: #1976d2;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      transition: background 0.4s, color 0.4s;
-    }
-
-    .container {
-      background-color: var(--container-bg);
-      border-radius: 20px;
-      padding: 30px 40px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      width: 90%;
-      max-width: 450px;
-      text-align: center;
-      transition: background-color 0.4s;
-    }
-
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 20px;
-    }
-
-    .section {
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
-
-    select, button {
-      padding: 10px 15px;
-      border-radius: 10px;
-      border: none;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    select {
-      width: 100%;
-      background-color: var(--button-bg);
-      color: var(--text-color);
-    }
-
-    .idiomas button {
-      background-color: var(--button-bg);
-      color: var(--text-color);
-      margin: 5px;
-    }
-
-    .idiomas button:hover {
-      background-color: var(--button-hover);
-    }
-
-    .salvar {
-      background: var(--accent);
-      color: white;
-      width: 100%;
-      margin-top: 15px;
-    }
-
-    .voltar {
-      display: block;
-      margin-top: 20px;
-      color: #bbb;
-      text-decoration: none;
-      font-size: 0.9em;
-    }
-
-    .voltar:hover {
-      color: var(--text-color);
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1 id="title">Configurações</h1>
+  <header>
+    <a href="index.html" class="logo" data-text-pt="¡Lupa!" data-text-gr="Λούπα!" data-text-es="¡Lupa!">¡Lupa!</a>
+  </header>
 
-    <div class="section">
-      <label id="language-label">Idioma</label>
-      <div class="idiomas">
-        <button class="lang-btn" data-lang="pt">Português</button>
-        <button class="lang-btn" data-lang="el">Ελληνικά</button>
-        <button class="lang-btn" data-lang="de">Deutsch</button>
-        <button class="lang-btn" data-lang="es">Español</button>
-      </div>
-    </div>
+  <main class="config-container">
+    <h2 data-text-pt="Configurações" data-text-gr="Ρυθμίσεις" data-text-es="Configuración">Configurações</h2>
 
-    <div class="section">
-      <label id="theme-label">Tema</label>
-      <select id="theme-select">
-        <option value="dark">Escuro</option>
-        <option value="light">Claro</option>
+    <div class="config-item">
+      <label data-text-pt="Tema:" data-text-gr="Θέμα:" data-text-es="Tema:">Tema:</label>
+      <select id="temaSelect">
+        <option value="claro" data-text-pt="Claro" data-text-gr="Φωτεινό" data-text-es="Claro">Claro</option>
+        <option value="escuro" data-text-pt="Escuro" data-text-gr="Σκούρο" data-text-es="Oscuro">Escuro</option>
+        <option value="automatico" data-text-pt="Automático" data-text-gr="Αυτόματο" data-text-es="Automático">Automático</option>
       </select>
     </div>
 
-    <button id="save-button" class="salvar">Salvar</button>
+    <div class="config-item">
+      <label data-text-pt="Idioma:" data-text-gr="Γλώσσα:" data-text-es="Idioma:">Idioma:</label>
+      <select id="idiomaSelect">
+        <option value="pt">Português Brasileiro</option>
+        <option value="gr">Grego</option>
+        <option value="es">Espanhol</option>
+        <option value="pl">Polonês</option>
+        <option value="de">Alemão</option>
+      </select>
+    </div>
 
-    <a href="index.html" class="voltar">⟵ Voltar à Tela Inicial</a>
-  </div>
+    <button id="salvarConfig" data-text-pt="Salvar" data-text-gr="Αποθήκευση" data-text-es="Guardar">Salvar</button>
+  </main>
 
-  <script>
-    // Traduções multilíngues
-    const translations = {
-      pt: {
-        title: "Configurações",
-        language: "Idioma",
-        theme: "Tema",
-        save: "Salvar",
-        back: "⟵ Voltar à Tela Inicial",
-        themeOptions: { dark: "Escuro", light: "Claro" }
-      },
-      el: {
-        title: "Ρυθμίσεις",
-        language: "Γλώσσα",
-        theme: "Θέμα",
-        save: "Αποθήκευση",
-        back: "⟵ Επιστροφή στην αρχική οθόνη",
-        themeOptions: { dark: "Σκούρο", light: "Φωτεινό" }
-      },
-      de: {
-        title: "Einstellungen",
-        language: "Sprache",
-        theme: "Thema",
-        save: "Speichern",
-        back: "⟵ Zur Startseite zurückkehren",
-        themeOptions: { dark: "Dunkel", light: "Hell" }
-      },
-      es: {
-        title: "Configuraciones",
-        language: "Idioma",
-        theme: "Tema",
-        save: "Guardar",
-        back: "⟵ Volver a la pantalla principal",
-        themeOptions: { dark: "Oscuro", light: "Claro" }
-      }
-    };
-
-    // Função para trocar idioma
-    function changeLanguage(lang) {
-      const t = translations[lang];
-      document.getElementById("title").innerText = t.title;
-      document.getElementById("language-label").innerText = t.language;
-      document.getElementById("theme-label").innerText = t.theme;
-      document.getElementById("save-button").innerText = t.save;
-      document.querySelector(".voltar").innerText = t.back;
-
-      const themeSelect = document.getElementById("theme-select");
-      themeSelect.options[0].text = t.themeOptions.dark;
-      themeSelect.options[1].text = t.themeOptions.light;
-      
-      localStorage.setItem("language", lang);
-    }
-
-    // Aplicar idioma salvo
-    const savedLang = localStorage.getItem("language") || "pt";
-    changeLanguage(savedLang);
-
-    // Ativar botões de idioma
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const lang = btn.getAttribute("data-lang");
-        changeLanguage(lang);
-      });
-    });
-
-    // Tema: claro ou escuro
-    const themeSelect = document.getElementById("theme-select");
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    document.body.classList.toggle("light", savedTheme === "light");
-    themeSelect.value = savedTheme;
-
-    themeSelect.addEventListener("change", () => {
-      const selectedTheme = themeSelect.value;
-      document.body.classList.toggle("light", selectedTheme === "light");
-      localStorage.setItem("theme", selectedTheme);
-    });
-
-    // Botão salvar (opcional, apenas mostra um aviso)
-    document.getElementById("save-button").addEventListener("click", () => {
-      alert("Configurações salvas!");
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
-  <script>
-  // === Aplicar idioma e tema salvos ===
-  (function() {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    const savedLang = localStorage.getItem("language") || "pt";
-
-    // Aplica o tema (escuro/claro)
-    if (savedTheme === "light") {
-      document.body.classList.add("light");
-    } else {
-      document.body.classList.remove("light");
-    }
-
-    // Define o idioma no atributo HTML (para futuras traduções)
-    document.documentElement.lang = savedLang;
-  })();
-</script>
 </html>
