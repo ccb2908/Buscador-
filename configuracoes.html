@@ -3,40 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurações — ¡Lupa!</title>
+  <title>¡Lupa! — Configurações</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <a href="index.html" class="logo" data-text-pt="¡Lupa!" data-text-gr="Λούπα!" data-text-es="¡Lupa!">¡Lupa!</a>
+    <a href="index.html" class="logo">¡Lupa!</a>
+    <h2>Configurações</h2>
   </header>
 
-  <main class="config-container">
-    <h2 data-text-pt="Configurações" data-text-gr="Ρυθμίσεις" data-text-es="Configuración">Configurações</h2>
-
-    <div class="config-item">
-      <label data-text-pt="Tema:" data-text-gr="Θέμα:" data-text-es="Tema:">Tema:</label>
-      <select id="temaSelect">
-        <option value="claro" data-text-pt="Claro" data-text-gr="Φωτεινό" data-text-es="Claro">Claro</option>
-        <option value="escuro" data-text-pt="Escuro" data-text-gr="Σκούρο" data-text-es="Oscuro">Escuro</option>
-        <option value="automatico" data-text-pt="Automático" data-text-gr="Αυτόματο" data-text-es="Automático">Automático</option>
+  <main>
+    <section class="config-opcoes">
+      <h3>Pesquisa</h3>
+      <select>
+        <option>Restrita</option>
+        <option>Moderada</option>
+        <option>Segura</option>
       </select>
-    </div>
 
-    <div class="config-item">
-      <label data-text-pt="Idioma:" data-text-gr="Γλώσσα:" data-text-es="Idioma:">Idioma:</label>
-      <select id="idiomaSelect">
-        <option value="pt">Português Brasileiro</option>
-        <option value="gr">Grego</option>
-        <option value="es">Espanhol</option>
-        <option value="pl">Polonês</option>
-        <option value="de">Alemão</option>
+      <h3>Palavras bloqueadas</h3>
+      <textarea placeholder="Digite palavras/termos separados por vírgula"></textarea>
+
+      <h3>Modo</h3>
+      <select>
+        <option>Claro</option>
+        <option>Escuro</option>
+        <option>Automático</option>
       </select>
-    </div>
 
-    <button id="salvarConfig" data-text-pt="Salvar" data-text-gr="Αποθήκευση" data-text-es="Guardar">Salvar</button>
+      <h3>Idioma</h3>
+      <select>
+        <option>Português Brasileiro</option>
+        <option>Grego</option>
+        <option>Espanhol</option>
+        <option>Polonês</option>
+        <option>Alemão</option>
+      </select>
+
+      <button id="limparCache">Limpar Cache</button>
+    </section>
   </main>
 
-  <script src="scripts.js"></script>
+  <footer>
+    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
