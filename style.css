@@ -1,174 +1,99 @@
-/* Geral */
 body {
+  font-family: "Segoe UI", sans-serif;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  color: #202124;
+  background-color: #121212;
+  color: #f0f0f0;
 }
 
-.container-inicial {
-  max-width: 700px;
-  margin: 50px auto 0 auto;
-  padding: 0 15px;
-  text-align: center;
+header {
+  padding: 1rem 2rem;
+  background: #1e1e1e;
+  text-align: left;
 }
 
 .logo {
-  font-size: 36px;
-  font-weight: bold;
-  color: #1b9c48; /* Verde */
-  margin-bottom: 20px;
-  cursor: pointer;
+  font-size: 1.8rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.barra-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 900px;
 }
 
 .search-bar {
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
 }
 
 .search-bar input {
-  flex: 1;
-  padding: 10px 15px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
+  width: 70%;
+  padding: 0.7rem;
+  border-radius: 8px 0 0 8px;
+  border: none;
+  outline: none;
 }
 
 .search-bar button {
+  padding: 0.7rem 1rem;
   border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  background: #333;
+  color: #fff;
+  border-radius: 0 8px 8px 0;
   cursor: pointer;
-  font-size: 18px;
 }
 
-#btnInicial, #botaoBusca {
-  background: #6f42c1; /* Roxo */
-  color: white;
+.botoes-superiores {
+  margin-left: 1rem;
 }
 
-#btnConfig {
-  background: #6f42c1;
-  color: white;
-  border-radius: 25px;
-  padding: 0 12px;
-}
-
-/* Abas (somente resultados) */
-.barra-superior {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 10px 15px;
-  border-bottom: 1px solid #ddd;
-}
-
-.abas {
-  display: flex;
-  gap: 15px;
-  margin-top: 10px;
-  justify-content: flex-start;
-  font-size: 14px;
-}
-
-.aba {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #555;
-  padding: 6px 0;
-}
-
-.aba.ativa {
-  color: #1b9c48; /* Verde */
-  border-bottom: 2px solid #1b9c48;
-}
-
-/* Resultados */
-#painelResultados {
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 0 15px;
-}
-
-.resultado {
-  margin-bottom: 25px;
-  text-align: left;
-}
-
-.resultado a {
+.botao-config {
+  font-size: 1.4rem;
+  color: #fff;
   text-decoration: none;
 }
 
-.resultado h3 {
-  font-size: 18px;
-  color: #1b9c48; /* Verde */
-  margin: 0;
+main.tela-inicial {
+  text-align: center;
+  margin-top: 8vh;
 }
 
-.resultado a:visited h3 {
-  color: #6f42c1; /* Roxo após clique */
+.painel-config {
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 800px;
+  background: #1e1e1e;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
 }
 
-.resultado small {
-  color: #006621;
-  font-size: 13px;
+.opcao {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.resultado p {
-  font-size: 14px;
-  color: #4d5156;
-  margin: 4px 0 0;
-}
-
-/* Configurações */
-.config-container {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.config-container h2 {
-  color: #1b9c48;
-  margin-bottom: 15px;
-}
-
-.config-container label {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.config-container input, .config-container select {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Botão voltar configurações */
-.btn-voltar {
-  background: #6f42c1;
-  color: white;
+select {
+  background: #333;
+  color: #fff;
   border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 15px;
+  padding: 0.5rem;
+  border-radius: 6px;
 }
 
-/* Footer */
 footer {
   text-align: center;
-  padding: 20px;
-  font-size: 13px;
-  color: #777;
-  border-top: 1px solid #eee;
-  margin-top: 40px;
+  padding: 1rem;
+  color: #aaa;
+  font-size: 0.9rem;
 }
