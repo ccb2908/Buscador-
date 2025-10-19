@@ -105,3 +105,21 @@ body {
 .painel small {
   color: #006621;
 }
+
+/* Tema claro (quando a classe .light estiver ativa) */
+body.light {
+  background: #f5f5f5;
+  color: #222;
+}
+
+body.light input,
+body.light button {
+  background: #ddd;
+  color: #000;
+  border-color: #ccc;
+}
+
+body.light .search-bar button {
+  background: #6f42c1; /* mantém o roxo */
+  color: #fff;
+}
