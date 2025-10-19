@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa! — Resultados</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <a href="index.html" class="logo" data-text-pt="¡Lupa!" data-text-gr="Λούπα!" data-text-es="¡Lupa!">¡Lupa!</a>
-  </header>
+    <a href="index.html" class="logo">¡Lupa!</a>
 
-  <div class="barra-superior">
     <div class="search-bar">
       <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
       <button id="botaoBusca">🔍</button>
     </div>
+
     <nav class="abas">
-      <button class="aba ativa" data-text-pt="Tudo" data-text-gr="Όλα" data-text-es="Todo">Tudo</button>
-      <button class="aba" data-text-pt="Imagens" data-text-gr="Εικόνες" data-text-es="Imágenes">Imagens</button>
-      <button class="aba" data-text-pt="Vídeos" data-text-gr="Βίντεο" data-text-es="Vídeos">Vídeos</button>
-      <button class="aba" data-text-pt="Notícias" data-text-gr="Νέα" data-text-es="Noticias">Notícias</button>
+      <button class="aba ativa">Tudo</button>
+      <button class="aba">Imagens</button>
+      <button class="aba">Vídeos</button>
+      <button class="aba">Notícias</button>
+      <button class="aba" id="btnConfig">⚙️ Configurações</button>
     </nav>
-  </div>
+  </header>
 
   <main id="painelResultados">
     <div id="lista-resultados"></div>
@@ -30,6 +30,6 @@
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script src="scripts.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
