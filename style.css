@@ -1,42 +1,28 @@
-/* =============================
-   Estilo global
-============================= */
+/* Reset e corpo */
 body {
   margin: 0;
-  padding: 0;
   font-family: Arial, sans-serif;
   background: #fff;
   color: #202124;
 }
 
-/* Links padrão */
-a {
-  text-decoration: none;
-}
-
-/* =============================
-   Cabeçalho / Logo
-============================= */
-header, .logo {
+/* Logo */
+header .logo {
+  display: block;
   font-size: 28px;
   font-weight: bold;
-  color: #1b9c48; /* Verde ¡Lupa! */
+  color: #1b9c48; /* Verde Lupa */
+  text-decoration: none;
   padding: 15px 30px;
-  cursor: pointer;
 }
 
-header:hover, .logo:hover {
-  text-decoration: underline;
-}
-
-/* =============================
-   Barra de pesquisa
-============================= */
+/* Barra de pesquisa */
 .search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 10px;
+  max-width: 700px;
+  margin: 20px auto;
 }
 
 .search-bar input {
@@ -49,28 +35,26 @@ header:hover, .logo:hover {
 
 .search-bar button {
   border: none;
-  background: #6f42c1; /* Roxo ¡Lupa! */
-  color: white;
+  background: #6f42c1; /* Roxo */
+  color: #fff;
   border-radius: 50%;
   width: 36px;
   height: 36px;
   cursor: pointer;
-  font-size: 18px;
 }
 
-.search-bar button:hover {
-  opacity: 0.85;
+/* Botão configurações */
+#btnConfiguracoes {
+  border-radius: 50%;
 }
 
-/* =============================
-   Barra de abas
-============================= */
+/* Abas */
 .abas {
   display: flex;
   gap: 15px;
+  max-width: 700px;
+  margin: 0 auto;
   font-size: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
 }
 
 .aba {
@@ -86,14 +70,11 @@ header:hover, .logo:hover {
   border-bottom: 2px solid #1b9c48;
 }
 
-/* =============================
-   Painel de resultados
-============================= */
+/* Resultados */
 #painelResultados {
-  width: 95%;
-  max-width: 1200px;
+  max-width: 700px;
   margin: 20px auto;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 
 .resultado {
@@ -101,17 +82,17 @@ header:hover, .logo:hover {
 }
 
 .resultado a {
-  color: #1b9c48; /* Verde título antes do clique */
-  font-weight: bold;
-}
-
-.resultado a:visited {
-  color: #6f42c1; /* Roxo após clique */
+  text-decoration: none;
 }
 
 .resultado h3 {
   font-size: 18px;
+  color: #1b9c48; /* Verde antes de clicar */
   margin: 0;
+}
+
+.resultado a:visited h3 {
+  color: #6f42c1; /* Roxo depois de clicar */
 }
 
 .resultado small {
@@ -123,65 +104,9 @@ header:hover, .logo:hover {
   font-size: 14px;
   color: #4d5156;
   margin: 4px 0 0;
-  text-align: left;
 }
 
-/* =============================
-   Container da tela inicial
-============================= */
-.container-inicial {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  gap: 20px;
-}
-
-/* =============================
-   Configurações
-============================= */
-.config-container {
-  width: 95%;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #f7f7f7;
-  border-radius: 10px;
-}
-
-.config-container label {
-  display: block;
-  margin: 12px 0 6px;
-  font-weight: bold;
-}
-
-.config-container select,
-.config-container input[type="text"] {
-  width: 100%;
-  padding: 6px 10px;
-  font-size: 14px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.config-container button {
-  background: #6f42c1; /* Roxo */
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.config-container button:hover {
-  opacity: 0.85;
-}
-
-/* =============================
-   Footer
-============================= */
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;
@@ -189,29 +114,4 @@ footer {
   color: #777;
   border-top: 1px solid #eee;
   margin-top: 40px;
-}
-
-/* =============================
-   Temas Claro / Escuro / Automático
-============================= */
-body.tema-escuro {
-  background: #121212;
-  color: #e0e0e0;
-}
-
-body.tema-escuro .search-bar input,
-body.tema-escuro .config-container {
-  background: #1e1e1e;
-  color: #e0e0e0;
-  border: 1px solid #333;
-}
-
-body.tema-escuro footer {
-  color: #aaa;
-  border-top-color: #333;
-}
-
-body.tema-claro {
-  background: #fff;
-  color: #202124;
 }
