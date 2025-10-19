@@ -1,21 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa! — Resultados</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #fff;
+      color: #202124;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      padding: 15px 30px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #1b9c48; /* Verde ¡Lupa! */
+      cursor: pointer;
+    }
+
+    header:hover {
+      text-decoration: underline;
+    }
+
+    .barra-superior {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 30px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 8px 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+    }
+
+    .search-bar button {
+      border: none;
+      background: #6f42c1; /* Roxo ¡Lupa! */
+      color: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .abas {
+      display: flex;
+      gap: 15px;
+      font-size: 14px;
+    }
+
+    .aba {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+      padding: 6px 0;
+    }
+
+    .aba.ativa {
+      color: #1b9c48; /* Verde ¡Lupa! */
+      border-bottom: 2px solid #1b9c48;
+    }
+
+    #painelResultados {
+      width: 95%; /* quase toda a largura */
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+
+    .resultado {
+      margin-bottom: 25px;
+    }
+
+    .resultado a {
+      text-decoration: none;
+      color: #1b9c48; /* Verde título antes do clique */
+    }
+
+    .resultado a:visited {
+      color: #6f42c1; /* Roxo depois de clicado */
+    }
+
+    .resultado h3 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .resultado small {
+      color: #006621;
+      font-size: 13px;
+    }
+
+    .resultado p {
+      font-size: 14px;
+      color: #4d5156;
+      margin: 4px 0 0;
+      text-align: left; /* alinhamento à esquerda */
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #777;
+      border-top: 1px solid #eee;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
+  <header onclick="window.location.href='index.html'">¡Lupa!</header>
 
   <div class="barra-superior">
     <div class="search-bar">
       <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
       <button id="botaoBusca">🔍</button>
     </div>
+    <nav class="abas">
+      <button class="aba ativa">Tudo</button>
+      <button class="aba">Imagens</button>
+      <button class="aba">Vídeos</button>
+      <button class="aba">Notícias</button>
+    </nav>
   </div>
 
   <main id="painelResultados">
@@ -27,7 +148,7 @@
   <script>
     async function buscarResultados(termo) {
       termo = termo.toLowerCase().trim();
-      if(!termo) return;
+      if (!termo) return;
 
       try {
         const res = await fetch('index.json');
@@ -42,7 +163,7 @@
         const lista = document.getElementById('lista-resultados');
         lista.innerHTML = '';
 
-        if(resultados.length === 0){
+        if (resultados.length === 0) {
           lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
         } else {
           resultados.forEach(item => {
@@ -58,22 +179,26 @@
             lista.appendChild(div);
           });
         }
-      } catch(erro){
+      } catch (erro) {
         console.error('Erro ao carregar index.json:', erro);
       }
     }
 
-    // Eventos
     document.getElementById('botaoBusca').addEventListener('click', () => {
-      buscarResultados(document.getElementById('campoBusca').value);
-    });
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if(e.key === 'Enter') buscarResultados(document.getElementById('campoBusca').value);
+      const termo = document.getElementById('campoBusca').value;
+      buscarResultados(termo);
     });
 
-    // Pesquisa via URL
-    const query = new URLSearchParams(window.location.search).get('q');
-    if(query){
+    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoBusca').value;
+        buscarResultados(termo);
+      }
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    if (query) {
       document.getElementById('campoBusca').value = query;
       buscarResultados(query);
     }
