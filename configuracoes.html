@@ -1,127 +1,220 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Lupa! — Configurações</title>
+  <title>Configurações</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    :root {
+      --bg-color: #222;
+      --text-color: #fff;
+      --container-bg: rgba(255, 255, 255, 0.05);
+      --button-bg: #555;
+      --button-hover: #666;
+      --accent: #1e88e5;
+    }
+
+    body.light {
+      --bg-color: #f5f5f5;
+      --text-color: #222;
+      --container-bg: #ffffffd9;
+      --button-bg: #ddd;
+      --button-hover: #ccc;
+      --accent: #1976d2;
+    }
+
     body {
-      background-color: #fff;
-      font-family: Arial, sans-serif;
-      color: #202124;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       margin: 0;
-      padding: 0;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    .container {
+      background-color: var(--container-bg);
+      border-radius: 20px;
+      padding: 30px 40px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 450px;
       text-align: center;
+      transition: background-color 0.4s;
     }
 
-    .logo {
-      font-size: 42px;
-      font-weight: bold;
-      color: #1b9c48; /* Verde ¡Lupa! */
-      margin-top: 40px;
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
     }
 
-    h2 {
-      margin-top: 20px;
-      color: #6f42c1; /* Roxo ¡Lupa! */
+    .section {
+      margin-bottom: 25px;
     }
 
-    .config-container {
-      max-width: 500px;
-      margin: 30px auto;
-      background: #f9f9f9;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: left;
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
     }
 
-    .config-container h3 {
-      color: #1b9c48;
-      margin-top: 15px;
-    }
-
-    select, input[type="text"], button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-
-    button {
-      background-color: #6f42c1;
-      color: white;
-      cursor: pointer;
+    select, button {
+      padding: 10px 15px;
+      border-radius: 10px;
       border: none;
+      font-size: 1em;
+      cursor: pointer;
       transition: background 0.3s;
     }
 
-    button:hover {
-      background-color: #5a34a1;
+    select {
+      width: 100%;
+      background-color: var(--button-bg);
+      color: var(--text-color);
+    }
+
+    .idiomas button {
+      background-color: var(--button-bg);
+      color: var(--text-color);
+      margin: 5px;
+    }
+
+    .idiomas button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .salvar {
+      background: var(--accent);
+      color: white;
+      width: 100%;
+      margin-top: 15px;
     }
 
     .voltar {
-      display: inline-block;
-      margin-top: 15px;
-      color: #1b9c48;
+      display: block;
+      margin-top: 20px;
+      color: #bbb;
       text-decoration: none;
-      font-weight: bold;
+      font-size: 0.9em;
     }
 
-    footer {
-      margin-top: 40px;
-      font-size: 13px;
-      color: #777;
+    .voltar:hover {
+      color: var(--text-color);
     }
   </style>
 </head>
 <body>
-  <div class="logo">¡Lupa!</div>
+  <div class="container">
+    <h1 id="title">Configurações</h1>
 
-  <h2>Configurações</h2>
+    <div class="section">
+      <label id="language-label">Idioma</label>
+      <div class="idiomas">
+        <button class="lang-btn" data-lang="pt">Português</button>
+        <button class="lang-btn" data-lang="el">Ελληνικά</button>
+        <button class="lang-btn" data-lang="de">Deutsch</button>
+        <button class="lang-btn" data-lang="es">Español</button>
+      </div>
+    </div>
 
-  <div class="config-container">
-    <h3>Pesquisa</h3>
-    <select id="nivelPesquisa">
-      <option value="restrita">Restrita</option>
-      <option value="moderada" selected>Moderada</option>
-      <option value="segura">Segura</option>
-    </select>
+    <div class="section">
+      <label id="theme-label">Tema</label>
+      <select id="theme-select">
+        <option value="dark">Escuro</option>
+        <option value="light">Claro</option>
+      </select>
+    </div>
 
-    <h3>Palavras bloqueadas</h3>
-    <input type="text" id="palavrasBloqueadas" placeholder="Digite palavras separadas por vírgula">
+    <button id="save-button" class="salvar">Salvar</button>
 
-    <h3>Modo de exibição</h3>
-    <select id="modoTela">
-      <option value="claro">Claro</option>
-      <option value="escuro">Escuro</option>
-      <option value="automatico" selected>Automático</option>
-    </select>
-
-    <h3>Idioma</h3>
-    <select id="idiomaSelecionado">
-      <option value="pt-br" selected>Português Brasileiro</option>
-      <option value="greco">Grego</option>
-      <option value="es">Espanhol</option>
-      <option value="pl">Polonês</option>
-      <option value="de">Alemão</option>
-    </select>
-
-    <button id="limparCache">Limpar Cache</button>
-
-    <a href="index.html" class="voltar">⬅️ Voltar à tela inicial</a>
+    <a href="index.html" class="voltar">⟵ Voltar à Tela Inicial</a>
   </div>
 
-  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
-
   <script>
-    document.getElementById('limparCache').addEventListener('click', () => {
-      localStorage.clear();
-      alert('Cache limpo com sucesso!');
+    // Traduções multilíngues
+    const translations = {
+      pt: {
+        title: "Configurações",
+        language: "Idioma",
+        theme: "Tema",
+        save: "Salvar",
+        back: "⟵ Voltar à Tela Inicial",
+        themeOptions: { dark: "Escuro", light: "Claro" }
+      },
+      el: {
+        title: "Ρυθμίσεις",
+        language: "Γλώσσα",
+        theme: "Θέμα",
+        save: "Αποθήκευση",
+        back: "⟵ Επιστροφή στην αρχική οθόνη",
+        themeOptions: { dark: "Σκούρο", light: "Φωτεινό" }
+      },
+      de: {
+        title: "Einstellungen",
+        language: "Sprache",
+        theme: "Thema",
+        save: "Speichern",
+        back: "⟵ Zur Startseite zurückkehren",
+        themeOptions: { dark: "Dunkel", light: "Hell" }
+      },
+      es: {
+        title: "Configuraciones",
+        language: "Idioma",
+        theme: "Tema",
+        save: "Guardar",
+        back: "⟵ Volver a la pantalla principal",
+        themeOptions: { dark: "Oscuro", light: "Claro" }
+      }
+    };
+
+    // Função para trocar idioma
+    function changeLanguage(lang) {
+      const t = translations[lang];
+      document.getElementById("title").innerText = t.title;
+      document.getElementById("language-label").innerText = t.language;
+      document.getElementById("theme-label").innerText = t.theme;
+      document.getElementById("save-button").innerText = t.save;
+      document.querySelector(".voltar").innerText = t.back;
+
+      const themeSelect = document.getElementById("theme-select");
+      themeSelect.options[0].text = t.themeOptions.dark;
+      themeSelect.options[1].text = t.themeOptions.light;
+      
+      localStorage.setItem("language", lang);
+    }
+
+    // Aplicar idioma salvo
+    const savedLang = localStorage.getItem("language") || "pt";
+    changeLanguage(savedLang);
+
+    // Ativar botões de idioma
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-lang");
+        changeLanguage(lang);
+      });
+    });
+
+    // Tema: claro ou escuro
+    const themeSelect = document.getElementById("theme-select");
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    document.body.classList.toggle("light", savedTheme === "light");
+    themeSelect.value = savedTheme;
+
+    themeSelect.addEventListener("change", () => {
+      const selectedTheme = themeSelect.value;
+      document.body.classList.toggle("light", selectedTheme === "light");
+      localStorage.setItem("theme", selectedTheme);
+    });
+
+    // Botão salvar (opcional, apenas mostra um aviso)
+    document.getElementById("save-button").addEventListener("click", () => {
+      alert("Configurações salvas!");
     });
   </script>
 </body>
