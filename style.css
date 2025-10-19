@@ -1,4 +1,4 @@
-/* Reset e corpo */
+/* Corpo e reset */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -6,23 +6,31 @@ body {
   color: #202124;
 }
 
-/* Logo */
-header .logo {
-  display: block;
+/* Logo - centralizado na tela inicial, normal nos resultados */
+.logo {
   font-size: 28px;
   font-weight: bold;
   color: #1b9c48; /* Verde Lupa */
   text-decoration: none;
-  padding: 15px 30px;
 }
 
-/* Barra de pesquisa */
+/* Tela inicial */
+.container-inicial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* centraliza horizontal */
+  height: 100vh; /* ocupa toda a tela */
+  gap: 20px;
+}
+
+/* Barra de pesquisa - resultados e inicial */
 .search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
   max-width: 700px;
-  margin: 20px auto;
+  margin: 0 auto; /* centraliza horizontal */
 }
 
 .search-bar input {
@@ -43,17 +51,12 @@ header .logo {
   cursor: pointer;
 }
 
-/* Botão configurações */
-#btnConfiguracoes {
-  border-radius: 50%;
-}
-
-/* Abas */
+/* Abas - resultados */
 .abas {
   display: flex;
   gap: 15px;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 8px auto; /* ajusta para não sair da margem */
   font-size: 14px;
 }
 
