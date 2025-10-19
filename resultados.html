@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Lupa! — Resultados</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-    <a href="configuracoes.html" class="config-link">⚙️</a>
+    <a href="index.html" class="logo" data-text-pt="¡Lupa!" data-text-gr="Λούπα!" data-text-es="¡Lupa!">¡Lupa!</a>
   </header>
 
   <div class="barra-superior">
@@ -18,10 +17,10 @@
       <button id="botaoBusca">🔍</button>
     </div>
     <nav class="abas">
-      <button class="aba ativa">Tudo</button>
-      <button class="aba">Imagens</button>
-      <button class="aba">Vídeos</button>
-      <button class="aba">Notícias</button>
+      <button class="aba ativa" data-text-pt="Tudo" data-text-gr="Όλα" data-text-es="Todo">Tudo</button>
+      <button class="aba" data-text-pt="Imagens" data-text-gr="Εικόνες" data-text-es="Imágenes">Imagens</button>
+      <button class="aba" data-text-pt="Vídeos" data-text-gr="Βίντεο" data-text-es="Vídeos">Vídeos</button>
+      <button class="aba" data-text-pt="Notícias" data-text-gr="Νέα" data-text-es="Noticias">Notícias</button>
     </nav>
   </div>
 
@@ -31,71 +30,6 @@
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script>
-    // === Leitura de tema e idioma ===
-    (function() {
-      const savedTheme = localStorage.getItem("theme") || "dark";
-      const savedLang = localStorage.getItem("language") || "pt";
-      if (savedTheme === "light") document.body.classList.add("light");
-      document.documentElement.lang = savedLang;
-    })();
-
-    async function buscarResultados(termo) {
-      termo = termo.toLowerCase().trim();
-      if (!termo) return;
-
-      try {
-        const res = await fetch('index.json');
-        const dados = await res.json();
-
-        const resultados = dados.filter(item =>
-          item.titulo.toLowerCase().includes(termo) ||
-          item.descricao.toLowerCase().includes(termo) ||
-          item.categoria.toLowerCase().includes(termo)
-        );
-
-        const lista = document.getElementById('lista-resultados');
-        lista.innerHTML = '';
-
-        if (resultados.length === 0) {
-          lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
-        } else {
-          resultados.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'resultado';
-            div.innerHTML = `
-              <a href="${item.link}" target="_blank">
-                <h3>${item.titulo}</h3>
-              </a>
-              <small>${item.link}</small>
-              <p>${item.descricao}</p>
-            `;
-            lista.appendChild(div);
-          });
-        }
-      } catch (erro) {
-        console.error('Erro ao carregar index.json:', erro);
-      }
-    }
-
-    document.getElementById('botaoBusca').addEventListener('click', () => {
-      const termo = document.getElementById('campoBusca').value;
-      buscarResultados(termo);
-    });
-
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const termo = document.getElementById('campoBusca').value;
-        buscarResultados(termo);
-      }
-    });
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-    if (query) {
-      document.getElementById('campoBusca').value = query;
-      buscarResultados(query);
-    }
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
