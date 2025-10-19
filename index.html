@@ -8,35 +8,40 @@
 </head>
 <body>
   <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
+    <!-- Mantém apenas o nome no topo, discreto -->
+    <a href="index.html" class="logo-min">¡Lupa!</a>
   </header>
 
-  <div class="barra-superior">
-    <div class="search-bar">
+  <main class="tela-inicial">
+    <!-- Logo centralizado -->
+    <h1 class="logo-central">¡Lupa!</h1>
+
+    <!-- Barra de pesquisa centralizada -->
+    <div class="search-bar centralizada">
       <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
       <button id="botaoBusca">🔍</button>
     </div>
-    <div class="botoes-superiores">
-      <a href="configuracoes.html" class="botao-config">⚙️</a>
-    </div>
-  </div>
-
-  <main class="tela-inicial">
-    <h1>Bem-vindo ao ¡Lupa!</h1>
-    <p>Um motor de busca ético, limpo e centrado na verdade.</p>
   </main>
+
+  <!-- Botão de configurações acima do rodapé -->
+  <div class="config-rodape">
+    <a href="configuracoes.html" class="botao-config">⚙️ Configurações</a>
+  </div>
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
   <script>
-    document.getElementById('botaoBusca').addEventListener('click', () => {
-      const termo = document.getElementById('campoBusca').value.trim();
+    const campo = document.getElementById('campoBusca');
+    const botao = document.getElementById('botaoBusca');
+
+    botao.addEventListener('click', () => {
+      const termo = campo.value.trim();
       if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
     });
 
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+    campo.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
-        const termo = document.getElementById('campoBusca').value.trim();
+        const termo = campo.value.trim();
         if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
       }
     });
