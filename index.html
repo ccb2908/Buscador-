@@ -7,15 +7,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  .search-bar button#btnConfig {
-  background: #6f42c1; /* Roxo */
-  color: white;
-  border: none;
-  border-radius: 25px;
-  padding: 0 12px;
-  cursor: pointer;
-  font-size: 18px;
-}
+  <div class="container-inicial">
+    <div class="logo" onclick="window.location.href='index.html'">¡Lupa!</div>
+
+    <div class="search-bar">
+      <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
+      <button id="btnInicial">➡️</button>
+      <button id="btnConfig" title="Configurações">⚙️</button>
+    </div>
+  </div>
 
   <script>
     const btn = document.getElementById('btnInicial');
@@ -25,7 +25,6 @@
         window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
       }
     });
-
     document.getElementById('campoInicial').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         const termo = document.getElementById('campoInicial').value;
@@ -33,6 +32,10 @@
           window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
         }
       }
+    });
+
+    document.getElementById('btnConfig').addEventListener('click', () => {
+      window.location.href = 'configuracoes.html';
     });
   </script>
 </body>
