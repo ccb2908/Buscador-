@@ -3,52 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurações — ¡Lupa!</title>
+  <title>¡Lupa! — Configurações</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
+  <div class="container-inicial">
+    <div class="logo">¡Lupa!</div>
 
-  <main class="config-container">
-    <h2>Configurações</h2>
+    <div class="config-opcoes">
+      <label>Pesquisa:
+        <select id="modoPesquisa">
+          <option>Restrita</option>
+          <option>Moderada</option>
+          <option>Segura</option>
+        </select>
+      </label>
 
-    <div class="config-item">
-      <label>Tema:</label>
-      <select id="temaSelect">
-        <option value="claro">Claro</option>
-        <option value="escuro">Escuro</option>
-        <option value="automatico">Automático</option>
-      </select>
+      <label>Palavras bloqueadas:
+        <input type="text" id="palavrasBloqueadas" placeholder="Separe por vírgula">
+      </label>
+
+      <label>Modo de cor:
+        <select id="modoCor">
+          <option>Claro</option>
+          <option>Escuro</option>
+          <option>Automático</option>
+        </select>
+      </label>
+
+      <label>Idioma:
+        <select id="idioma">
+          <option value="pt">Português Brasileiro</option>
+          <option value="gr">Grego</option>
+          <option value="es">Espanhol</option>
+          <option value="pl">Polonês</option>
+          <option value="de">Alemão</option>
+        </select>
+      </label>
+
+      <button id="limparCache">Limpar Cache</button>
+      <button onclick="window.location.href='index.html'">Voltar à Tela Inicial</button>
     </div>
-
-    <div class="config-item">
-      <label>Idioma:</label>
-      <select id="idiomaSelect">
-        <option value="pt">Português</option>
-        <option value="gr">Grego</option>
-        <option value="es">Espanhol</option>
-        <option value="pl">Polonês</option>
-        <option value="de">Alemão</option>
-      </select>
-    </div>
-
-    <button id="salvarConfig">Salvar</button>
-  </main>
+  </div>
 
   <script>
-    // Carregar preferências
-    const temaSelect = document.getElementById('temaSelect');
-    const idiomaSelect = document.getElementById('idiomaSelect');
-    temaSelect.value = localStorage.getItem('tema') || 'claro';
-    idiomaSelect.value = localStorage.getItem('idioma') || 'pt';
-
-    document.getElementById('salvarConfig').addEventListener('click', () => {
-      localStorage.setItem('tema', temaSelect.value);
-      localStorage.setItem('idioma', idiomaSelect.value);
-      alert('Configurações salvas!');
-    });
+    // Aqui podemos adicionar os eventos de configuração depois
   </script>
 </body>
 </html>
