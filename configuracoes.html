@@ -1,69 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurações — ¡Lupa!</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Lupa! — Configurações</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
+  <button class="btn-voltar" onclick="window.location.href='index.html'">← Voltar</button>
 
-  <div class="barra-superior">
-    <button onclick="window.location.href='index.html'" class="btn-voltar">🔙 Voltar</button>
-  </div>
-
-  <main id="painelConfiguracoes" style="max-width:700px; margin: 20px auto; padding:0 20px;">
+  <div class="config-container">
     <h2>Configurações</h2>
 
-    <div class="config-section">
-      <label for="modoPesquisa">Modo de pesquisa:</label>
-      <select id="modoPesquisa">
-        <option value="desativado">Desativado</option>
-        <option value="seguro">Seguro</option>
-        <option value="restrito">Restrito</option>
-      </select>
-    </div>
+    <label for="modoPesquisa">Modo de Pesquisa:</label>
+    <select id="modoPesquisa">
+      <option value="restrita">Restrita</option>
+      <option value="moderada">Moderada</option>
+      <option value="segura">Segura</option>
+    </select>
 
-    <div class="config-section">
-      <label for="idioma">Idioma:</label>
-      <select id="idioma">
-        <option value="pt">Português Brasileiro</option>
-        <option value="el">Grego</option>
-        <option value="es">Espanhol</option>
-        <option value="pl">Polonês</option>
-        <option value="de">Alemão</option>
-      </select>
-    </div>
+    <label for="palavrasBloqueadas">Palavras Bloqueadas:</label>
+    <input type="text" id="palavrasBloqueadas" placeholder="Digite palavras separadas por vírgula">
 
-    <div class="config-section">
-      <label for="tema">Tema:</label>
-      <select id="tema">
-        <option value="claro">Claro</option>
-        <option value="escuro">Escuro</option>
-      </select>
-    </div>
-  </main>
+    <label for="tema">Tema:</label>
+    <select id="tema">
+      <option value="claro">Claro</option>
+      <option value="escuro">Escuro</option>
+      <option value="automatico">Automático</option>
+    </select>
 
-  <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
-  </footer>
-
-  <script>
-    const idiomaSelect = document.getElementById('idioma');
-    const temaSelect = document.getElementById('tema');
-
-    idiomaSelect.addEventListener('change', () => {
-      // Aqui você pode chamar uma função para atualizar idioma
-      console.log('Idioma alterado para:', idiomaSelect.value);
-    });
-
-    temaSelect.addEventListener('change', () => {
-      document.body.style.background = temaSelect.value === 'escuro' ? '#202124' : '#fff';
-      document.body.style.color = temaSelect.value === 'escuro' ? '#fff' : '#202124';
-    });
-  </script>
+    <label for="idioma">Idioma:</label>
+    <select id="idioma">
+      <option value="pt-br">Português Brasileiro</option>
+      <option value="greco">Grego</option>
+      <option value="es">Espanhol</option>
+      <option value="pl">Polonês</option>
+      <option value="de">Alemão</option>
+    </select>
+  </div>
 </body>
 </html>
