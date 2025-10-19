@@ -6,40 +6,24 @@
   <title>¡Lupa! — Resultados</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body> 
-  <script>
-  // === Aplicar idioma e tema salvos ===
-  (function() {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    const savedLang = localStorage.getItem("language") || "pt";
-
-    // Aplica o tema (escuro/claro)
-    if (savedTheme === "light") {
-      document.body.classList.add("light");
-    } else {
-      document.body.classList.remove("light");
-    }
-
-    // Define o idioma no atributo HTML (para futuras traduções)
-    document.documentElement.lang = savedLang;
-  })();
-</script>
+<body>
   <header>
     <a href="index.html" class="logo">¡Lupa!</a>
+    <a href="configuracoes.html" class="config-link">⚙️</a>
+  </header>
 
+  <div class="barra-superior">
     <div class="search-bar">
       <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
       <button id="botaoBusca">🔍</button>
     </div>
-
     <nav class="abas">
       <button class="aba ativa">Tudo</button>
       <button class="aba">Imagens</button>
       <button class="aba">Vídeos</button>
       <button class="aba">Notícias</button>
-      <button class="aba" id="btnConfig">⚙️ Configurações</button>
     </nav>
-  </header>
+  </div>
 
   <main id="painelResultados">
     <div id="lista-resultados"></div>
@@ -47,6 +31,71 @@
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script src="script.js"></script>
+  <script>
+    // === Leitura de tema e idioma ===
+    (function() {
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      const savedLang = localStorage.getItem("language") || "pt";
+      if (savedTheme === "light") document.body.classList.add("light");
+      document.documentElement.lang = savedLang;
+    })();
+
+    async function buscarResultados(termo) {
+      termo = termo.toLowerCase().trim();
+      if (!termo) return;
+
+      try {
+        const res = await fetch('index.json');
+        const dados = await res.json();
+
+        const resultados = dados.filter(item =>
+          item.titulo.toLowerCase().includes(termo) ||
+          item.descricao.toLowerCase().includes(termo) ||
+          item.categoria.toLowerCase().includes(termo)
+        );
+
+        const lista = document.getElementById('lista-resultados');
+        lista.innerHTML = '';
+
+        if (resultados.length === 0) {
+          lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+        } else {
+          resultados.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'resultado';
+            div.innerHTML = `
+              <a href="${item.link}" target="_blank">
+                <h3>${item.titulo}</h3>
+              </a>
+              <small>${item.link}</small>
+              <p>${item.descricao}</p>
+            `;
+            lista.appendChild(div);
+          });
+        }
+      } catch (erro) {
+        console.error('Erro ao carregar index.json:', erro);
+      }
+    }
+
+    document.getElementById('botaoBusca').addEventListener('click', () => {
+      const termo = document.getElementById('campoBusca').value;
+      buscarResultados(termo);
+    });
+
+    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoBusca').value;
+        buscarResultados(termo);
+      }
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    if (query) {
+      document.getElementById('campoBusca').value = query;
+      buscarResultados(query);
+    }
+  </script>
 </body>
 </html>
