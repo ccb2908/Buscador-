@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Lupa!</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container-inicial">
@@ -12,15 +12,14 @@
 
     <div class="search-bar">
       <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
-      <button id="btnInicial">➡️</button>
-      <button id="btnConfiguracoes">⚙️</button> <!-- botão configurações -->
+      <button id="btnInicial">🔍</button>
     </div>
-  </div>
-</body>
 
-  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+    <button class="btn-config" onclick="window.location.href='configuracoes.html'">Configurações ⚙️</button>
+  </div>
 
   <script>
+    // Redireciona para página de resultados
     const btn = document.getElementById('btnInicial');
     btn.addEventListener('click', () => {
       const termo = document.getElementById('campoInicial').value;
