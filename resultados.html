@@ -15,9 +15,7 @@
     <div class="search-bar">
       <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
       <button id="botaoBusca">🔍</button>
-      <button id="btnConfiguracoes" onclick="window.location.href='configuracoes.html'">⚙️</button>
     </div>
-
     <nav class="abas">
       <button class="aba ativa">Tudo</button>
       <button class="aba">Imagens</button>
@@ -57,7 +55,7 @@
             const div = document.createElement('div');
             div.className = 'resultado';
             div.innerHTML = `
-              <a href="${item.link}">
+              <a href="${item.link}" class="titulo-link">
                 <h3>${item.titulo}</h3>
               </a>
               <small>${item.link}</small>
