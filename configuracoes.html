@@ -9,45 +9,96 @@
 <body>
   <header>
     <a href="index.html" class="logo">¡Lupa!</a>
-    <h2>Configurações</h2>
   </header>
 
-  <main>
-    <section class="config-opcoes">
+  <div class="barra-superior">
+    <div class="search-bar">
+      <input type="text" id="campoBuscaConfig" placeholder="Pesquisar...">
+      <button id="botaoBuscaConfig">🔍</button>
+    </div>
+    <nav class="abas">
+      <button class="aba ativa">Tudo</button>
+      <button class="aba">Imagens</button>
+      <button class="aba">Vídeos</button>
+      <button class="aba">Notícias</button>
+    </nav>
+  </div>
+
+  <main id="painelConfiguracoes">
+    <h2>Configurações</h2>
+
+    <section>
       <h3>Pesquisa</h3>
-      <select>
-        <option>Restrita</option>
-        <option>Moderada</option>
-        <option>Segura</option>
+      <select id="nivelPesquisa">
+        <option value="restrita">Restrita</option>
+        <option value="moderada" selected>Moderada</option>
+        <option value="segura">Segura</option>
       </select>
+    </section>
 
+    <section>
       <h3>Palavras bloqueadas</h3>
-      <textarea placeholder="Digite palavras/termos separados por vírgula"></textarea>
+      <input type="text" id="palavrasBloqueadas" placeholder="Digite palavras separadas por vírgula">
+    </section>
 
+    <section>
       <h3>Modo</h3>
-      <select>
-        <option>Claro</option>
-        <option>Escuro</option>
-        <option>Automático</option>
+      <select id="modoTela">
+        <option value="claro">Claro</option>
+        <option value="escuro">Escuro</option>
+        <option value="automatico" selected>Automático</option>
       </select>
+    </section>
 
+    <section>
       <h3>Idioma</h3>
-      <select>
-        <option>Português Brasileiro</option>
-        <option>Grego</option>
-        <option>Espanhol</option>
-        <option>Polonês</option>
-        <option>Alemão</option>
+      <select id="idiomaSelecionado">
+        <option value="pt-br" selected>Português Brasileiro</option>
+        <option value="greco">Grego</option>
+        <option value="es">Espanhol</option>
+        <option value="pl">Polonês</option>
+        <option value="de">Alemão</option>
       </select>
+    </section>
 
+    <section>
       <button id="limparCache">Limpar Cache</button>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
-  </footer>
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Redireciona busca para resultados.html
+    const botaoBusca = document.getElementById('botaoBuscaConfig');
+    botaoBusca.addEventListener('click', () => {
+      const termo = document.getElementById('campoBuscaConfig').value;
+      if (termo.trim() !== "") {
+        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      }
+    });
+
+    document.getElementById('campoBuscaConfig').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoBuscaConfig').value;
+        if (termo.trim() !== "") {
+          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+        }
+      }
+    });
+
+    // Limpar Cache
+    document.getElementById('limparCache').addEventListener('click', () => {
+      localStorage.clear();
+      alert('Cache limpo com sucesso!');
+    });
+
+    // Troca de idioma (exemplo básico)
+    document.getElementById('idiomaSelecionado').addEventListener('change', (e) => {
+      const idioma = e.target.value;
+      // Aqui você pode adicionar as traduções específicas para cada idioma
+      alert('Idioma alterado para: ' + idioma);
+    });
+  </script>
 </body>
 </html>
