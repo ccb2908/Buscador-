@@ -6,73 +6,119 @@
   <title>¡Lupa! — Resultados</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Estilos específicos para resultados */
-    .painel {
-      border-bottom: 1px solid #ccc;
-      padding: 12px 0;
+    /* Painel de resultados simples, fundo claro */
+    body {
+      background: #fff;
+      color: #202124;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
-    .titulo-link {
-      color: #5ce65c;
-      font-weight: 600;
-      font-size: 18px;
-      text-decoration: none;
-    }
-
-    .titulo-link:hover {
-      text-decoration: underline;
-    }
-
-    .url-link {
-      color: #888;
-      font-size: 14px;
-      margin: 2px 0;
-    }
-
-    .descricao {
-      color: #333;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-top: 4px;
+    header {
+      padding: 15px 30px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #4285f4;
     }
 
     .barra-superior {
-      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 30px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .search-bar input {
-      width: 70%;
-      padding: 8px;
+      flex: 1;
+      padding: 8px 12px;
       font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
     }
 
     .search-bar button {
-      padding: 8px 12px;
-      font-size: 16px;
+      border: none;
+      background: #4285f4;
+      color: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
       cursor: pointer;
     }
 
-    .abas button {
-      margin-right: 8px;
-      padding: 6px 12px;
-      cursor: pointer;
+    .abas {
+      display: flex;
+      gap: 15px;
+      margin-top: 8px;
+      font-size: 14px;
     }
 
-    .abas .ativa {
-      font-weight: bold;
-      border-bottom: 2px solid #5ce65c;
+    .aba {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+      padding: 6px 0;
+    }
+
+    .aba.ativa {
+      color: #1a73e8;
+      border-bottom: 2px solid #1a73e8;
+    }
+
+    #painelResultados {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .resultado {
+      margin-bottom: 25px;
+    }
+
+    .resultado a {
+      text-decoration: none;
+    }
+
+    .resultado h3 {
+      font-size: 18px;
+      color: #1a0dab;
+      margin: 0;
+    }
+
+    .resultado small {
+      color: #006621;
+      font-size: 13px;
+    }
+
+    .resultado p {
+      font-size: 14px;
+      color: #4d5156;
+      margin: 4px 0 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #777;
+      border-top: 1px solid #eee;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">¡Lupa!</div>
-  </header>
+  <header>¡Lupa!</header>
 
   <div class="barra-superior">
     <div class="search-bar">
       <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
-      <button id="botaoBusca">➡️</button>
+      <button id="botaoBusca">🔍</button>
     </div>
     <nav class="abas">
       <button class="aba ativa">Tudo</button>
@@ -86,56 +132,65 @@
     <div id="lista-resultados"></div>
   </main>
 
-  <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
-  </footer>
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
   <script>
-    // Captura query da URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q')?.toLowerCase() || '';
+    async function buscarResultados(termo) {
+      termo = termo.toLowerCase().trim();
+      if (!termo) return;
 
-    // Carrega e exibe resultados do JSON
-    fetch('index.json')
-      .then(res => res.json())
-      .then(data => {
-        const resultados = data.filter(item =>
-          item.titulo.toLowerCase().includes(query) ||
-          item.descricao.toLowerCase().includes(query) ||
-          item.categoria.toLowerCase().includes(query)
+      try {
+        const res = await fetch('index.json');
+        const dados = await res.json();
+
+        const resultados = dados.filter(item =>
+          item.titulo.toLowerCase().includes(termo) ||
+          item.descricao.toLowerCase().includes(termo) ||
+          item.categoria.toLowerCase().includes(termo)
         );
 
         const lista = document.getElementById('lista-resultados');
-        if(resultados.length === 0){
+        lista.innerHTML = '';
+
+        if (resultados.length === 0) {
           lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
         } else {
-          lista.innerHTML = resultados.map(item =>
-            `<div class="painel">
-              <a href="${item.link}" class="titulo-link">${item.titulo}</a>
-              <div class="url-link">${item.link}</div>
-              <p class="descricao">${item.descricao}</p>
-            </div>`
-          ).join('');
+          resultados.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'resultado';
+            div.innerHTML = `
+              <a href="${item.link}">
+                <h3>${item.titulo}</h3>
+              </a>
+              <small>${item.link}</small>
+              <p>${item.descricao}</p>
+            `;
+            lista.appendChild(div);
+          });
         }
-      });
+      } catch (erro) {
+        console.error('Erro ao carregar index.json:', erro);
+      }
+    }
 
-    // Busca ao clicar no botão
     document.getElementById('botaoBusca').addEventListener('click', () => {
       const termo = document.getElementById('campoBusca').value;
-      if(termo.trim() !== "") {
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      buscarResultados(termo);
+    });
+
+    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoBusca').value;
+        buscarResultados(termo);
       }
     });
 
-    // Busca ao pressionar Enter
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if(e.key === 'Enter') {
-        const termo = document.getElementById('campoBusca').value;
-        if(termo.trim() !== "") {
-          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-        }
-      }
-    });
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    if (query) {
+      document.getElementById('campoBusca').value = query;
+      buscarResultados(query);
+    }
   </script>
 </body>
 </html>
