@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Lupa! — Configurações</title>
+  <title>Configurações — ¡Lupa!</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,93 +11,43 @@
     <a href="index.html" class="logo">¡Lupa!</a>
   </header>
 
-  <div class="barra-superior">
-    <div class="search-bar">
-      <input type="text" id="campoBuscaConfig" placeholder="Pesquisar...">
-      <button id="botaoBuscaConfig">🔍</button>
-    </div>
-    <nav class="abas">
-      <button class="aba ativa">Tudo</button>
-      <button class="aba">Imagens</button>
-      <button class="aba">Vídeos</button>
-      <button class="aba">Notícias</button>
-    </nav>
-  </div>
-
-  <main id="painelConfiguracoes">
+  <main class="config-container">
     <h2>Configurações</h2>
 
-    <section>
-      <h3>Pesquisa</h3>
-      <select id="nivelPesquisa">
-        <option value="restrita">Restrita</option>
-        <option value="moderada" selected>Moderada</option>
-        <option value="segura">Segura</option>
-      </select>
-    </section>
-
-    <section>
-      <h3>Palavras bloqueadas</h3>
-      <input type="text" id="palavrasBloqueadas" placeholder="Digite palavras separadas por vírgula">
-    </section>
-
-    <section>
-      <h3>Modo</h3>
-      <select id="modoTela">
+    <div class="config-item">
+      <label>Tema:</label>
+      <select id="temaSelect">
         <option value="claro">Claro</option>
         <option value="escuro">Escuro</option>
-        <option value="automatico" selected>Automático</option>
+        <option value="automatico">Automático</option>
       </select>
-    </section>
+    </div>
 
-    <section>
-      <h3>Idioma</h3>
-      <select id="idiomaSelecionado">
-        <option value="pt-br" selected>Português Brasileiro</option>
-        <option value="greco">Grego</option>
+    <div class="config-item">
+      <label>Idioma:</label>
+      <select id="idiomaSelect">
+        <option value="pt">Português</option>
+        <option value="gr">Grego</option>
         <option value="es">Espanhol</option>
         <option value="pl">Polonês</option>
         <option value="de">Alemão</option>
       </select>
-    </section>
+    </div>
 
-    <section>
-      <button id="limparCache">Limpar Cache</button>
-    </section>
+    <button id="salvarConfig">Salvar</button>
   </main>
 
-  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
-
   <script>
-    // Redireciona busca para resultados.html
-    const botaoBusca = document.getElementById('botaoBuscaConfig');
-    botaoBusca.addEventListener('click', () => {
-      const termo = document.getElementById('campoBuscaConfig').value;
-      if (termo.trim() !== "") {
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-      }
-    });
+    // Carregar preferências
+    const temaSelect = document.getElementById('temaSelect');
+    const idiomaSelect = document.getElementById('idiomaSelect');
+    temaSelect.value = localStorage.getItem('tema') || 'claro';
+    idiomaSelect.value = localStorage.getItem('idioma') || 'pt';
 
-    document.getElementById('campoBuscaConfig').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const termo = document.getElementById('campoBuscaConfig').value;
-        if (termo.trim() !== "") {
-          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-        }
-      }
-    });
-
-    // Limpar Cache
-    document.getElementById('limparCache').addEventListener('click', () => {
-      localStorage.clear();
-      alert('Cache limpo com sucesso!');
-    });
-
-    // Troca de idioma (exemplo básico)
-    document.getElementById('idiomaSelecionado').addEventListener('change', (e) => {
-      const idioma = e.target.value;
-      // Aqui você pode adicionar as traduções específicas para cada idioma
-      alert('Idioma alterado para: ' + idioma);
+    document.getElementById('salvarConfig').addEventListener('click', () => {
+      localStorage.setItem('tema', temaSelect.value);
+      localStorage.setItem('idioma', idiomaSelect.value);
+      alert('Configurações salvas!');
     });
   </script>
 </body>
