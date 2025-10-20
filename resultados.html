@@ -7,12 +7,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">¡Lupa!</div>
-  </header>
-
-  <div class="barra-superior">
-    <div class="search-bar">
+  <header class="topo">
+    <div class="logo">¡Lupa! <span class="subtitulo">by Persa Latino</span></div>
+    <div class="barra-busca">
       <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus />
       <button id="botaoBusca">🔍</button>
     </div>
@@ -22,59 +19,17 @@
       <button class="aba">Vídeos</button>
       <button class="aba">Notícias</button>
     </nav>
-  </div>
+  </header>
 
-  <main id="painelResultados">
+  <main class="resultados-container">
     <div id="painel-info"></div>
     <div id="lista-resultados"></div>
   </main>
 
   <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+    <p>© 2025 ¡Lupa! — Projeto Persa Latino</p>
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Captura query da URL (se vier da tela inicial)
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q')?.toLowerCase() || '';
-
-    // Carrega os resultados do JSON
-    fetch('index.json')
-      .then(res => res.json())
-      .then(data => {
-        const resultados = data.filter(item =>
-          item.titulo.toLowerCase().includes(query) ||
-          item.descricao.toLowerCase().includes(query) ||
-          item.categoria.toLowerCase().includes(query)
-        );
-        
-        const lista = document.getElementById('lista-resultados');
-        if(resultados.length === 0){
-          lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
-        } else {
-          lista.innerHTML = resultados.map(item =>
-            `<a href="${item.link}">
-              <h3>${item.titulo}</h3>
-              <p>${item.descricao}</p>
-            </a>`
-          ).join('');
-        }
-      });
-
-    // Busca ao clicar no botão
-    document.getElementById('botaoBusca').addEventListener('click', () => {
-      const termo = document.getElementById('campoBusca').value;
-      window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-    });
-
-    // Busca ao pressionar Enter
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if(e.key === 'Enter'){
-        const termo = document.getElementById('campoBusca').value;
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-      }
-    });
-  </script>
 </body>
 </html>
