@@ -5,6 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Lupa! — Configurações</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #0a6f3f;
+      padding: 10px 20px;
+    }
+
+    header .logo a {
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    main.configuracoes {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .painel-config {
+      background-color: #fff;
+      border: 2px solid #0a6f3f;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    .painel-config h3 {
+      color: #0a6f3f;
+      margin-top: 0;
+    }
+
+    select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #6b2ea2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #55207d;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px 0;
+      background-color: #0a6f3f;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -76,9 +144,7 @@
     const campos = ['nivelPesquisa', 'palavrasBloqueadas', 'modoTema', 'idioma'];
     campos.forEach(id => {
       const el = document.getElementById(id);
-      // Carregar valor salvo
       if(localStorage.getItem(id)) el.value = localStorage.getItem(id);
-      // Salvar ao alterar
       el.addEventListener('change', () => {
         localStorage.setItem(id, el.value);
       });
