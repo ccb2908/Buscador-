@@ -3,30 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>!Lupa! - Buscador Ético</title>
+  <title>¡Lupa!</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="home">
-  <div class="container">
-    <img src="imagens/logo.png" alt="!Lupa!" class="logo">
-    <h1>!Lupa!</h1>
-    <p class="subtitulo">Buscador Ético e Filosófico</p>
+<body>
+  <div class="container-inicial">
+    <div class="logo">¡Lupa!</div>
 
-    <div class="barra-pesquisa">
-      <input id="campoBusca" type="text" placeholder="Pesquisar...">
-      <button onclick="pesquisar()">🔍</button>
+    <div class="search-bar">
+      <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
+      <button id="btnInicial">➡️</button>
     </div>
-
-    <p class="creditos">Inspirado no equilíbrio entre o Ecosia e o Yahoo!</p>
   </div>
 
   <script>
-    function pesquisar() {
-      const termo = document.getElementById('campoBusca').value;
-      if (termo.trim() !== '') {
+    // Redireciona para página de resultados
+    const btn = document.getElementById('btnInicial');
+    btn.addEventListener('click', () => {
+      const termo = document.getElementById('campoInicial').value;
+      if (termo.trim() !== "") {
         window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
       }
-    }
+    });
+
+    // Busca ao pressionar Enter
+    document.getElementById('campoInicial').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoInicial').value;
+        if (termo.trim() !== "") {
+          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+        }
+      }
+    });
   </script>
 </body>
 </html>
