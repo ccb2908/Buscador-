@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¡Lupa! — Configurações</title>
+  <title>Configurações — ¡Lupa!</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,46 +11,42 @@
     <a href="index.html" class="logo">¡Lupa!</a>
   </header>
 
-  <div class="barra-superior">
-    <button class="botao-voltar" onclick="window.location.href='index.html'">← Voltar</button>
-    <h2 class="titulo-pagina">Configurações</h2>
-  </div>
+  <main class="config-painel">
+    <h2>Configurações</h2>
 
-  <main class="painel-config">
-    <div class="opcao">
-      <label>Modo de pesquisa:</label>
+    <section>
+      <label>Modo de Pesquisa:</label>
       <select>
         <option>Desativado</option>
         <option>Seguro</option>
         <option>Restrito</option>
       </select>
-    </div>
+    </section>
 
-    <div class="opcao">
+    <section>
       <label>Idioma:</label>
       <select>
-        <option>Português (Brasil)</option>
-        <option>Inglês</option>
+        <option>Português Brasileiro</option>
+        <option>Grego</option>
         <option>Espanhol</option>
-        <option>Francês</option>
+        <option>Polonês</option>
+        <option>Alemão</option>
       </select>
-    </div>
+    </section>
 
-    <div class="opcao">
+    <section>
       <label>Tema:</label>
-      <select id="temaSelect">
-        <option value="escuro">Escuro</option>
-        <option value="claro">Claro</option>
+      <select>
+        <option>Claro</option>
+        <option>Escuro</option>
       </select>
+    </section>
+
+    <div class="voltar">
+      <a href="index.html">← Voltar</a>
     </div>
   </main>
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
-
-  <script>
-    document.getElementById('temaSelect').addEventListener('change', function() {
-      document.body.dataset.tema = this.value;
-    });
-  </script>
 </body>
 </html>
