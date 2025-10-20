@@ -5,6 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa! — Resultados</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Estilos específicos para resultados */
+    .painel {
+      border-bottom: 1px solid #ccc;
+      padding: 12px 0;
+    }
+
+    .titulo-link {
+      color: #5ce65c;
+      font-weight: 600;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    .titulo-link:hover {
+      text-decoration: underline;
+    }
+
+    .url-link {
+      color: #888;
+      font-size: 14px;
+      margin: 2px 0;
+    }
+
+    .descricao {
+      color: #333;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .barra-superior {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      width: 70%;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .search-bar button {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .abas button {
+      margin-right: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    .abas .ativa {
+      font-weight: bold;
+      border-bottom: 2px solid #5ce65c;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -53,10 +111,9 @@
         } else {
           lista.innerHTML = resultados.map(item =>
             `<div class="painel">
-              <a href="${item.link}">
-                <h3>${item.titulo}</h3>
-                <p>${item.descricao}</p>
-              </a>
+              <a href="${item.link}" class="titulo-link">${item.titulo}</a>
+              <div class="url-link">${item.link}</div>
+              <p class="descricao">${item.descricao}</p>
             </div>`
           ).join('');
         }
