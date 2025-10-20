@@ -1,134 +1,98 @@
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #222;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
-header {
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  padding: 10px 20px;
-}
-
+/* Logo do buscador */
 .logo {
-  font-size: 1.8rem;
-  text-decoration: none;
-  color: #2b6a2b;
+  color: #2ecc71; /* verde */
+  font-size: 2em;
   font-weight: bold;
-}
-
-footer {
-  text-align: center;
-  padding: 15px;
-  color: #777;
-  font-size: 0.9rem;
-  border-top: 1px solid #ddd;
-  margin-top: 40px;
-}
-
-/* ===== Tela Inicial ===== */
-.tela-inicial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  text-align: center;
-}
-
-.logo-central {
-  font-size: 4rem;
-  color: #2b6a2b;
-  margin-bottom: 1.5rem;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 90%;
-  max-width: 600px;
-}
-
-.search-bar input {
-  width: 80%;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.search-bar button {
-  padding: 10px 15px;
-  font-size: 1.1rem;
-  border: none;
-  background-color: #2b6a2b;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.search-bar button:hover {
-  background-color: #368d36;
-}
-
-.config-rodape {
-  margin-top: 2rem;
-}
-
-.botao-config {
-  color: #2b6a2b;
   text-decoration: none;
-  font-weight: 500;
+  margin-top: 20px;
+  display: inline-block;
 }
 
-.botao-config:hover {
+.logo:hover {
   text-decoration: underline;
 }
 
-/* ===== Configurações ===== */
-.config-painel {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.config-painel h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.config-painel section {
-  margin-bottom: 15px;
-}
-
-.config-painel label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.config-painel select {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
+/* Barra de busca */
+#campoBusca {
+  width: 60%;
+  padding: 10px;
   border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.voltar {
-  text-align: center;
+  border-radius: 25px;
+  outline: none;
   margin-top: 20px;
 }
 
-.voltar a {
-  text-decoration: none;
-  color: #2b6a2b;
+#botaoBusca {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #8e44ad; /* roxo */
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#botaoBusca:hover {
+  background-color: #732d91;
+}
+
+/* Abas */
+.abas {
+  margin-top: 20px;
+}
+
+.abas button {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.abas button:hover {
+  color: #2ecc71;
+}
+
+.abas button.ativa {
+  color: #2ecc71; /* verde quando ativa */
   font-weight: bold;
 }
 
-.voltar a:hover {
-  text-decoration: underline;
+/* Resultados */
+#lista-resultados {
+  width: 70%;
+  margin: 40px auto;
+  text-align: left; /* agora alinhado à esquerda */
+}
+
+.painel {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.painel h3 {
+  margin: 0;
+  color: #1a0dab;
+}
+
+.painel p {
+  color: #4d5156;
+  font-size: 14px;
+}
+
+.painel small {
+  color: #006621;
 }
