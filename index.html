@@ -7,41 +7,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
+
   <div class="container-inicial">
-    <div class="top-bar">
-      <a href="configuracoes.html" class="config-link">⚙️</a>
-    </div>
-
-    <div class="logo">¡Lupa!</div>
-
     <div class="search-bar">
       <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
       <button id="btnInicial">🔍</button>
     </div>
+    <a href="configuracoes.html" class="btn-config">Configurações</a>
   </div>
 
   <script>
-    // === Leitura de tema e idioma ===
-    (function() {
-      const savedTheme = localStorage.getItem("theme") || "dark";
-      const savedLang = localStorage.getItem("language") || "pt";
-      if (savedTheme === "light") document.body.classList.add("light");
-      document.documentElement.lang = savedLang;
-    })();
-
-    // === Redirecionamento para resultados ===
     const btn = document.getElementById('btnInicial');
     btn.addEventListener('click', () => {
       const termo = document.getElementById('campoInicial').value;
-      if (termo.trim() !== "") {
+      if(termo.trim() !== "") {
         window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
       }
     });
-
     document.getElementById('campoInicial').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
+      if(e.key === 'Enter'){
         const termo = document.getElementById('campoInicial').value;
-        if (termo.trim() !== "") {
+        if(termo.trim() !== ""){
           window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
         }
       }
