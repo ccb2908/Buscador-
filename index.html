@@ -3,30 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>!Lupa! — Buscador Ético e Inteligente</title>
+  <title>Resultados - Buscador Persa Latino</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="lupa-icon.png">
 </head>
 <body>
-
-  <!-- 🌿 Cabeçalho -->
-  <header>
-    <h1>!Lupa!</h1>
-    <p>Buscar com consciência, ver com empatia, compreender com clareza.</p>
+  <header class="topo-busca">
+    <div class="logo">Persa<span class="destaque">Latino</span></div>
+    <form id="form-busca">
+      <input type="text" id="barra-pesquisa" placeholder="Pesquisar..." />
+      <button type="submit" id="btn-busca">🔍</button>
+    </form>
   </header>
 
-  <!-- 🔎 Barra de Pesquisa -->
-  <section class="search-container">
-    <input type="text" id="searchInput" placeholder="Digite aqui sua busca...">
-    <button id="searchButton">🔍</button>
-  </section>
+  <nav class="abas">
+    <button class="aba ativa">Tudo</button>
+    <button class="aba">Imagens</button>
+    <button class="aba">Vídeos</button>
+    <button class="aba">Notícias</button>
+  </nav>
 
-  <!-- 📰 Ícone de Notícias -->
-  <div class="news-icon" title="Notícias personalizadas">📰</div>
+  <main id="resultados"></main>
 
-  <!-- 📄 Resultados da Pesquisa -->
-  <section id="results" class="results"></section>
-
-  <script src="script.js"></script>
+  <script src="resultados.js"></script>
 </body>
 </html>
