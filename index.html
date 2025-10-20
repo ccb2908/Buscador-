@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resultados - Buscador Persa Latino</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Lupa!</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="topo-busca">
-    <div class="logo">Persa<span class="destaque">Latino</span></div>
-    <form id="form-busca">
-      <input type="text" id="barra-pesquisa" placeholder="Pesquisar..." />
-      <button type="submit" id="btn-busca">🔍</button>
-    </form>
-  </header>
-
-  <nav class="abas">
-    <button class="aba ativa">Tudo</button>
-    <button class="aba">Imagens</button>
-    <button class="aba">Vídeos</button>
-    <button class="aba">Notícias</button>
-  </nav>
-
-  <main id="resultados"></main>
-
-  <script src="resultados.js"></script>
+  <div class="container-inicial">
+    <div class="logo">¡Lupa!</div>
+    <div class="search-bar">
+      <input type="text" id="barraInicial" placeholder="Pesquisar..." />
+      <button id="btnInicial">🔍</button>
+    </div>
+  </div>
+  <script>
+    // Redireciona para página de resultados
+    const btn = document.getElementById('btnInicial');
+    btn.addEventListener('click', () => {
+      const query = document.getElementById('barraInicial').value;
+      window.location.href = `resultados.html?q=${encodeURIComponent(query)}`;
+    });
+  </script>
 </body>
 </html>
