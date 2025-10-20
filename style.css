@@ -1,99 +1,134 @@
 body {
-  font-family: "Segoe UI", sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #121212;
-  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #222;
 }
 
 header {
-  padding: 1rem 2rem;
-  background: #1e1e1e;
-  text-align: left;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 20px;
 }
 
 .logo {
   font-size: 1.8rem;
-  color: #fff;
   text-decoration: none;
-}
-
-.barra-superior {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 1rem auto;
-  width: 90%;
-  max-width: 900px;
-}
-
-.search-bar {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-bar input {
-  width: 70%;
-  padding: 0.7rem;
-  border-radius: 8px 0 0 8px;
-  border: none;
-  outline: none;
-}
-
-.search-bar button {
-  padding: 0.7rem 1rem;
-  border: none;
-  background: #333;
-  color: #fff;
-  border-radius: 0 8px 8px 0;
-  cursor: pointer;
-}
-
-.botoes-superiores {
-  margin-left: 1rem;
-}
-
-.botao-config {
-  font-size: 1.4rem;
-  color: #fff;
-  text-decoration: none;
-}
-
-main.tela-inicial {
-  text-align: center;
-  margin-top: 8vh;
-}
-
-.painel-config {
-  margin: 2rem auto;
-  width: 90%;
-  max-width: 800px;
-  background: #1e1e1e;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255,255,255,0.05);
-}
-
-.opcao {
-  margin: 1rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-select {
-  background: #333;
-  color: #fff;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 6px;
+  color: #2b6a2b;
+  font-weight: bold;
 }
 
 footer {
   text-align: center;
-  padding: 1rem;
-  color: #aaa;
+  padding: 15px;
+  color: #777;
   font-size: 0.9rem;
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+}
+
+/* ===== Tela Inicial ===== */
+.tela-inicial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+}
+
+.logo-central {
+  font-size: 4rem;
+  color: #2b6a2b;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 90%;
+  max-width: 600px;
+}
+
+.search-bar input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.search-bar button {
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  border: none;
+  background-color: #2b6a2b;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #368d36;
+}
+
+.config-rodape {
+  margin-top: 2rem;
+}
+
+.botao-config {
+  color: #2b6a2b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.botao-config:hover {
+  text-decoration: underline;
+}
+
+/* ===== Configurações ===== */
+.config-painel {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.config-painel h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.config-painel section {
+  margin-bottom: 15px;
+}
+
+.config-painel label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.config-painel select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.voltar {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.voltar a {
+  text-decoration: none;
+  color: #2b6a2b;
+  font-weight: bold;
+}
+
+.voltar a:hover {
+  text-decoration: underline;
 }
