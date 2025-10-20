@@ -4,57 +4,60 @@ async function carregarDados() {
   return dados;
 }
 
-function destacarTrecho(texto, termo) {
-  const termoLower = termo.toLowerCase();
-  const index = texto.toLowerCase().indexOf(termoLower);
+async function buscar(termoURL) {
+  const campo = document.getElementById('campoBusca');
+  const termo = termoURL || campo.value.toLowerCase();
+  if (!termo) return;
 
-  // Se o termo não for encontrado, retorna o texto inteiro
-  if (index === -1) return texto;
+  const resultadosDiv = document.getElementById('resultados');
+  resultadosDiv.innerHTML = '';
 
-  // Define o trecho que será mostrado (30 caracteres antes e depois)
-  const inicio = Math.max(0, index - 30);
-  const fim = Math.min(texto.length, index + termo.length + 30);
-  const trecho = texto.substring(inicio, fim);
-
-  // Destaca o termo com a cor roxa da interface
-  return "..." + trecho.replace(
-    new RegExp(termo, "gi"),
-    match => `<mark style="background-color:#7A42F4; color:#fff; border-radius:3px; padding:1px 3px;">${match}</mark>`
-  ) + "...";
-}
-
-async function buscar(termo) {
   const dados = await carregarDados();
-  const resultados = dados.filter(item =>
-    item.titulo.toLowerCase().includes(termo.toLowerCase()) ||
-    item.descricao.toLowerCase().includes(termo.toLowerCase())
+  const filtrados = dados.filter(item =>
+    item.titulo.toLowerCase().includes(termo) ||
+    item.descricao.toLowerCase().includes(termo)
   );
-  exibirResultados(resultados, termo);
-}
 
-function exibirResultados(resultados, termo) {
-  const container = document.getElementById("resultados");
-  container.innerHTML = "";
-
-  if (resultados.length === 0) {
-    container.innerHTML = `<p style="color:#ccc;">Nenhum resultado encontrado para <strong>${termo}</strong>.</p>`;
+  if (filtrados.length === 0) {
+    resultadosDiv.innerHTML = '<p>Nenhum resultado encontrado.</p>';
     return;
   }
 
-  resultados.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "resultado-item";
-    div.innerHTML = `
-      <a href="${item.link}" target="_blank" class="titulo-link">${item.titulo}</a>
-      <p style="color:#ccc;">${destacarTrecho(item.descricao, termo)}</p>
-      <p style="font-size:13px; color:#7A42F4;">Categoria: ${item.categoria}</p>
+  filtrados.forEach(item => {
+    const card = document.createElement('div');
+    card.classList.add('resultado');
+
+    card.innerHTML = `
+      <h3>${item.titulo}</h3>
+      <p>${item.descricao}</p>
+      <button onclick='mostrarPainel(${JSON.stringify(item)})'>Ver mais</button>
     `;
-    container.appendChild(div);
+
+    resultadosDiv.appendChild(card);
   });
 }
 
-document.getElementById("search-form").addEventListener("submit", e => {
-  e.preventDefault();
-  const termo = document.getElementById("search-input").value.trim();
-  if (termo) buscar(termo);
-});
+function mostrarPainel(item) {
+  const painel = document.getElementById('painelInfo');
+  painel.innerHTML = `
+    <div class="painel">
+      <h2>${item.titulo}</h2>
+      <p>${item.conteudo}</p>
+      <button onclick="fecharPainel()">Fechar</button>
+    </div>
+  `;
+  painel.style.display = 'block';
+}
+
+function fecharPainel() {
+  document.getElementById('painelInfo').style.display = 'none';
+}
+
+window.onload = () => {
+  const params = new URLSearchParams(window.location.search);
+  const termo = params.get('q');
+  if (termo) {
+    document.getElementById('campoBusca').value = termo;
+    buscar(termo);
+  }
+};
