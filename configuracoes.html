@@ -1,52 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configurações — ¡Lupa!</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Lupa! — Configurações</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
+    <div class="logo">
+      <a href="index.html">¡Lupa!</a>
+    </div>
   </header>
 
-  <main class="config-painel">
+  <main class="configuracoes">
     <h2>Configurações</h2>
 
-    <section>
-      <label>Modo de Pesquisa:</label>
-      <select>
-        <option>Desativado</option>
-        <option>Seguro</option>
-        <option>Restrito</option>
+    <!-- 1. Nível de Pesquisa -->
+    <div class="painel-config">
+      <h3>Nível de Pesquisa</h3>
+      <select id="nivelPesquisa">
+        <option value="restrita">Restrita</option>
+        <option value="moderada">Moderada</option>
+        <option value="segura" selected>Segura</option>
       </select>
-    </section>
+    </div>
 
-    <section>
-      <label>Idioma:</label>
-      <select>
-        <option>Português Brasileiro</option>
-        <option>Grego</option>
-        <option>Espanhol</option>
-        <option>Polonês</option>
-        <option>Alemão</option>
+    <!-- 2. Palavras Bloqueadas -->
+    <div class="painel-config">
+      <h3>Palavras Bloqueadas</h3>
+      <textarea id="palavrasBloqueadas" placeholder="Digite palavras separadas por vírgula"></textarea>
+    </div>
+
+    <!-- 3. Tema -->
+    <div class="painel-config">
+      <h3>Modo de Tema</h3>
+      <select id="modoTema">
+        <option value="claro">Claro</option>
+        <option value="escuro">Escuro</option>
+        <option value="automatico" selected>Automático</option>
       </select>
-    </section>
+    </div>
 
-    <section>
-      <label>Tema:</label>
-      <select>
-        <option>Claro</option>
-        <option>Escuro</option>
+    <!-- 4. Idioma -->
+    <div class="painel-config">
+      <h3>Idioma</h3>
+      <select id="idioma">
+        <option value="pt-br" selected>Português Brasileiro</option>
+        <option value="gr">Grego</option>
+        <option value="es">Espanhol</option>
+        <option value="pl">Polonês</option>
+        <option value="de">Alemão</option>
       </select>
-    </section>
+    </div>
 
-    <div class="voltar">
-      <a href="index.html">← Voltar</a>
+    <!-- 5. Limpar Cache -->
+    <div class="painel-config">
+      <h3>Limpar Cache</h3>
+      <button id="limparCache">Limpar Cache</button>
     </div>
   </main>
 
-  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+  <footer>
+    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+  </footer>
+
+  <script>
+    // Limpar cache
+    document.getElementById('limparCache').addEventListener('click', () => {
+      localStorage.clear();
+      alert('Cache limpo com sucesso!');
+    });
+
+    // Salvar configurações localmente
+    const campos = ['nivelPesquisa', 'palavrasBloqueadas', 'modoTema', 'idioma'];
+    campos.forEach(id => {
+      const el = document.getElementById(id);
+      // Carregar valor salvo
+      if(localStorage.getItem(id)) el.value = localStorage.getItem(id);
+      // Salvar ao alterar
+      el.addEventListener('change', () => {
+        localStorage.setItem(id, el.value);
+      });
+    });
+  </script>
 </body>
 </html>
