@@ -93,3 +93,8 @@ if (btnLimparCache) {
     alert('Cache limpo com sucesso!');
   });
 }
+document.getElementById('botaoBusca').addEventListener('click', () => {
+  const termo = document.getElementById('campoBusca').value;
+  buscarResultados(termo);
+});
+                                                       }
