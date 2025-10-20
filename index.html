@@ -1,42 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¡Lupa!</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>!Lupa! - Buscador Ético</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <main class="tela-inicial">
-    <h1 class="logo-central">¡Lupa!</h1>
+<body class="home">
+  <div class="container">
+    <img src="imagens/logo.png" alt="!Lupa!" class="logo">
+    <h1>!Lupa!</h1>
+    <p class="subtitulo">Buscador Ético e Filosófico</p>
 
-    <div class="search-bar centralizada">
-      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
-      <button id="botaoBusca">🔍</button>
+    <div class="barra-pesquisa">
+      <input id="campoBusca" type="text" placeholder="Pesquisar...">
+      <button onclick="pesquisar()">🔍</button>
     </div>
 
-    <div class="config-rodape">
-      <a href="configuracoes.html" class="botao-config">⚙️ Configurações</a>
-    </div>
-  </main>
-
-  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+    <p class="creditos">Inspirado no equilíbrio entre o Ecosia e o Yahoo!</p>
+  </div>
 
   <script>
-    const campo = document.getElementById('campoBusca');
-    const botao = document.getElementById('botaoBusca');
-
-    botao.addEventListener('click', () => {
-      const termo = campo.value.trim();
-      if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-    });
-
-    campo.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const termo = campo.value.trim();
-        if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+    function pesquisar() {
+      const termo = document.getElementById('campoBusca').value;
+      if (termo.trim() !== '') {
+        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
       }
-    });
+    }
   </script>
 </body>
 </html>
