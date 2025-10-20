@@ -7,28 +7,30 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="topo">
-    <div class="logo">¡Lupa! <span class="subtitulo">by Persa Latino</span></div>
-    <div class="barra-busca">
-      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus />
-      <button id="botaoBusca">🔍</button>
-    </div>
-    <nav class="abas">
-      <button class="aba ativa">Tudo</button>
-      <button class="aba">Imagens</button>
-      <button class="aba">Vídeos</button>
-      <button class="aba">Notícias</button>
-    </nav>
-  </header>
+  <div class="container">
+    <header>
+      <div class="logo">¡Lupa!</div>
+      <div class="search-bar">
+        <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus />
+        <button id="botaoBusca">🔍</button>
+      </div>
+      <nav class="abas">
+        <button class="aba ativa">Tudo</button>
+        <button class="aba">Imagens</button>
+        <button class="aba">Vídeos</button>
+        <button class="aba">Notícias</button>
+      </nav>
+    </header>
 
-  <main class="resultados-container">
-    <div id="painel-info"></div>
-    <div id="lista-resultados"></div>
-  </main>
+    <main id="painelResultados">
+      <div id="painel-info"></div>
+      <div id="lista-resultados"></div>
+    </main>
 
-  <footer>
-    <p>© 2025 ¡Lupa! — Projeto Persa Latino</p>
-  </footer>
+    <footer>
+      <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
