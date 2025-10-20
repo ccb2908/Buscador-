@@ -1,25 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Lupa!</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container-inicial">
     <div class="logo">¡Lupa!</div>
+
     <div class="search-bar">
-      <input type="text" id="barraInicial" placeholder="Pesquisar..." />
-      <button id="btnInicial">🔍</button>
+      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
+      <button id="botaoBusca">🔍</button>
+    </div>
+
+    <!-- Abas opcionais para filtrar resultados -->
+    <nav class="abas">
+      <button class="aba ativa">Tudo</button>
+      <button class="aba">Imagens</button>
+      <button class="aba">Vídeos</button>
+      <button class="aba">Notícias</button>
+    </nav>
+
+    <!-- Painel onde os resultados aparecerão -->
+    <div id="painel-resultados">
+      <div id="lista-resultados"></div>
     </div>
   </div>
+
+  <footer>
+    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+  </footer>
+
   <script>
-    // Redireciona para página de resultados
-    const btn = document.getElementById('btnInicial');
-    btn.addEventListener('click', () => {
-      const query = document.getElementById('barraInicial').value;
-      window.location.href = `resultados.html?q=${encodeURIComponent(query)}`;
+    const botao = document.getElementById('botaoBusca');
+    const campo = document.getElementById('campoBusca');
+    const lista = document.getElementById('lista-resultados');
+
+    async function buscar() {
+      const termo = campo.value.toLowerCase();
+      if(!termo) return;
+
+      const res = await fetch('index.json');
+      const dados = await res.json();
+
+      const resultados = dados.filter(item =>
+        item.titulo.toLowerCase().includes(termo) ||
+        item.descricao.toLowerCase().includes(termo) ||
+        item.categoria.toLowerCase().includes(termo)
+      );
+
+      if(resultados.length === 0){
+        lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+      } else {
+        lista.innerHTML = resultados.map(item =>
+          `<div class="painel">
+            <a href="${item.link}">
+              <h3>${item.titulo}</h3>
+              <p>${item.descricao}</p>
+            </a>
+          </div>`
+        ).join('');
+      }
+    }
+
+    botao.addEventListener('click', buscar);
+    campo.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') buscar();
     });
   </script>
 </body>
