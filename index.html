@@ -1,28 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Lupa!</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #fff;
+      color: #000;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .logo {
+      font-size: 48px;
+      font-weight: bold;
+      color: #1b9c48; /* Verde ¡Lupa! */
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .search-bar input {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      width: 300px;
+    }
+
+    .search-bar button {
+      border: none;
+      background: #6f42c1; /* Roxo */
+      color: white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .btn-config {
+      background: #555;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      text-align: center;
+      width: 100%;
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-  <div class="header">
-    <a class="logo" href="index.html">¡Lupa!</a>
+  <div class="logo">¡Lupa!</div>
+
+  <div class="search-bar">
+    <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
+    <button id="btnInicial">🔍</button>
   </div>
 
-  <div class="search-wrap">
-    <div class="search-bar">
-      <input id="campoBuscaInicial" type="text" placeholder="Pesquisar..." />
-      <button id="botaoBuscaInicial" class="btn-search">🔍</button>
-    </div>
-  </div>
-
-  <div style="text-align:center; margin-top:10px;">
-    <a id="configLinkFooter" class="btn-config-footer" href="configuracoes.html">⚙️ Configurações</a>
-  </div>
+  <button class="btn-config" onclick="window.location.href='configuracoes.html'">Configurações</button>
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script src="app.js"></script>
+  <script>
+    const btn = document.getElementById('btnInicial');
+    btn.addEventListener('click', () => {
+      const termo = document.getElementById('campoInicial').value;
+      if (termo.trim() !== "") {
+        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      }
+    });
+
+    document.getElementById('campoInicial').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoInicial').value;
+        if (termo.trim() !== "") {
+          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
