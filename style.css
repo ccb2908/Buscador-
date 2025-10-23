@@ -1,94 +1,83 @@
-/* -------------------------
-   Estilos Gerais
-------------------------- */
-body {
+/* Reset básico */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
   font-family: Arial, sans-serif;
-  background: #fff; /* fundo branco */
+  background: #fff;
   color: #202124;
+  line-height: 1.5;
 }
 
-a {
-  text-decoration: none;
-  color: #1b9c48; /* links padrão verdes */
-}
-
-a.visited {
-  color: #6f42c1; /* links já clicados roxos */
-}
-
+/* Header e logo */
 header {
-  padding: 20px 30px;
-  font-size: 28px;
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+}
+
+header .logo {
+  font-size: 36px;
   font-weight: bold;
-  display: flex;
-  justify-content: center; /* logo centralizado */
-}
-
-.logo {
   color: #1b9c48;
+  text-decoration: none;
 }
 
-/* -------------------------
-   Barra de Pesquisa
-------------------------- */
+/* Barras de pesquisa */
 .search-bar {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin: 20px 0;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 700px;
 }
 
 .search-bar input {
   flex: 1;
-  max-width: 500px;
   padding: 10px 15px;
   font-size: 16px;
+  border-radius: 25px;
   border: 1px solid #ccc;
-  border-radius: 20px;
 }
 
 .search-bar button {
+  padding: 10px 16px;
   border: none;
-  background: #6f42c1; /* roxo */
-  color: white;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
   cursor: pointer;
-}
-
-/* -------------------------
-   Botão Configurações
-------------------------- */
-#btnConfig {
-  display: block;
-  margin: 0 auto 20px auto;
-  padding: 8px 16px;
-  background: #1b9c48;
+  font-size: 18px;
   color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
-/* -------------------------
-   Abas (Resultados)
-------------------------- */
+#botaoBuscaInicial, #botaoBusca {
+  background-color: #6f42c1; /* Roxo */
+}
+
+#botaoConfiguracoes {
+  background-color: #1b9c48; /* Verde */
+  border-radius: 12px;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+/* Barra superior em resultados */
 .barra-superior {
   max-width: 700px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
+/* Abas */
 .abas {
   display: flex;
-  justify-content: flex-start;
   gap: 15px;
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 14px;
+  justify-content: center;
 }
 
 .aba {
@@ -104,27 +93,29 @@ header {
   border-bottom: 2px solid #1b9c48;
 }
 
-/* -------------------------
-   Painel de Resultados
-------------------------- */
+/* Resultados */
 #painelResultados {
   max-width: 700px;
   margin: 20px auto;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 .resultado {
   margin-bottom: 25px;
 }
 
+.resultado a {
+  text-decoration: none;
+}
+
 .resultado h3 {
   font-size: 18px;
-  color: #1b9c48; /* verde antes de clicar */
+  color: #1b9c48; /* Verde antes de abrir */
   margin: 0;
 }
 
-.resultado a.titulo-link:visited h3 {
-  color: #6f42c1; /* roxo após clicar */
+.resultado a.visited h3 {
+  color: #6f42c1; /* Roxo depois de abrir */
 }
 
 .resultado small {
@@ -135,56 +126,49 @@ header {
 .resultado p {
   font-size: 14px;
   color: #4d5156;
-  margin: 4px 0 0;
+  margin-top: 4px;
+  text-align: left;
 }
 
-/* -------------------------
-   Configurações
-------------------------- */
-.container-config {
+/* Configurações */
+.container-configuracoes {
   max-width: 700px;
   margin: 20px auto;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
-h2 {
-  text-align: center;
-  color: #1b9c48;
-  margin-bottom: 20px;
+.container-configuracoes h2 {
+  margin-bottom: 15px;
 }
 
-.painel-config {
-  margin-bottom: 20px;
+.config-section {
+  margin-bottom: 15px;
 }
 
-.painel-config label {
+.config-section label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
-.painel-config select {
-  width: 100%;
+.config-section select, .config-section button {
   padding: 8px 12px;
+  font-size: 14px;
   border-radius: 6px;
   border: 1px solid #ccc;
 }
 
-/* Botão Voltar */
-.container-config button {
-  display: block;
-  margin: 20px auto 0 auto;
-  padding: 8px 16px;
-  background: #1b9c48;
-  color: white;
+#botaoVoltar {
+  margin-bottom: 15px;
+  padding: 8px 12px;
   border: none;
+  background-color: #1b9c48;
+  color: white;
   border-radius: 6px;
   cursor: pointer;
 }
 
-/* -------------------------
-   Footer
-------------------------- */
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;
@@ -192,25 +176,4 @@ footer {
   color: #777;
   border-top: 1px solid #eee;
   margin-top: 40px;
-}
-
-/* -------------------------
-   Margens e Responsividade
-------------------------- */
-body, main, .barra-superior, .container-inicial, .container-config {
-  box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  .search-bar {
-    flex-direction: column;
-  }
-
-  .search-bar input {
-    max-width: 100%;
-  }
-
-  .abas {
-    flex-wrap: wrap;
-  }
 }
