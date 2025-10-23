@@ -1,0 +1,22 @@
+[
+  {
+    "titulo": "Império Bizantino",
+    "descricao": "Resumo histórico sobre o Império Bizantino...",
+    "imagens": ["bizantino1.jpg", "bizantino2.jpg"]
+  },
+  {
+    "titulo": "Império Persa",
+    "descricao": "Resumo histórico sobre o Império Persa...",
+    "imagens": ["persa1.jpg", "persa2.jpg"]
+  },
+  {
+    "titulo": "Adolf Hitler",
+    "descricao": "Resumo sobre Adolf Hitler...",
+    "imagens": ["hitler1.jpg", "hitler2.jpg"]
+  },
+  {
+    "titulo": "Stalin",
+    "descricao": "Resumo sobre Stalin...",
+    "imagens": ["stalin1.jpg", "stalin2.jpg"]
+  }
+]
