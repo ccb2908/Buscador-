@@ -1,154 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
   <title>¡Lupa! — Imagens</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    main {
-      padding: 20px;
-      min-height: 70vh;
-    }
-
-    .grade-imagens {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      justify-items: center;
-    }
-
-    .grade-imagens img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease;
-    }
-
-    .grade-imagens img:hover {
-      transform: scale(1.03);
-    }
-
-    .paginacao {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 10px;
-    }
-
-    .paginacao button {
-      background-color: #222;
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .paginacao button:hover {
-      background-color: #333;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
-
-  <div class="barra-superior">
-    <div class="search-bar">
-      <input type="text" id="campoBusca" placeholder="Pesquisar imagens..." autofocus>
-      <button id="botaoBusca">🔍</button>
-    </div>
-    <nav class="abas">
-      <button onclick="window.location.href='resultados.html'">Tudo</button>
-      <button class="aba ativa">Imagens</button>
-      <button onclick="window.location.href='videos.html'">Vídeos</button>
-      <button onclick="window.location.href='noticias.html'">Notícias</button>
-    </nav>
+  <div class="header">
+    <a class="logo" href="index.html">¡Lupa!</a>
   </div>
 
-  <main id="painelImagens">
-    <div class="grade-imagens" id="gradeImagens"></div>
-    <div class="paginacao" id="paginacao"></div>
-  </main>
+  <div class="topbar">
+    <div class="search-wrap">
+      <div class="search-bar">
+        <input id="campoBusca" type="text" placeholder="Pesquisar imagens..." />
+        <button id="botaoBusca" class="btn-search">🔍</button>
+      </div>
+    </div>
+
+    <div class="abas">
+      <button class="aba" data-aba="todos">Tudo</button>
+      <button class="aba ativa" data-aba="imagens">Imagens</button>
+      <button class="aba" data-aba="videos">Vídeos</button>
+      <button class="aba" data-aba="noticias">Notícias</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="lista-resultados" class="grid-imagens"></div>
+    <div id="paginacao" class="paginacao"></div>
+  </div>
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script>
-    const imagensPorPagina = 10;
-    let imagens = [];
-    let paginaAtual = 1;
-
-    async function carregarImagens() {
-      try {
-        const res = await fetch('imagens.json');
-        imagens = await res.json();
-        mostrarImagens();
-      } catch (erro) {
-        console.error('Erro ao carregar imagens:', erro);
-      }
-    }
-
-    function mostrarImagens() {
-      const inicio = (paginaAtual - 1) * imagensPorPagina;
-      const fim = inicio + imagensPorPagina;
-      const imagensPagina = imagens.slice(inicio, fim);
-
-      const grade = document.getElementById('gradeImagens');
-      grade.innerHTML = '';
-
-      imagensPagina.forEach(img => {
-        const link = document.createElement('a');
-        link.href = img.link;
-        link.target = '_blank';
-
-        const imagem = document.createElement('img');
-        imagem.src = img.src;
-        imagem.alt = img.alt || 'Imagem';
-
-        link.appendChild(imagem);
-        grade.appendChild(link);
-      });
-
-      atualizarPaginacao();
-    }
-
-    function atualizarPaginacao() {
-      const totalPaginas = Math.ceil(imagens.length / imagensPorPagina);
-      const paginacao = document.getElementById('paginacao');
-      paginacao.innerHTML = '';
-
-      for (let i = 1; i <= totalPaginas; i++) {
-        const botao = document.createElement('button');
-        botao.textContent = i;
-        if (i === paginaAtual) botao.style.backgroundColor = '#444';
-        botao.onclick = () => {
-          paginaAtual = i;
-          mostrarImagens();
-        };
-        paginacao.appendChild(botao);
-      }
-    }
-
-    document.getElementById('botaoBusca').addEventListener('click', () => {
-      const termo = document.getElementById('campoBusca').value.toLowerCase().trim();
-      if (!termo) return mostrarImagens();
-      const filtradas = imagens.filter(img =>
-        img.alt.toLowerCase().includes(termo)
-      );
-      imagens = filtradas;
-      paginaAtual = 1;
-      mostrarImagens();
-    });
-
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') document.getElementById('botaoBusca').click();
-    });
-
-    carregarImagens();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
