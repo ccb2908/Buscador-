@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Lupa! — Configurações</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <a href="index.html" class="logo">¡Lupa!</a>
   </header>
 
-  <main class="container-config">
+  <main class="container-configuracoes">
+    <button id="botaoVoltar">⬅️ Voltar</button>
+
     <h2>Configurações</h2>
-    <div class="painel-config">
-      <label>Modo de Pesquisa:</label>
+
+    <div class="config-section">
+      <label for="modoPesquisa">Modo de pesquisa:</label>
       <select id="modoPesquisa">
         <option value="restrita">Restrita</option>
         <option value="moderada">Moderada</option>
@@ -22,19 +25,19 @@
       </select>
     </div>
 
-    <div class="painel-config">
-      <label>Idioma:</label>
+    <div class="config-section">
+      <label for="idioma">Idioma:</label>
       <select id="idioma">
         <option value="pt">Português Brasileiro</option>
+        <option value="el">Grego</option>
         <option value="es">Espanhol</option>
-        <option value="gr">Grego</option>
         <option value="pl">Polonês</option>
         <option value="de">Alemão</option>
       </select>
     </div>
 
-    <div class="painel-config">
-      <label>Tema:</label>
+    <div class="config-section">
+      <label for="tema">Tema:</label>
       <select id="tema">
         <option value="claro">Claro</option>
         <option value="escuro">Escuro</option>
@@ -42,24 +45,15 @@
       </select>
     </div>
 
-    <button onclick="window.location.href='index.html'">← Voltar</button>
+    <div class="config-section">
+      <button id="limparCache">Limpar Cache</button>
+    </div>
   </main>
 
-  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+  <footer>
+    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+  </footer>
 
-  <script>
-    // Exemplo simples de salvar preferências no localStorage
-    const tema = document.getElementById('tema');
-    tema.addEventListener('change', () => {
-      localStorage.setItem('temaLupa', tema.value);
-      alert('Tema salvo! (só na página de configurações por enquanto)');
-    });
-
-    const idioma = document.getElementById('idioma');
-    idioma.addEventListener('change', () => {
-      localStorage.setItem('idiomaLupa', idioma.value);
-      alert('Idioma salvo! (só na página de configurações por enquanto)');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
