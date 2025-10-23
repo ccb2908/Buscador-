@@ -13,33 +13,16 @@
 
   <main class="container-inicial">
     <div class="search-bar">
-      <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
-      <button id="btnInicial">🔍</button>
+      <input type="text" id="campoBuscaInicial" placeholder="Pesquisar..." autofocus>
+      <button id="botaoBuscaInicial">🔍</button>
+      <button id="botaoConfiguracoes">⚙️</button>
     </div>
-    <button id="btnConfig">⚙ Configurações</button>
   </main>
 
-  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+  <footer>
+    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
+  </footer>
 
-  <script>
-    // Redireciona para resultados
-    const btn = document.getElementById('btnInicial');
-    btn.addEventListener('click', () => {
-      const termo = document.getElementById('campoInicial').value.trim();
-      if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-    });
-
-    document.getElementById('campoInicial').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const termo = document.getElementById('campoInicial').value.trim();
-        if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-      }
-    });
-
-    // Botão configurações
-    document.getElementById('btnConfig').addEventListener('click', () => {
-      window.location.href = 'configuracoes.html';
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
