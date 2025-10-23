@@ -1,0 +1,28 @@
+[
+  {
+    "titulo": "Dragon Ball AF",
+    "categoria": "Animes",
+    "resumo": "Dragon Ball AF é uma série de fã-made baseada em Dragon Ball, conhecida por suas sagas e personagens originais.",
+    "secoes": {
+      "Origem": "A origem de Dragon Ball AF começou com fãs que queriam continuar a história de Dragon Ball GT.",
+      "Desenvolvimento": "A série foi desenvolvida ao longo de anos por diversos artistas e fãs ao redor do mundo.",
+      "Personagens": "Bartiszu, Deimos, Deiku/Damu são alguns dos personagens originais da série.",
+      "Sagas": "Saga Zaiko, Saga do Celestial, Saga do SSJ Infinito.",
+      "Audiência": "Recebeu atenção internacional entre fãs de Dragon Ball.",
+      "Influência": "Influenciou outras criações de fãs e discussões online sobre o universo de Dragon Ball."
+    },
+    "link": "dragon-ball-af.html"
+  },
+  {
+    "titulo": "Filosofia Grega",
+    "categoria": "Filosofia",
+    "resumo": "A filosofia grega antiga desenvolveu conceitos fundamentais sobre ética, lógica e metafísica.",
+    "secoes": {
+      "Origem": "Surgiu no século VI a.C., com pensadores como Tales, Pitágoras e Heráclito.",
+      "Desenvolvimento": "Se expandiu com Sócrates, Platão e Aristóteles, influenciando toda a filosofia ocidental.",
+      "Principais Ideias": "Ética, política, lógica, metafísica e teoria do conhecimento.",
+      "Influência": "Base para escolas filosóficas posteriores e pensamento científico."
+    },
+    "link": "filosofia-grega.html"
+  }
+]
