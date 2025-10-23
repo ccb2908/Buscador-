@@ -4,74 +4,190 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Indexopedia</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
   <style>
-    body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 0; }
-    header { background: #4CAF50; color: white; padding: 20px; text-align: center; }
-    nav { display: flex; justify-content: center; margin: 20px 0; }
-    nav button { background: #eee; border: none; padding: 10px 20px; margin: 0 5px; cursor: pointer; border-radius: 5px; }
-    nav button.ativa { background: #4CAF50; color: white; }
-    main { max-width: 900px; margin: auto; padding: 20px; }
-    .artigo { background: white; padding: 15px; margin-bottom: 15px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    .artigo a { text-decoration: none; color: #4CAF50; }
-    .artigo a:visited { color: #800080; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #202124;
+    }
+
+    header {
+      background: #1b9c48;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .abas {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .aba {
+      background: #f0f0f0;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .aba.ativa {
+      background: #1b9c48;
+      color: white;
+    }
+
+    #lista-artigos {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .artigo {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .artigo h3 {
+      margin: 0;
+      color: #1b9c48;
+    }
+
+    .artigo h3 a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .artigo small {
+      color: #555;
+    }
+
+    .artigo p {
+      margin: 5px 0 0;
+      color: #4d5156;
+    }
+
+    #painel-artigo {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #ddd;
+      display: none;
+    }
+
+    #painel-artigo h2 {
+      margin-top: 0;
+      color: #1b9c48;
+    }
+
+    #painel-artigo section {
+      margin-bottom: 15px;
+    }
+
+    #painel-artigo section h4 {
+      margin: 10px 0 5px;
+      color: #333;
+    }
+
+    #btn-voltar {
+      margin: 10px 0;
+      padding: 6px 12px;
+      background: #6f42c1;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Indexopedia</h1>
-    <p>Seu repositório de conhecimento ético e detalhado</p>
-  </header>
 
-  <nav>
-    <button class="aba ativa" data-categoria="Animes">Animes</button>
-    <button class="aba" data-categoria="Filosofia">Filosofia</button>
-    <button class="aba" data-categoria="História">História</button>
-    <button class="aba" data-categoria="Geopolítica">Geopolítica</button>
-  </nav>
+<header>Indexopedia</header>
 
-  <main id="listaArtigos">
-    <!-- Artigos aparecerão aqui -->
-  </main>
+<div class="abas">
+  <button class="aba ativa" data-categoria="Todos">Todos</button>
+  <button class="aba" data-categoria="Animes">Animes</button>
+  <button class="aba" data-categoria="Filosofia">Filosofia</button>
+  <button class="aba" data-categoria="História">História</button>
+  <button class="aba" data-categoria="Geografia">Geografia</button>
+</div>
 
-  <script>
-    // Dados de exemplo (pode ser substituído por fetch de JSON)
-    const artigos = [
-      { titulo: "Zaiko", categoria: "Animes", link: "zaiko.html", descricao: "Vilão de Dragon Ball AF, 1,2 Saiyajin, 1,3 Kaioshin." },
-      { titulo: "Dragon Ball Daishi", categoria: "Animes", link: "dragon_ball_daishi.html", descricao: "História do guerreiro que superou o SSJ6." },
-      { titulo: "Filosofia Persa Antiga", categoria: "Filosofia", link: "filosofia_persa.html", descricao: "Estudo ético do Zoroastrismo e escolas do Império Aquemênida." },
-      { titulo: "Império Aquemênida", categoria: "História", link: "historia_aquemênida.html", descricao: "Linha do tempo e conquistas do Império Persa antigo." },
-      { titulo: "Geopolítica Moderna", categoria: "Geopolítica", link: "#", descricao: "Análise de relações internacionais atuais." }
-    ];
+<div id="lista-artigos"></div>
 
-    const lista = document.getElementById('listaArtigos');
-    const abas = document.querySelectorAll('nav button');
+<div id="painel-artigo">
+  <button id="btn-voltar">Voltar</button>
+  <h2 id="titulo-artigo"></h2>
+  <p id="resumo-artigo"></p>
+  <div id="secoes-artigo"></div>
+</div>
 
-    function exibirArtigos(categoria) {
-      lista.innerHTML = '';
-      artigos
-        .filter(a => categoria === "Todas" || a.categoria === categoria)
-        .forEach(a => {
-          lista.innerHTML += `<div class="artigo">
-            <a href="${a.link}">
-              <h3>${a.titulo}</h3>
-              <p>${a.descricao}</p>
-            </a>
-          </div>`;
-        });
-    }
+<script>
+let dadosArtigos = [];
+const lista = document.getElementById('lista-artigos');
+const painel = document.getElementById('painel-artigo');
 
-    // Inicial exibe Animes
-    exibirArtigos("Animes");
+fetch('indexopedia.json')
+  .then(res => res.json())
+  .then(dados => {
+    dadosArtigos = dados;
+    mostrarArtigos('Todos');
+  });
 
-    // Alternar abas
-    abas.forEach(botao => {
-      botao.addEventListener('click', () => {
-        abas.forEach(b => b.classList.remove('ativa'));
-        botao.classList.add('ativa');
-        exibirArtigos(botao.getAttribute('data-categoria'));
-      });
+function mostrarArtigos(categoria) {
+  lista.innerHTML = '';
+  painel.style.display = 'none';
+  const filtrados = categoria === 'Todos' ? dadosArtigos : dadosArtigos.filter(a => a.categoria === categoria);
+  
+  filtrados.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'artigo';
+    div.innerHTML = `
+      <h3><a href="#">${a.titulo}</a></h3>
+      <small>${a.categoria}</small>
+      <p>${a.resumo}</p>
+    `;
+    div.querySelector('a').addEventListener('click', (e) => {
+      e.preventDefault();
+      abrirArtigo(a);
     });
-  </script>
+    lista.appendChild(div);
+  });
+}
+
+function abrirArtigo(a) {
+  lista.style.display = 'none';
+  painel.style.display = 'block';
+  document.getElementById('titulo-artigo').textContent = a.titulo;
+  document.getElementById('resumo-artigo').textContent = a.resumo;
+
+  const secoesDiv = document.getElementById('secoes-artigo');
+  secoesDiv.innerHTML = '';
+  for (const [titulo, texto] of Object.entries(a.secoes)) {
+    const sec = document.createElement('section');
+    sec.innerHTML = `<h4>${titulo}</h4><p>${texto}</p>`;
+    secoesDiv.appendChild(sec);
+  }
+}
+
+document.getElementById('btn-voltar').addEventListener('click', () => {
+  painel.style.display = 'none';
+  lista.style.display = 'block';
+});
+
+document.querySelectorAll('.aba').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.aba').forEach(btn => btn.classList.remove('ativa'));
+    b.classList.add('ativa');
+    mostrarArtigos(b.dataset.categoria);
+  });
+});
+</script>
+
 </body>
 </html>
