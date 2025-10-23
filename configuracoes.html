@@ -1,53 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurações — ¡Lupa!</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Lupa! — Configurações</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <a href="index.html" class="logo">¡Lupa!</a>
   </header>
 
-  <main class="config-container">
+  <main class="container-config">
     <h2>Configurações</h2>
-
-    <div class="config-item">
-      <label>Tema:</label>
-      <select id="temaSelect">
-        <option value="claro">Claro</option>
-        <option value="escuro">Escuro</option>
-        <option value="automatico">Automático</option>
+    <div class="painel-config">
+      <label>Modo de Pesquisa:</label>
+      <select id="modoPesquisa">
+        <option value="restrita">Restrita</option>
+        <option value="moderada">Moderada</option>
+        <option value="segura">Segura</option>
       </select>
     </div>
 
-    <div class="config-item">
+    <div class="painel-config">
       <label>Idioma:</label>
-      <select id="idiomaSelect">
-        <option value="pt">Português</option>
-        <option value="gr">Grego</option>
+      <select id="idioma">
+        <option value="pt">Português Brasileiro</option>
         <option value="es">Espanhol</option>
+        <option value="gr">Grego</option>
         <option value="pl">Polonês</option>
         <option value="de">Alemão</option>
       </select>
     </div>
 
-    <button id="salvarConfig">Salvar</button>
+    <div class="painel-config">
+      <label>Tema:</label>
+      <select id="tema">
+        <option value="claro">Claro</option>
+        <option value="escuro">Escuro</option>
+        <option value="auto">Automático</option>
+      </select>
+    </div>
+
+    <button onclick="window.location.href='index.html'">← Voltar</button>
   </main>
 
-  <script>
-    // Carregar preferências
-    const temaSelect = document.getElementById('temaSelect');
-    const idiomaSelect = document.getElementById('idiomaSelect');
-    temaSelect.value = localStorage.getItem('tema') || 'claro';
-    idiomaSelect.value = localStorage.getItem('idioma') || 'pt';
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-    document.getElementById('salvarConfig').addEventListener('click', () => {
-      localStorage.setItem('tema', temaSelect.value);
-      localStorage.setItem('idioma', idiomaSelect.value);
-      alert('Configurações salvas!');
+  <script>
+    // Exemplo simples de salvar preferências no localStorage
+    const tema = document.getElementById('tema');
+    tema.addEventListener('change', () => {
+      localStorage.setItem('temaLupa', tema.value);
+      alert('Tema salvo! (só na página de configurações por enquanto)');
+    });
+
+    const idioma = document.getElementById('idioma');
+    idioma.addEventListener('change', () => {
+      localStorage.setItem('idiomaLupa', idioma.value);
+      alert('Idioma salvo! (só na página de configurações por enquanto)');
     });
   </script>
 </body>
