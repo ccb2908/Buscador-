@@ -1,10 +1,13 @@
-// Busca de resultados
-async function buscarResultados(termo) {
+// -------- Função de busca --------
+async function buscarResultados(termo, aba = "todos") {
   termo = termo.toLowerCase().trim();
   if (!termo) return;
 
+  let arquivoJSON = "index.json";
+  if (aba !== "todos") arquivoJSON = `${aba}.json`;
+
   try {
-    const res = await fetch('index.json');
+    const res = await fetch(arquivoJSON);
     const dados = await res.json();
 
     const resultados = dados.filter(item =>
@@ -13,19 +16,19 @@ async function buscarResultados(termo) {
       item.categoria.toLowerCase().includes(termo)
     );
 
-    const lista = document.getElementById('lista-resultados');
+    const lista = document.getElementById("lista-resultados");
     if (!lista) return;
 
-    lista.innerHTML = '';
+    lista.innerHTML = "";
 
     if (resultados.length === 0) {
-      lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+      lista.innerHTML = "<p>Nenhum resultado encontrado.</p>";
     } else {
       resultados.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'resultado';
+        const div = document.createElement("div");
+        div.className = "resultado";
         div.innerHTML = `
-          <a href="${item.link}" target="_blank">
+          <a href="${item.link}" class="titulo-link" target="_blank">
             <h3>${item.titulo}</h3>
           </a>
           <small>${item.link}</small>
@@ -35,66 +38,81 @@ async function buscarResultados(termo) {
       });
     }
   } catch (erro) {
-    console.error('Erro ao carregar index.json:', erro);
+    console.error("Erro ao carregar JSON:", erro);
   }
 }
 
-// Eventos de pesquisa
-const campo = document.getElementById('campoBusca');
-const btn = document.getElementById('botaoBusca');
-const btnConfig = document.getElementById('btnConfig');
+// -------- Eventos Pesquisa Inicial --------
+const botaoBuscaInicial = document.getElementById("botaoBuscaInicial");
+const campoBuscaInicial = document.getElementById("campoBuscaInicial");
 
-if (btn && campo) {
-  btn.addEventListener('click', () => {
-    const termo = campo.value.trim();
-    if (!termo) return;
-
-    if (window.location.pathname.endsWith('index.html')) {
+if (botaoBuscaInicial && campoBuscaInicial) {
+  botaoBuscaInicial.addEventListener("click", () => {
+    const termo = campoBuscaInicial.value;
+    if (termo.trim() !== "") {
       window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-    } else {
-      buscarResultados(termo);
     }
   });
 
-  campo.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      const termo = campo.value.trim();
-      if (!termo) return;
-
-      if (window.location.pathname.endsWith('index.html')) {
+  campoBuscaInicial.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      const termo = campoBuscaInicial.value;
+      if (termo.trim() !== "") {
         window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-      } else {
-        buscarResultados(termo);
       }
     }
   });
 }
 
-// Configurações
-if (btnConfig) {
-  btnConfig.addEventListener('click', () => {
-    window.location.href = 'configuracoes.html';
+// -------- Pesquisa em resultados --------
+const botaoBusca = document.getElementById("botaoBusca");
+const campoBusca = document.getElementById("campoBusca");
+
+if (botaoBusca && campoBusca) {
+  botaoBusca.addEventListener("click", () => {
+    buscarResultados(campoBusca.value, abaAtiva());
   });
+
+  campoBusca.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      buscarResultados(campoBusca.value, abaAtiva());
+    }
+  });
+
+  // Carregar resultados da query na URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get("q");
+  if (query) {
+    campoBusca.value = query;
+    buscarResultados(query, abaAtiva());
+  }
 }
 
-// Página de resultados
-const urlParams = new URLSearchParams(window.location.search);
-const query = urlParams.get('q');
-if (query && campo) {
-  campo.value = query;
-  buscarResultados(query);
+// -------- Abas --------
+function abaAtiva() {
+  const aba = document.querySelector(".aba.ativa");
+  return aba ? aba.dataset.aba : "todos";
 }
 
-// Limpar Cache na Configurações
-const btnLimparCache = document.getElementById('limparCache');
-if (btnLimparCache) {
-  btnLimparCache.addEventListener('click', () => {
-    localStorage.clear();
-    alert('Cache limpo com sucesso!');
+document.querySelectorAll(".aba").forEach(aba => {
+  aba.addEventListener("click", () => {
+    document.querySelectorAll(".aba").forEach(a => a.classList.remove("ativa"));
+    aba.classList.add("ativa");
+    if (campoBusca) buscarResultados(campoBusca.value, aba.dataset.aba);
   });
-}
-document.getElementById('botaoBusca').addEventListener('click', () => {
-  const termo = document.getElementById('campoBusca').value;
-  buscarResultados(termo);
 });
-                                                       }
+
+// -------- Botão de Configurações --------
+document.querySelectorAll("#botaoConfiguracoes").forEach(botao => {
+  botao.addEventListener("click", () => {
+    window.location.href = "configuracoes.html";
+  });
+});
+
+// -------- Botão Voltar em Configurações --------
+const botaoVoltar = document.getElementById("botaoVoltar");
+if (botaoVoltar) {
+  botaoVoltar.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
+}
