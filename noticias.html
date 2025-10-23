@@ -1,157 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
   <title>¡Lupa! — Notícias</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    main {
-      padding: 20px;
-      min-height: 70vh;
-    }
-
-    .noticia {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .noticia h3 {
-      margin-bottom: 6px;
-    }
-
-    .noticia small {
-      color: gray;
-    }
-
-    .noticia p {
-      margin-top: 8px;
-      color: #333;
-    }
-
-    .paginacao {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 10px;
-    }
-
-    .paginacao button {
-      background-color: #222;
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .paginacao button:hover {
-      background-color: #333;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
-
-  <div class="barra-superior">
-    <div class="search-bar">
-      <input type="text" id="campoBusca" placeholder="Pesquisar notícias..." autofocus>
-      <button id="botaoBusca">🔍</button>
-    </div>
-    <nav class="abas">
-      <button onclick="window.location.href='resultados.html'">Tudo</button>
-      <button onclick="window.location.href='imagens.html'">Imagens</button>
-      <button onclick="window.location.href='videos.html'">Vídeos</button>
-      <button class="aba ativa">Notícias</button>
-    </nav>
+  <div class="header">
+    <a class="logo" href="index.html">¡Lupa!</a>
   </div>
 
-  <main>
-    <div id="listaNoticias"></div>
-    <div class="paginacao" id="paginacao"></div>
-  </main>
+  <div class="topbar">
+    <div class="search-wrap">
+      <div class="search-bar">
+        <input id="campoBusca" type="text" placeholder="Pesquisar notícias..." />
+        <button id="botaoBusca" class="btn-search">🔍</button>
+      </div>
+    </div>
+
+    <div class="abas">
+      <button class="aba" data-aba="todos">Tudo</button>
+      <button class="aba" data-aba="imagens">Imagens</button>
+      <button class="aba" data-aba="videos">Vídeos</button>
+      <button class="aba ativa" data-aba="noticias">Notícias</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="lista-resultados" class="lista-noticias"></div>
+    <div id="paginacao" class="paginacao"></div>
+  </div>
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script>
-    const noticiasPorPagina = 10;
-    let noticias = [];
-    let paginaAtual = 1;
-
-    async function carregarNoticias() {
-      try {
-        const res = await fetch('noticias.json');
-        noticias = await res.json();
-        mostrarNoticias();
-      } catch (erro) {
-        console.error('Erro ao carregar notícias:', erro);
-      }
-    }
-
-    function mostrarNoticias() {
-      const inicio = (paginaAtual - 1) * noticiasPorPagina;
-      const fim = inicio + noticiasPorPagina;
-      const noticiasPagina = noticias.slice(inicio, fim);
-
-      const lista = document.getElementById('listaNoticias');
-      lista.innerHTML = '';
-
-      noticiasPagina.forEach(n => {
-        const div = document.createElement('div');
-        div.className = 'noticia';
-        div.innerHTML = `
-          <a href="${n.link}" target="_blank">
-            <h3>${n.titulo}</h3>
-          </a>
-          <small>${n.fonte} — ${n.data}</small>
-          <p>${n.descricao}</p>
-        `;
-        lista.appendChild(div);
-      });
-
-      atualizarPaginacao();
-    }
-
-    function atualizarPaginacao() {
-      const totalPaginas = Math.ceil(noticias.length / noticiasPorPagina);
-      const paginacao = document.getElementById('paginacao');
-      paginacao.innerHTML = '';
-
-      for (let i = 1; i <= totalPaginas; i++) {
-        const botao = document.createElement('button');
-        botao.textContent = i;
-        if (i === paginaAtual) botao.style.backgroundColor = '#444';
-        botao.onclick = () => {
-          paginaAtual = i;
-          mostrarNoticias();
-        };
-        paginacao.appendChild(botao);
-      }
-    }
-
-    document.getElementById('botaoBusca').addEventListener('click', () => {
-      const termo = document.getElementById('campoBusca').value.toLowerCase().trim();
-      if (!termo) return mostrarNoticias();
-      const filtradas = noticias.filter(n =>
-        n.titulo.toLowerCase().includes(termo) ||
-        n.descricao.toLowerCase().includes(termo)
-      );
-      noticias = filtradas;
-      paginaAtual = 1;
-      mostrarNoticias();
-    });
-
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') document.getElementById('botaoBusca').click();
-    });
-
-    carregarNoticias();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
