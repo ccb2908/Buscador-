@@ -1,38 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa! — Resultados</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="header">
-    <a class="logo" href="index.html">¡Lupa!</a>
-  </div>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
 
-  <div class="topbar">
-    <div class="search-wrap">
-      <div class="search-bar">
-        <input id="campoBusca" type="text" placeholder="Pesquisar..." />
-        <button id="botaoBusca" class="btn-search">🔍</button>
-      </div>
+  <div class="barra-superior">
+    <div class="search-bar">
+      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
+      <button id="botaoBusca">🔍</button>
     </div>
 
-    <div class="abas">
-      <button class="aba ativa" data-aba="todos">Tudo</button>
-      <button class="aba" data-aba="imagens">Imagens</button>
-      <button class="aba" data-aba="videos">Vídeos</button>
-      <button class="aba" data-aba="noticias">Notícias</button>
-    </div>
+    <nav class="abas">
+      <a href="resultados.html" class="aba ativa">Tudo</a>
+      <a href="imagens.html" class="aba">Imagens</a>
+      <a href="videos.html" class="aba">Vídeos</a>
+      <a href="noticias.html" class="aba">Notícias</a>
+    </nav>
   </div>
 
-  <div class="container">
+  <main id="painelResultados">
     <div id="lista-resultados"></div>
-    <div id="paginacao" class="paginacao"></div>
-  </div>
+  </main>
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script src="app.js"></script>
+  <script>
+    async function buscarResultados(termo) {
+      termo = termo.toLowerCase().trim();
+      if (!termo) return;
+
+      try {
+        const res = await fetch('index.json');
+        const dados = await res.json();
+
+        const resultados = dados.filter(item =>
+          item.titulo.toLowerCase().includes(termo) ||
+          item.descricao.toLowerCase().includes(termo) ||
+          item.categoria.toLowerCase().includes(termo)
+        );
+
+        const lista = document.getElementById('lista-resultados');
+        lista.innerHTML = '';
+
+        if (resultados.length === 0) {
+          lista.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+        } else {
+          resultados.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'resultado';
+            div.innerHTML = `
+              <a href="${item.link}" class="titulo-link">
+                <h3>${item.titulo}</h3>
+              </a>
+              <small>${item.link}</small>
+              <p>${item.descricao}</p>
+            `;
+            lista.appendChild(div);
+          });
+        }
+      } catch (erro) {
+        console.error('Erro ao carregar index.json:', erro);
+      }
+    }
+
+    document.getElementById('botaoBusca').addEventListener('click', () => {
+      const termo = document.getElementById('campoBusca').value;
+      buscarResultados(termo);
+    });
+
+    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoBusca').value;
+        buscarResultados(termo);
+      }
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    if (query) {
+      document.getElementById('campoBusca').value = query;
+      buscarResultados(query);
+    }
+  </script>
 </body>
 </html>
