@@ -5,55 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¡Lupa! — Configurações</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
+  <style>
+    body {
+      background: #fff;
+      color: #000;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-  <main class="container-configuracoes">
-    <button id="botaoVoltar">⬅️ Voltar</button>
+    header {
+      padding: 15px 30px;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      color: #1b9c48;
+    }
 
-    <h2>Configurações</h2>
+    .container-config {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
 
-    <div class="config-section">
-      <label for="modoPesquisa">Modo de pesquisa:</label>
-      <select id="modoPesquisa">
-        <option value="restrita">Restrita</option>
-        <option value="moderada">Moderada</option>
-        <option value="segura">Segura</option>
-      </select>
-    </div>
+    .config-item {
+      margin-bottom: 20px;
+    }
 
-    <div class="config-section">
-      <label for="idioma">Idioma:</label>
-      <select id="idioma">
-        <option value="pt">Português Brasileiro</option>
-        <option value="el">Grego</option>
-        <option value="es">Espanhol</option>
-        <option value="pl">Polonês</option>
-        <option value="de">Alemão</option>
-      </select>
-    </div>
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
 
-    <div class="config-section">
-      <label for="tema">Tema:</label>
-      <select id="tema">
-        <option value="claro">Claro</option>
-        <option value="escuro">Escuro</option>
-        <option value="auto">Automático</option>
-      </select>
-    </div>
+    select, input[type="text"], button {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
 
-    <div class="config-section">
-      <button id="limparCache">Limpar Cache</button>
-    </div>
-  </main>
-
-  <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    .btn-voltar {
+      margin-bottom: 20px;
+      background: #555;
+      color:
