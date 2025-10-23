@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
   <title>¡Lupa! — Resultados</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
+  <div class="header">
+    <a class="logo" href="index.html">¡Lupa!</a>
+  </div>
 
-  <div class="barra-superior">
-    <div class="search-bar">
-      <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
-      <button id="botaoBusca">🔍</button>
-      <button id="botaoConfiguracoes">⚙️</button>
+  <div class="topbar">
+    <div class="search-wrap">
+      <div class="search-bar">
+        <input id="campoBusca" type="text" placeholder="Pesquisar..." />
+        <button id="botaoBusca" class="btn-search">🔍</button>
+      </div>
     </div>
-    <nav class="abas">
+
+    <div class="abas">
       <button class="aba ativa" data-aba="todos">Tudo</button>
       <button class="aba" data-aba="imagens">Imagens</button>
       <button class="aba" data-aba="videos">Vídeos</button>
       <button class="aba" data-aba="noticias">Notícias</button>
-    </nav>
+    </div>
   </div>
 
-  <main id="painelResultados">
+  <div class="container">
     <div id="lista-resultados"></div>
-  </main>
+    <div id="paginacao" class="paginacao"></div>
+  </div>
 
-  <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
-  </footer>
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
