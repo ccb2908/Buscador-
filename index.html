@@ -11,29 +11,34 @@
     <a href="index.html" class="logo">¡Lupa!</a>
   </header>
 
-  <div class="container-inicial">
+  <main class="container-inicial">
     <div class="search-bar">
       <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
       <button id="btnInicial">🔍</button>
     </div>
-    <a href="configuracoes.html" class="btn-config">Configurações</a>
-  </div>
+    <button id="btnConfig">⚙ Configurações</button>
+  </main>
+
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
   <script>
+    // Redireciona para resultados
     const btn = document.getElementById('btnInicial');
     btn.addEventListener('click', () => {
-      const termo = document.getElementById('campoInicial').value;
-      if(termo.trim() !== "") {
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      const termo = document.getElementById('campoInicial').value.trim();
+      if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+    });
+
+    document.getElementById('campoInicial').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoInicial').value.trim();
+        if (termo) window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
       }
     });
-    document.getElementById('campoInicial').addEventListener('keypress', (e) => {
-      if(e.key === 'Enter'){
-        const termo = document.getElementById('campoInicial').value;
-        if(termo.trim() !== ""){
-          window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
-        }
-      }
+
+    // Botão configurações
+    document.getElementById('btnConfig').addEventListener('click', () => {
+      window.location.href = 'configuracoes.html';
     });
   </script>
 </body>
