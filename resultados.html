@@ -5,117 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa! — Resultados</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background: #fff;
-      color: #202124;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Logo verde */
-    header {
-      padding: 15px 30px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #1b9c48; /* Verde ¡Lupa! */
-    }
-
-    .barra-superior {
-      border-bottom: 1px solid #ddd;
-      padding: 10px 30px;
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 8px 12px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 20px;
-    }
-
-    /* Botão de busca roxo */
-    .search-bar button {
-      border: none;
-      background: #6f42c1; /* Roxo ¡Lupa! */
-      color: white;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-    }
-
-    .abas {
-      display: flex;
-      gap: 15px;
-      margin-top: 8px;
-      font-size: 14px;
-    }
-
-    .aba {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #555;
-      padding: 6px 0;
-    }
-
-    /* Aba ativa verde */
-    .aba.ativa {
-      color: #1b9c48; /* Verde ¡Lupa! */
-      border-bottom: 2px solid #1b9c48;
-    }
-
-    #painelResultados {
-      max-width: 700px;
-      margin: 20px auto;
-      padding: 0 20px;
-    }
-
-    .resultado {
-      margin-bottom: 25px;
-    }
-
-    .resultado a {
-      text-decoration: none;
-    }
-
-    .resultado h3 {
-      font-size: 18px;
-      color: #1a0dab;
-      margin: 0;
-    }
-
-    .resultado small {
-      color: #006621;
-      font-size: 13px;
-    }
-
-    .resultado p {
-      font-size: 14px;
-      color: #4d5156;
-      margin: 4px 0 0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 13px;
-      color: #777;
-      border-top: 1px solid #eee;
-      margin-top: 40px;
-    }
-  </style>
 </head>
 <body>
-  <header>¡Lupa!</header>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
 
   <div class="barra-superior">
     <div class="search-bar">
@@ -161,7 +55,7 @@
             const div = document.createElement('div');
             div.className = 'resultado';
             div.innerHTML = `
-              <a href="${item.link}">
+              <a href="${item.link}" class="titulo-link">
                 <h3>${item.titulo}</h3>
               </a>
               <small>${item.link}</small>
