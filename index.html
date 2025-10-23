@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
   <title>¡Lupa!</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
+  <div class="header">
+    <a class="logo" href="index.html">¡Lupa!</a>
+  </div>
 
-  <main class="container-inicial">
+  <div class="search-wrap">
     <div class="search-bar">
-      <input type="text" id="campoBuscaInicial" placeholder="Pesquisar..." autofocus>
-      <button id="botaoBuscaInicial">🔍</button>
-      <button id="botaoConfiguracoes">⚙️</button>
+      <input id="campoBuscaInicial" type="text" placeholder="Pesquisar..." />
+      <button id="botaoBuscaInicial" class="btn-search">🔍</button>
     </div>
-  </main>
+  </div>
 
-  <footer>
-    <p>© 2025 ¡Lupa! — Motor Ético de Busca</p>
-  </footer>
+  <div style="text-align:center; margin-top:10px;">
+    <a id="configLinkFooter" class="btn-config-footer" href="configuracoes.html">⚙️ Configurações</a>
+  </div>
 
-  <script src="script.js"></script>
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
