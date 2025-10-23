@@ -1,38 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Lupa! — Imagens</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="header">
-    <a class="logo" href="index.html">¡Lupa!</a>
-  </div>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
 
-  <div class="topbar">
-    <div class="search-wrap">
-      <div class="search-bar">
-        <input id="campoBusca" type="text" placeholder="Pesquisar imagens..." />
-        <button id="botaoBusca" class="btn-search">🔍</button>
-      </div>
+  <div class="barra-superior">
+    <div class="search-bar">
+      <input type="text" id="campoBusca" placeholder="Pesquisar imagens..." autofocus>
+      <button id="botaoBusca">🔍</button>
     </div>
 
-    <div class="abas">
-      <button class="aba" data-aba="todos">Tudo</button>
-      <button class="aba ativa" data-aba="imagens">Imagens</button>
-      <button class="aba" data-aba="videos">Vídeos</button>
-      <button class="aba" data-aba="noticias">Notícias</button>
-    </div>
+    <nav class="abas">
+      <a href="resultados.html" class="aba">Tudo</a>
+      <a href="imagens.html" class="aba ativa">Imagens</a>
+      <a href="videos.html" class="aba">Vídeos</a>
+      <a href="noticias.html" class="aba">Notícias</a>
+    </nav>
   </div>
 
-  <div class="container">
-    <div id="lista-resultados" class="grid-imagens"></div>
-    <div id="paginacao" class="paginacao"></div>
-  </div>
+  <main id="painelResultados">
+    <div id="lista-imagens" class="grid-imagens"></div>
+  </main>
 
   <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script src="app.js"></script>
+  <script>
+    async function buscarImagens(termo) {
+      termo = termo.toLowerCase().trim();
+      if (!termo) return;
+
+      try {
+        const res = await fetch('imagens.json');
+        const dados = await res.json();
+
+        const resultados = dados.filter(item =>
+          item.titulo.toLowerCase().includes(termo) ||
+          item.descricao.toLowerCase().includes(termo)
+        );
+
+        const lista = document.getElementById('lista-imagens');
+        lista.innerHTML = '';
+
+        if (resultados.length === 0) {
+          lista.innerHTML = '<p>Nenhuma imagem encontrada.</p>';
+        } else {
+          resultados.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'imagem-item';
+            div.innerHTML = `
+              <img src="${item.link}" alt="${item.titulo}">
+              <p>${item.titulo}</p>
+            `;
+            lista.appendChild(div);
+          });
+        }
+      } catch (erro) {
+        console.error('Erro ao carregar imagens.json:', erro);
+      }
+    }
+
+    document.getElementById('botaoBusca').addEventListener('click', () => {
+      const termo = document.getElementById('campoBusca').value;
+      buscarImagens(termo);
+    });
+
+    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const termo = document.getElementById('campoBusca').value;
+        buscarImagens(termo);
+      }
+    });
+  </script>
 </body>
 </html>
