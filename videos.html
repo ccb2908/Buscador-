@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Lupa! — Vídeos</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    main {
+      padding: 20px;
+      min-height: 70vh;
+    }
+
+    .grade-videos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .video-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .video-card:hover {
+      transform: scale(1.02);
+    }
+
+    .video-card iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+    }
+
+    .video-info {
+      padding: 10px;
+    }
+
+    .video-info h3 {
+      font-size: 16px;
+      margin: 6px 0;
+    }
+
+    .video-info small {
+      color: gray;
+    }
+
+    .paginacao {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .paginacao button {
+      background-color: #222;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .paginacao button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">¡Lupa!</a>
+  </header>
+
+  <div class="barra-superior">
+    <div class="search-bar">
+      <input type="text" id="campoBusca" placeholder="Pesquisar vídeos..." autofocus>
+      <button id="botaoBusca">🔍</button>
+    </div>
+    <nav class="abas">
+      <button onclick="window.location.href='resultados.html'">Tudo</button>
+      <button onclick="window.location.href='imagens.html'">Imagens</button>
+      <button class="aba ativa">Vídeos</button>
+      <button onclick="window.location.href='noticias.html'">Notícias</button>
+    </nav>
+  </div>
+
+  <main>
+    <div class="grade-videos" id="gradeVideos"></div>
+    <div class="paginacao" id="paginacao"></div>
+  </main>
+
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+
+  <script>
+    const videosPorPagina = 10;
+    let videos = [];
+    let paginaAtual = 1;
+
+    async function carregarVideos() {
+      try {
+        const res = await fetch('videos.json');
+        videos = await res.json();
+        mostrarVideos();
+      } catch (erro) {
+        console.error('Erro ao carregar vídeos:', erro);
+      }
+    }
+
+    function mostrarVideos() {
+      const inicio = (paginaAtual - 1) * videosPorPagina;
+      const fim = inicio + videosPorPagina;
+      const videosPagina = videos.slice(inicio, fim);
+
+      const grade = document.getElementById('gradeVideos');
+      grade.innerHTML = '';
+
+      videosPagina.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+          <iframe src="${v.embed}" title="${v.titulo}" allowfullscreen></iframe>
+          <div class="video-info">
+            <h3>${v.titulo}</h3>
+            <small>${v.fonte}</small>
+          </div>
+        `;
+        grade.appendChild(card);
+      });
+
+      atualizarPaginacao();
+    }
+
+    function atualizarPaginacao() {
+      const totalPaginas = Math.ceil(videos.length / videosPorPagina);
+      const paginacao = document.getElementById('paginacao');
+      paginacao.innerHTML = '';
+
+      for (let i = 1; i <= totalPaginas; i++) {
+        const botao = document.createElement('button');
+        botao.textContent = i;
+        if (i === paginaAtual) botao.style.backgroundColor = '#444';
+        botao.onclick = () => {
+          paginaAtual = i;
+          mostrarVideos();
+        };
+        paginacao.appendChild(botao);
+      }
+    }
+
+    document.getElementById('botaoBusca').addEventListener('click', () => {
+      const termo = document.getElementById('campoBusca').value.toLowerCase().trim();
+      if (!termo) return mostrarVideos();
+      const filtrados = videos.filter(v =>
+        v.titulo.toLowerCase().includes(termo)
+      );
+      videos = filtrados;
+      paginaAtual = 1;
+      mostrarVideos();
+    });
+
+    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') document.getElementById('botaoBusca').click();
+    });
+
+    carregarVideos();
+  </script>
+</body>
+</html>
