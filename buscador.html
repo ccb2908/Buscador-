@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Lupa!</title>
+  <style>
+    /* ===== Reset básico ===== */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+    body { background: #fff; color:#202124; }
+    a { text-decoration:none; color: inherit; }
+    button { cursor:pointer; }
+
+    /* ===== Header / Logo ===== */
+    header { padding: 20px; text-align:center; font-size:32px; font-weight:bold; color:#1b9c48; }
+    header a { color: #1b9c48; }
+
+    /* ===== Barra de pesquisa ===== */
+    .search-bar { display:flex; justify-content:center; align-items:center; gap:8px; margin:20px auto; max-width:600px; }
+    .search-bar input { flex:1; padding:10px 15px; font-size:16px; border-radius:20px; border:1px solid #ccc; }
+    .search-bar button { background:#6f42c1; color:#fff; border:none; width:36px; height:36px; border-radius:50%; }
+
+    /* ===== Botão Configurações ===== */
+    #btnConfig { background:#555; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:14px; margin-left:8px; }
+
+    /* ===== Abas ===== */
+    .abas { display:flex; justify-content:center; gap:15px; margin:10px 0; }
+    .aba { background:none; border:none; font-size:14px; padding:6px 0; color:#555; border-bottom:2px solid transparent; }
+    .aba.ativa { color:#1b9c48; border-bottom-color:#1b9c48; }
+
+    /* ===== Painel de Resultados ===== */
+    #painelResultados { max-width:700px; margin:20px auto; padding:0 15px; }
+    .resultado { margin-bottom:25px; }
+    .resultado a { color:#1b9c48; }
+    .resultado a.visited { color:#6f42c1; }
+    .resultado small { display:block; color:#006621; font-size:13px; margin-top:2px; }
+    .resultado p { font-size:14px; color:#4d5156; margin-top:4px; text-align:left; }
+
+    /* ===== Rodapé ===== */
+    footer { text-align:center; padding:20px; font-size:13px; color:#777; border-top:1px solid #eee; margin-top:40px; }
+
+    /* ===== Modal Configurações ===== */
+    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:1000; }
+    .modal-content { background:#fff; padding:20px; border-radius:10px; max-width:400px; width:90%; }
+    .modal-content h2 { margin-bottom:15px; color:#1b9c48; }
+    .modal-content label { display:block; margin:8px 0 4px; font-weight:bold; }
+    .modal-content select, .modal-content input[type="text"] { width:100%; padding:6px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc; }
+    .modal-content button { margin-top:10px; padding:6px 12px; border:none; border-radius:5px; background:#6f42c1; color:#fff; }
+  </style>
+</head>
+<body>
+  <!-- Logo -->
+  <header><a href="#" id="logo">¡Lupa!</a></header>
+
+  <!-- Barra de pesquisa -->
+  <div class="search-bar">
+    <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
+    <button id="botaoBusca">🔍</button>
+    <button id="btnConfig">⚙️</button>
+  </div>
+
+  <!-- Abas -->
+  <div class="abas">
+    <button class="aba ativa" data-aba="todos">Tudo</button>
+    <button class="aba" data-aba="imagens">Imagens</button>
+    <button class="aba" data-aba="videos">Vídeos</button>
+    <button class="aba" data-aba="noticias">Notícias</button>
+  </div>
+
+  <!-- Painel de Resultados -->
+  <main id="painelResultados"></main>
+
+  <!-- Rodapé -->
+  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+
+  <!-- Modal Configurações -->
+  <div class="modal" id="modalConfig">
+    <div class="modal-content">
+      <h2>Configurações</h2>
+      <label for="tema">Tema:</label>
+      <select id="tema">
+        <option value="claro">Claro</option>
+        <option value="escuro">Escuro</option>
+        <option value="auto">Automático</option>
+      </select>
+      <label for="idioma">Idioma:</label>
+      <select id="idioma">
+        <option value="pt">Português</option>
+        <option value="el">Grego</option>
+        <option value="es">Espanhol</option>
+        <option value="pl">Polonês</option>
+        <option value="de">Alemão</option>
+      </select>
+      <button id="fecharModal">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    // ===== Modal Configurações =====
+    const modal = document.getElementById('modalConfig');
+    const btnConfig = document.getElementById('btnConfig');
+    const fecharModal = document.getElementById('fecharModal');
+
+    btnConfig.addEventListener('click', ()=> modal.style.display='flex');
+    fecharModal.addEventListener('click', ()=> modal.style.display='none');
+    window.addEventListener('click', e => { if(e.target==modal) modal.style.display='none'; });
+
+    // ===== Abas =====
+    const abas = document.querySelectorAll('.aba');
+    abas.forEach(aba=>{
+      aba.addEventListener('click', ()=>{
+        abas.forEach(a=>a.classList.remove('ativa'));
+        aba.classList.add('ativa');
+        carregarResultados(campoBusca.value, aba.dataset.aba);
+      });
+    });
+
+    // ===== Busca =====
+    const campoBusca = document.getElementById('campoBusca');
+    const botaoBusca = document.getElementById('botaoBusca');
+
+    botaoBusca.addEventListener('click', ()=> carregarResultados(campoBusca.value, document.querySelector('.aba.ativa').dataset.aba));
+    campoBusca.addEventListener('keypress', e=>{
+      if(e.key==='Enter') carregarResultados(campoBusca.value, document.querySelector('.aba.ativa').dataset.aba);
+    });
+
+    // ===== Função para carregar resultados =====
+    async function carregarResultados(termo='', aba='todos'){
+      termo = termo.toLowerCase().trim();
+      const painel = document.getElementById('painelResultados');
+      painel.innerHTML='';
+
+      if(!termo) return;
+
+      // JSON por aba
+      let arquivo='index.json';
+      if(aba==='imagens') arquivo='imagens.json';
+      if(aba==='videos') arquivo='videos.json';
+      if(aba==='noticias') arquivo='noticias.json';
+
+      try{
+        const res = await fetch(arquivo);
+        const dados = await res.json();
+
+        const resultados = dados.filter(item=>{
+          return item.titulo.toLowerCase().includes(termo) ||
+                 item.descricao.toLowerCase().includes(termo) ||
+                 item.categoria.toLowerCase().includes(termo);
+        });
+
+        if(resultados.length===0){
+          painel.innerHTML='<p>Nenhum resultado encontrado.</p>';
+        } else {
+          resultados.forEach(item=>{
+            const div=document.createElement('div');
+            div.className='resultado';
+            div.innerHTML=`
+              <a href="${item.link}" class="titulo-link">${item.titulo}</a>
+              <small>${item.link}</small>
+              <p>${item.descricao}</p>
+            `;
+            painel.appendChild(div);
+          });
+        }
+      } catch(erro){ console.error('Erro ao carregar
