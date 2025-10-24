@@ -1,158 +1,190 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel — ¡Lupa!</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      background: #ffffff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #202124;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — ¡Lupa!</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body {
+  background: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #202124;
+}
 
-    header {
-      padding: 15px 30px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #1b9c48; /* Verde */
-    }
+header {
+  padding: 20px 0;
+  text-align: center;
+}
 
-    .search-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      max-width: 600px;
-      margin: 10px auto;
-    }
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1b9c48;
+  text-decoration: none;
+}
 
-    .search-bar input {
-      flex: 1;
-      padding: 8px 12px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 20px;
-    }
+.search-bar {
+  display: flex;
+  gap: 8px;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+}
 
-    .search-bar button {
-      border: none;
-      background: #6f42c1; /* Roxo */
-      color: white;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-    }
+.search-bar input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
 
-    main {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #f5f5f5; /* Tom levemente diferente */
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+.search-bar button {
+  border: none;
+  background: #6f42c1;
+  color: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
 
-    main h2 {
-      margin-top: 0;
-      color: #1b9c48;
-    }
+main {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
 
-    .descricao {
-      font-size: 16px;
-      margin: 10px 0;
-    }
+main h2 {
+  margin-top: 0;
+  color: #1b9c48;
+}
 
-    .imagens {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-top: 15px;
-    }
+.descricao {
+  font-size: 16px;
+  margin: 10px 0;
+}
 
-    .imagens img {
-      width: 100%;
-      border-radius: 5px;
-    }
+.imagens {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
 
-    footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 13px;
-      color: #777;
-      border-top: 1px solid #eee;
-      margin-top: 20px;
-    }
-  </style>
+.imagens img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.campos {
+  margin-top: 15px;
+}
+
+.campo {
+  margin: 4px 0;
+}
+
+.campo strong {
+  color: #1b9c48;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #777;
+  border-top: 1px solid #eee;
+}
+</style>
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">¡Lupa!</a>
-  </header>
+<header>
+  <a href="index.html" class="logo">¡Lupa!</a>
+</header>
 
-  <div class="search-bar">
-    <input type="text" id="campoBusca" placeholder="Pesquisar...">
-    <button id="botaoBusca">🔍</button>
-  </div>
+<div class="search-bar">
+  <input type="text" id="campoBusca" placeholder="Pesquisar...">
+  <button id="botaoBusca">🔍</button>
+</div>
 
-  <main id="painel">
-    <h2 id="titulo">Título do Painel</h2>
-    <div class="descricao" id="descricao">Descrição do termo ou artigo, podendo ser resumo histórico, informações principais ou contexto geral.</div>
-    <div class="imagens" id="imagens"></div>
-  </main>
+<main id="painel">
+  <h2 id="titulo">Título do Painel</h2>
+  <div class="descricao" id="descricao">Descrição resumida do termo...</div>
+  <div class="imagens" id="imagens"></div>
+  <div class="campos" id="campos"></div>
+</main>
 
-  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
+<footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-  <script>
-    async function carregarPainel(termo) {
-      try {
-        const res = await fetch('painel.json'); // JSON com dados do painel
-        const dados = await res.json();
+<script>
+async function carregarPainel(termo) {
+  try {
+    const res = await fetch('painel.json');
+    const dados = await res.json();
 
-        const item = dados.find(i => i.titulo.toLowerCase() === termo.toLowerCase());
-        if (!item) {
-          document.getElementById('titulo').textContent = 'Termo não encontrado';
-          document.getElementById('descricao').textContent = '';
-          document.getElementById('imagens').innerHTML = '';
-          return;
-        }
-
-        document.getElementById('titulo').textContent = item.titulo;
-        document.getElementById('descricao').textContent = item.descricao;
-
-        const imagensDiv = document.getElementById('imagens');
-        imagensDiv.innerHTML = '';
-        item.imagens.forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          imagensDiv.appendChild(img);
-        });
-      } catch (erro) {
-        console.error('Erro ao carregar painel.json:', erro);
-      }
+    const item = dados.find(i => i.titulo.toLowerCase() === termo.toLowerCase());
+    if (!item) {
+      document.getElementById('titulo').textContent = 'Termo não encontrado';
+      document.getElementById('descricao').textContent = '';
+      document.getElementById('imagens').innerHTML = '';
+      document.getElementById('campos').innerHTML = '';
+      return;
     }
 
-    // Captura termo da URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-    if (query) {
-      carregarPainel(query);
+    document.getElementById('titulo').textContent = item.titulo;
+    document.getElementById('descricao').textContent = item.descricao || '';
+
+    // Imagens
+    const imagensDiv = document.getElementById('imagens');
+    imagensDiv.innerHTML = '';
+    if(item.imagens) {
+      item.imagens.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        imagensDiv.appendChild(img);
+      });
     }
 
-    document.getElementById('botaoBusca').addEventListener('click', () => {
-      const termo = document.getElementById('campoBusca').value;
-      if (termo.trim()) carregarPainel(termo);
+    // Campos dinâmicos
+    const camposDiv = document.getElementById('campos');
+    camposDiv.innerHTML = '';
+    const camposExibir = Object.keys(item).filter(k => !['titulo','descricao','imagens','categoria'].includes(k));
+    camposExibir.forEach(campo => {
+      let valor = item[campo];
+      if(Array.isArray(valor)) valor = valor.join(', ');
+      const div = document.createElement('div');
+      div.className = 'campo';
+      div.innerHTML = `<strong>${campo.replace(/_/g,' ')}:</strong> ${valor}`;
+      camposDiv.appendChild(div);
     });
 
-    document.getElementById('campoBusca').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const termo = document.getElementById('campoBusca').value;
-        if (termo.trim()) carregarPainel(termo);
-      }
-    });
-  </script>
+  } catch (erro) {
+    console.error('Erro ao carregar painel.json:', erro);
+  }
+}
+
+// Captura termo da URL
+const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('q');
+if (query) carregarPainel(query);
+
+document.getElementById('botaoBusca').addEventListener('click', () => {
+  const termo = document.getElementById('campoBusca').value;
+  if (termo.trim()) carregarPainel(termo);
+});
+
+document.getElementById('campoBusca').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    const termo = document.getElementById('campoBusca').value;
+    if (termo.trim()) carregarPainel(termo);
+  }
+});
+</script>
 </body>
 </html>
