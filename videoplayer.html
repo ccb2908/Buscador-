@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Lupa! — Vídeo Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .player-container {
+      background-color: #f3f3f3;
+      border: 2px solid #32CD32;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      max-width: 800px;
+      width: 90%;
+      text-align: center;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+      background: #000;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .controls button {
+      background: none;
+      border: none;
+      color: #32CD32;
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .controls button:hover {
+      color: #228B22;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      margin: 0 10px;
+      accent-color: #32CD32;
+    }
+
+    .info {
+      margin-top: 12px;
+      text-align: left;
+    }
+
+    .info h2 {
+      margin: 0;
+      color: #32CD32;
+      font-size: 20px;
+    }
+
+    .info p {
+      margin: 2px 0 10px;
+      color: #555;
+    }
+
+    .voltar {
+      background-color: #32CD32;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .voltar:hover {
+      background-color: #228B22;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="player-container">
+    <video id="video" controls>
+      <source src="videos/exemplo.mp4" type="video/mp4">
+      Seu navegador não suporta vídeos HTML5.
+    </video>
+
+    <div class="controls">
+      <button id="playPause">▶️</button>
+      <input type="range" id="progress" value="0" max="100">
+      <button id="mute">🔊</button>
+      <button id="fullscreen">⛶</button>
+    </div>
+
+    <div class="info">
+      <h2>Título do Vídeo</h2>
+      <p>Autor: Canal ¡Lupa!</p>
+      <button class="voltar" onclick="window.history.back()">Voltar</button>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const playPause = document.getElementById('playPause');
+    const mute = document.getElementById('mute');
+    const fullscreen = document.getElementById('fullscreen');
+    const progress = document.getElementById('progress');
+
+    playPause.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        playPause.textContent = '⏸️';
+      } else {
+        video.pause();
+        playPause.textContent = '▶️';
+      }
+    });
+
+    mute.addEventListener('click', () => {
+      video.muted = !video.muted;
+      mute.textContent = video.muted ? '🔇' : '🔊';
+    });
+
+    fullscreen.addEventListener('click', () => {
+      if (video.requestFullscreen) video.requestFullscreen();
+    });
+
+    video.addEventListener('timeupdate', () => {
+      const progressValue = (video.currentTime / video.duration) * 100;
+      progress.value = progressValue || 0;
+    });
+
+    progress.addEventListener('input', () => {
+      const seekTime = (progress.value / 100) * video.duration;
+      video.currentTime = seekTime;
+    });
+  </script>
+</body>
+</html>
