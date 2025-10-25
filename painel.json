@@ -1,22 +1,55 @@
 [
   {
     "titulo": "Império Bizantino",
-    "descricao": "Resumo histórico sobre o Império Bizantino...",
-    "imagens": ["bizantino1.jpg", "bizantino2.jpg"]
+    "descricao": "Império Romano do Oriente, herdeiro direto da cultura e administração romanas.",
+    "categoria": "Império da Idade Média",
+    "fundacao": "334 d.C.",
+    "dissolucao": "1453 d.C.",
+    "idiomas": ["Grego", "Búlgaro", "Armênio", "Albanês", "Sérvio", "Árabe"],
+    "etnias": ["Gregos", "Eslavos", "Armênios", "Albaneses", "Árabes"],
+    "populacao": "12 milhões",
+    "moeda": "Denário",
+    "sucessor": "Grécia",
+    "imagens": ["bizantio1.jpg", "bizantio2.jpg"]
   },
   {
-    "titulo": "Império Persa",
-    "descricao": "Resumo histórico sobre o Império Persa...",
-    "imagens": ["persa1.jpg", "persa2.jpg"]
+    "titulo": "Dragon Ball Z",
+    "descricao": "Saga dos Saiyajins, Freeza, Cell e Majin Buu — marco do anime japonês.",
+    "categoria": "Animes",
+    "lancamento": "1987",
+    "finalizacao": "1996",
+    "pais_origem": "Japão",
+    "episodios": 293,
+    "autor": "Akira Toriyama",
+    "estudio": "Toei Animation",
+    "imagens": ["dbz1.jpg", "dbz2.jpg"]
   },
   {
     "titulo": "Adolf Hitler",
-    "descricao": "Resumo sobre Adolf Hitler...",
-    "imagens": ["hitler1.jpg", "hitler2.jpg"]
+    "descricao": "Líder político e militar da Alemanha Nazista durante a Segunda Guerra Mundial.",
+    "categoria": "Líder Político e Militar",
+    "nascimento": "1889",
+    "morte": "1945",
+    "etnia": "Alemão",
+    "altura": "1,75m",
+    "ocupacao": "Führer da Alemanha",
+    "pais": ["Alois Hitler", "Klara Hitler"],
+    "esposa": "Eva Braun",
+    "imagens": ["hitler1.jpg"]
   },
   {
-    "titulo": "Stalin",
-    "descricao": "Resumo sobre Stalin...",
-    "imagens": ["stalin1.jpg", "stalin2.jpg"]
+    "titulo": "Goku",
+    "descricao": "Protagonista de Dragon Ball, símbolo de superação e pureza.",
+    "categoria": "Personagem de Anime",
+    "nascimento": "423",
+    "morte": "454",
+    "etnia": "Saiyajin",
+    "altura": "1,75m",
+    "ocupacao": "Lutador de artes marciais",
+    "pais": ["Bardock", "Gine"],
+    "esposa": "Chichi",
+    "filhos": ["Gohan", "Goten"],
+    "autor": "Akira Toriyama",
+    "imagens": ["goku1.jpg", "goku2.jpg"]
   }
 ]
