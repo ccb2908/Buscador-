@@ -1,55 +1,63 @@
 [
   {
     "titulo": "Império Bizantino",
-    "descricao": "Império Romano do Oriente, herdeiro direto da cultura e administração romanas.",
-    "categoria": "Império da Idade Média",
-    "fundacao": "334 d.C.",
-    "dissolucao": "1453 d.C.",
-    "idiomas": ["Grego", "Búlgaro", "Armênio", "Albanês", "Sérvio", "Árabe"],
-    "etnias": ["Gregos", "Eslavos", "Armênios", "Albaneses", "Árabes"],
-    "populacao": "12 milhões",
-    "moeda": "Denário",
-    "sucessor": "Grécia",
-    "imagens": ["bizantio1.jpg", "bizantio2.jpg"]
-  },
-  {
-    "titulo": "Dragon Ball Z",
-    "descricao": "Saga dos Saiyajins, Freeza, Cell e Majin Buu — marco do anime japonês.",
-    "categoria": "Animes",
-    "lancamento": "1987",
-    "finalizacao": "1996",
-    "pais_origem": "Japão",
-    "episodios": 293,
-    "autor": "Akira Toriyama",
-    "estudio": "Toei Animation",
-    "imagens": ["dbz1.jpg", "dbz2.jpg"]
+    "categoria": "Império Histórico",
+    "descricao": "Império sucessor do Romano do Oriente, conhecido por sua cultura, teologia e resistência milenar.",
+    "dados": {
+      "Fundação": "330 d.C.",
+      "Dissolução": "1453 d.C.",
+      "Capital": "Constantinopla",
+      "Idiomas": "Grego, Armênio, Eslavo",
+      "Etnias": "Gregos, Armênios, Eslavos, Árabes",
+      "Religião": "Cristianismo Ortodoxo",
+      "Moeda": "Solidus Bizantino",
+      "Sucessor": "Império Otomano"
+    },
+    "imagens": ["bizantino1.jpg", "bizantino2.jpg"]
   },
   {
     "titulo": "Adolf Hitler",
-    "descricao": "Líder político e militar da Alemanha Nazista durante a Segunda Guerra Mundial.",
-    "categoria": "Líder Político e Militar",
-    "nascimento": "1889",
-    "morte": "1945",
-    "etnia": "Alemão",
-    "altura": "1,75m",
-    "ocupacao": "Führer da Alemanha",
-    "pais": ["Alois Hitler", "Klara Hitler"],
-    "esposa": "Eva Braun",
-    "imagens": ["hitler1.jpg"]
+    "categoria": "Figura Histórica",
+    "descricao": "Líder político e militar alemão que governou o Terceiro Reich entre 1933 e 1945.",
+    "dados": {
+      "Nascimento": "1889",
+      "Morte": "1945",
+      "Etnia": "Alemã",
+      "Altura": "1,75 m",
+      "Ocupação": "Führer da Alemanha",
+      "Pais": "Alois Hitler, Klara Hitler",
+      "Esposa": "Eva Braun"
+    },
+    "imagens": ["hitler1.jpg", "hitler2.jpg"]
+  },
+  {
+    "titulo": "Dragon Ball Z",
+    "categoria": "Anime",
+    "descricao": "Saga que acompanha as aventuras de Goku e seus amigos na defesa da Terra e do universo.",
+    "dados": {
+      "Lançamento": "1989",
+      "Finalização": "1996",
+      "País de origem": "Japão",
+      "Episódios": "291",
+      "Autor": "Akira Toriyama",
+      "Estúdio": "Toei Animation"
+    },
+    "imagens": ["dbz1.jpg", "dbz2.jpg"]
   },
   {
     "titulo": "Goku",
-    "descricao": "Protagonista de Dragon Ball, símbolo de superação e pureza.",
     "categoria": "Personagem de Anime",
-    "nascimento": "423",
-    "morte": "454",
-    "etnia": "Saiyajin",
-    "altura": "1,75m",
-    "ocupacao": "Lutador de artes marciais",
-    "pais": ["Bardock", "Gine"],
-    "esposa": "Chichi",
-    "filhos": ["Gohan", "Goten"],
-    "autor": "Akira Toriyama",
+    "descricao": "Protagonista Saiyajin de Dragon Ball, símbolo de coragem e superação.",
+    "dados": {
+      "Nascimento": "737 (Era dos Saiyajins)",
+      "Etnia": "Saiyajin",
+      "Altura": "1,75 m",
+      "Ocupação": "Lutador de Artes Marciais",
+      "Pais": "Bardock e Gine",
+      "Esposa": "Chichi",
+      "Filhos": "Gohan e Goten",
+      "Criador": "Akira Toriyama"
+    },
     "imagens": ["goku1.jpg", "goku2.jpg"]
   }
 ]
