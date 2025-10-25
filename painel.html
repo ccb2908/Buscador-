@@ -4,58 +4,51 @@
   <meta charset="UTF-8">
   <title>Painel de Informações</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f2f2f2; }
-    .painel { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-    h1 { color: #333; }
-    h2 { color: #666; margin-top: -5px; }
+    body { font-family: Arial, sans-serif; padding: 25px; background: #f8f8f8; color: #222; }
+    .painel { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.15); max-width: 800px; margin: auto; }
+    h1 { color: #2d2d2d; margin-bottom: 5px; }
+    h3 { color: #555; margin-top: -5px; }
     .imagens img { width: 180px; margin: 10px; border-radius: 8px; }
     ul { list-style: square; margin-left: 25px; }
   </style>
 </head>
 <body>
   <div class="painel">
-    <h1 id="titulo">Título do Painel</h1>
-    <h2 id="subtitulo"></h2>
-    <p id="descricao">Descrição do termo ou artigo.</p>
-    <p id="contexto"></p>
-    <p id="origem"></p>
-    <div id="poderes"></div>
+    <h1 id="titulo">Carregando...</h1>
+    <p id="descricao"></p>
+    <div id="info"></div>
     <div class="imagens" id="imagens"></div>
   </div>
 
   <script>
-    // Função que lê o painel.json dinamicamente
     async function carregarPainel() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
         const termo = urlParams.get("termo")?.toLowerCase();
+
         const resp = await fetch("painel.json");
         const dados = await resp.json();
 
-        // Busca o item com base no "id" ou "titulo"
-        const item = dados.find(el => el.id === termo || el.titulo.toLowerCase() === termo);
+        const item = dados.find(el => el.titulo.toLowerCase() === termo);
 
         if (!item) {
-          document.getElementById("titulo").innerText = "Resultado não encontrado.";
-          document.getElementById("descricao").innerText = "";
+          document.getElementById("titulo").innerText = "Item não encontrado.";
           return;
         }
 
-        // Renderiza apenas o que existir
-        const set = (id, val) => { if (val) document.getElementById(id).innerText = val; };
-        set("titulo", item.titulo);
-        set("subtitulo", item.subtitulo);
-        set("descricao", item.descricao);
-        set("contexto", item.contexto ? "Contexto: " + item.contexto : "");
-        set("origem", item.origem ? "Origem: " + item.origem : "");
+        document.getElementById("titulo").innerText = item.titulo;
+        document.getElementById("descricao").innerText = item.descricao || "";
 
-        if (item.poderes && item.poderes.length > 0) {
-          document.getElementById("poderes").innerHTML = 
-            `<strong>Poderes:</strong><ul>${item.poderes.map(p => `<li>${p}</li>`).join("")}</ul>`;
+        let html = "";
+        for (const [chave, valor] of Object.entries(item)) {
+          if (["titulo", "descricao", "categoria", "imagens"].includes(chave)) continue;
+          const texto = Array.isArray(valor) ? valor.join(", ") : valor;
+          html += `<p><strong>${chave[0].toUpperCase() + chave.slice(1)}:</strong> ${texto}</p>`;
         }
+        document.getElementById("info").innerHTML = html;
 
         if (item.imagens && item.imagens.length > 0) {
-          document.getElementById("imagens").innerHTML =
+          document.getElementById("imagens").innerHTML = 
             item.imagens.map(img => `<img src="${img}" alt="${item.titulo}">`).join("");
         }
 
