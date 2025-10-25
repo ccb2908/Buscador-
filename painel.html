@@ -1,63 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Painel de Informações</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 25px; background: #f8f8f8; color: #222; }
-    .painel { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.15); max-width: 800px; margin: auto; }
-    h1 { color: #2d2d2d; margin-bottom: 5px; }
-    h3 { color: #555; margin-top: -5px; }
-    .imagens img { width: 180px; margin: 10px; border-radius: 8px; }
-    ul { list-style: square; margin-left: 25px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Informações</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #202124;
+    margin: 0;
+    padding: 20px;
+  }
+
+  #painel {
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    background: #f9f9f9;
+  }
+
+  #painel h2 {
+    color: #1b9c48;
+    margin-top: 0;
+  }
+
+  #painel p {
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+
+  .info-linha {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+  .info-linha strong {
+    color: #6f42c1;
+  }
+
+  .imagens {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .imagens img {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+</style>
 </head>
 <body>
-  <div class="painel">
-    <h1 id="titulo">Carregando...</h1>
-    <p id="descricao"></p>
-    <div id="info"></div>
-    <div class="imagens" id="imagens"></div>
-  </div>
 
-  <script>
-    async function carregarPainel() {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const termo = urlParams.get("termo")?.toLowerCase();
+<div id="painel">
+  <h2>Título do Painel</h2>
+  <p>Descrição do termo ou artigo, podendo ser resumo histórico, informações principais ou contexto geral.</p>
+</div>
 
-        const resp = await fetch("painel.json");
-        const dados = await resp.json();
+<script>
+async function carregarPainel(termo) {
+  termo = termo.toLowerCase().trim();
+  try {
+    const res = await fetch('painel.json');
+    const dados = await res.json();
 
-        const item = dados.find(el => el.titulo.toLowerCase() === termo);
+    // Busca parcial e insensível a maiúsculas/minúsculas
+    const painelItem = dados.find(item =>
+      item.titulo.toLowerCase().includes(termo)
+    );
 
-        if (!item) {
-          document.getElementById("titulo").innerText = "Item não encontrado.";
-          return;
-        }
+    const painel = document.getElementById('painel');
+    painel.innerHTML = '';
 
-        document.getElementById("titulo").innerText = item.titulo;
-        document.getElementById("descricao").innerText = item.descricao || "";
+    if (painelItem) {
+      painel.innerHTML = `
+        <h2>${painelItem.titulo}</h2>
+        <p>${painelItem.descricao}</p>
+      `;
 
-        let html = "";
-        for (const [chave, valor] of Object.entries(item)) {
-          if (["titulo", "descricao", "categoria", "imagens"].includes(chave)) continue;
-          const texto = Array.isArray(valor) ? valor.join(", ") : valor;
-          html += `<p><strong>${chave[0].toUpperCase() + chave.slice(1)}:</strong> ${texto}</p>`;
-        }
-        document.getElementById("info").innerHTML = html;
-
-        if (item.imagens && item.imagens.length > 0) {
-          document.getElementById("imagens").innerHTML = 
-            item.imagens.map(img => `<img src="${img}" alt="${item.titulo}">`).join("");
-        }
-
-      } catch (e) {
-        console.error("Erro ao carregar painel:", e);
+      if (painelItem.imagens && painelItem.imagens.length > 0) {
+        const divImgs = document.createElement('div');
+        divImgs.className = 'imagens';
+        painelItem.imagens.forEach(img => {
+          const tag = document.createElement('img');
+          tag.src = img;
+          divImgs.appendChild(tag);
+        });
+        painel.appendChild(divImgs);
       }
+
+      // Exibir campos extras, se existirem
+      for (const [chave, valor] of Object.entries(painelItem)) {
+        if (chave !== 'titulo' && chave !== 'descricao' && chave !== 'imagens') {
+          const linha = document.createElement('div');
+          linha.className = 'info-linha';
+          linha.innerHTML = `<strong>${chave[0].toUpperCase() + chave.slice(1)}:</strong> ${valor}`;
+          painel.appendChild(linha);
+        }
+      }
+
+    } else {
+      painel.innerHTML = `<p>Nenhuma informação encontrada para "<strong>${termo}</strong>".</p>`;
     }
 
-    carregarPainel();
-  </script>
+  } catch (erro) {
+    console.error('Erro ao carregar painel.json:', erro);
+  }
+}
+
+// Pega o termo da URL (ex: painel.html?q=goku)
+const params = new URLSearchParams(window.location.search);
+const termoBusca = params.get('q');
+if (termoBusca) {
+  carregarPainel(termoBusca);
+}
+</script>
+
 </body>
 </html>
