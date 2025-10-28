@@ -1,63 +1,80 @@
 [
-  {
-    "titulo": "Império Bizantino",
-    "categoria": "Império Histórico",
-    "descricao": "Império sucessor do Romano do Oriente, conhecido por sua cultura, teologia e resistência milenar.",
-    "dados": {
-      "Fundação": "330 d.C.",
-      "Dissolução": "1453 d.C.",
-      "Capital": "Constantinopla",
-      "Idiomas": "Grego, Armênio, Eslavo",
-      "Etnias": "Gregos, Armênios, Eslavos, Árabes",
-      "Religião": "Cristianismo Ortodoxo",
-      "Moeda": "Solidus Bizantino",
-      "Sucessor": "Império Otomano"
-    },
-    "imagens": ["bizantino1.jpg", "bizantino2.jpg"]
+  { 
+    "titulo": "Goku", 
+    "categoria": "Personagem fictício", 
+    "imagens": ["goku1.jpg", "goku2.jpg"], 
+    "descricao": "Goku é um Saiyajin que foi mandado para a Terra quando seu Planeta iria ser destruído por Freeza.",
+    "nascimento": "434", 
+    "falecimento": "454", 
+    "altura": "1,75m", 
+    "raça": "Saiyajin", 
+    "pais": "Bardock, Gine", 
+    "esposa": "Chichi", 
+    "filhos": "Gohan, Goten"
+  }, 
+  { 
+    "titulo": "Vegeta", 
+    "categoria": "Personagem fictício", 
+    "imagens": ["vegeta1.jpg", "vegeta2.jpg"], 
+    "descricao": "Vegeta é um Saiyajin que foi mandado para a Terra para conquistar e vender o Planeta, mas ele se livrou de Freeza e a Terra é o seu novo lar.",
+    "nascimento": "428", 
+    "falecimento": "455", 
+    "altura": "1,65m", 
+    "raça": "Saiyajin", 
+    "pais": "Vegeta, Desconhecido", 
+    "esposa": "Bulma", 
+    "filhos": "Trunks, Bra"
+  }, 
+  { 
+    "titulo": "Gohan", 
+    "categoria": "Personagem fictício", 
+    "imagens": ["gohan1.jpg", "gohan2.jpg"], 
+    "descricao": "Gohan é um Saiyajin que foi criado na Terra, ele é um híbrido metade Saiyajin e metade terráqueo.",
+    "nascimento": "450", 
+    "falecimento": "467", 
+    "altura": "1,76m", 
+    "raça": "1/2 Saiyajin - 1/2 Terráqueo", 
+    "pais": "Goku, Chichi", 
+    "esposa": "Videl", 
+    "filhos": "Pan"
   },
-  {
-    "titulo": "Adolf Hitler",
-    "categoria": "Figura Histórica",
-    "descricao": "Líder político e militar alemão que governou o Terceiro Reich entre 1933 e 1945.",
-    "dados": {
-      "Nascimento": "1889",
-      "Morte": "1945",
-      "Etnia": "Alemã",
-      "Altura": "1,75 m",
-      "Ocupação": "Führer da Alemanha",
-      "Pais": "Alois Hitler, Klara Hitler",
-      "Esposa": "Eva Braun"
-    },
-    "imagens": ["hitler1.jpg", "hitler2.jpg"]
+  { 
+    "titulo": "Dragon Ball Z", 
+    "categoria": "Série de Animação", 
+    "imagens": ["dragonballz1.jpg", "dragonballz2.jpg"], 
+    "descricao": "Dragon Ball Z é uma série japonesa de animação que retrata as aventuras de Son Goku e seus amigos.",
+    "lançamento": "1987", 
+    "finalização": "1996", 
+    "episódios": "293", 
+    "estudio": "Toei Animation", 
+    "autor": "Akira Toriyama", 
+    "avaliação": "✴️✴️✴️✴️", 
+    "genero": "ação, comédia, aventura"
   },
-  {
-    "titulo": "Dragon Ball Z",
-    "categoria": "Anime",
-    "descricao": "Saga que acompanha as aventuras de Goku e seus amigos na defesa da Terra e do universo.",
-    "dados": {
-      "Lançamento": "1989",
-      "Finalização": "1996",
-      "País de origem": "Japão",
-      "Episódios": "291",
-      "Autor": "Akira Toriyama",
-      "Estúdio": "Toei Animation"
-    },
-    "imagens": ["dbz1.jpg", "dbz2.jpg"]
+  { 
+    "titulo": "Smallville", 
+    "categoria": "Série de Televisão", 
+    "imagens": ["smallville1.jpg", "smallville2.jpg"], 
+    "descricao": "Smallville é uma série americana que retrata a juventude de Clark Kent e sua transformação em Superman.",
+    "lançamento": "2001", 
+    "finalização": "2011", 
+    "episódios": "154", 
+    "estudio": "CW Studios", 
+    "autor": "Jerry Siegel, Bryan Schumer", 
+    "avaliação": "✴️✴️✴️", 
+    "genero": "ação, drama, aventura"
   },
-  {
-    "titulo": "Goku",
-    "categoria": "Personagem de Anime",
-    "descricao": "Protagonista Saiyajin de Dragon Ball, símbolo de coragem e superação.",
-    "dados": {
-      "Nascimento": "737 (Era dos Saiyajins)",
-      "Etnia": "Saiyajin",
-      "Altura": "1,75 m",
-      "Ocupação": "Lutador de Artes Marciais",
-      "Pais": "Bardock e Gine",
-      "Esposa": "Chichi",
-      "Filhos": "Gohan e Goten",
-      "Criador": "Akira Toriyama"
-    },
-    "imagens": ["goku1.jpg", "goku2.jpg"]
+  { 
+    "titulo": "Império Aquemênida", 
+    "categoria": "Império da Antiguidade", 
+    "imagens": ["mapaimperioaquemenida1.jpg", "bandeiraaquemenida2.jpg"], 
+    "descricao": "O Império Aquemênida foi um dos maiores impérios da Antiguidade, fundado por Ciro, o Grande, e rival do Império Romano por séculos.",
+    "fundacao": "550 a.C.", 
+    "dissolucao": "330 a.C.", 
+    "capital": "Susa, Persépolis", 
+    "idiomas": "Persa, Aramaico, Grego, Sânscrito, Armênio", 
+    "grupos_etnicos": "Persas, Armênios, Egípcios, Indianos, Gregos", 
+    "populacao": "50 milhões", 
+    "religiao": "Zoroastrismo"
   }
 ]
