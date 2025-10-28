@@ -21,6 +21,8 @@ async function carregarPainel(titulo) {
       for (const img of item.imagens) {
         html += `<img src="${img}" alt="${item.titulo}" class="img-painel">`;
       }
+      if (item.nascimento) descricaoEl.innerHTML += `<p><b>Nascimento:</b> ${item.nascimento}</p>`;
+if (item.esposa) descricaoEl.innerHTML += `<p><b>Esposa:</b> ${item.esposa}</p>`;
       html += `</div>`;
     }
 
