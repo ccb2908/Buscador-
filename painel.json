@@ -8,9 +8,9 @@
     "falecimento": "454", 
     "altura": "1,75m", 
     "raça": "Saiyajin", 
-    "pais": "Bardock, Gine", 
+    "pais": ["Bardock", "Gine"], 
     "esposa": "Chichi", 
-    "filhos": "Gohan, Goten"
+    "filhos": ["Gohan", "Goten"]
   }, 
   { 
     "titulo": "Vegeta", 
@@ -21,9 +21,9 @@
     "falecimento": "455", 
     "altura": "1,65m", 
     "raça": "Saiyajin", 
-    "pais": "Vegeta, Desconhecido", 
+    "pais": ["Vegeta", "Desconhecido"], 
     "esposa": "Bulma", 
-    "filhos": "Trunks, Bra"
+    "filhos": ["Trunks", "Bra"]
   }, 
   { 
     "titulo": "Gohan", 
@@ -34,21 +34,21 @@
     "falecimento": "467", 
     "altura": "1,76m", 
     "raça": "1/2 Saiyajin - 1/2 Terráqueo", 
-    "pais": "Goku, Chichi", 
+    "pais": ["Goku", "Chichi"], 
     "esposa": "Videl", 
-    "filhos": "Pan"
+    "filhos": ["Pan"]
   },
   { 
     "titulo": "Dragon Ball Z", 
     "categoria": "Série de Animação", 
     "imagens": ["dragonballz1.jpg", "dragonballz2.jpg"], 
     "descricao": "Dragon Ball Z é uma série japonesa de animação que retrata as aventuras de Son Goku e seus amigos.",
-    "lançamento": "1987", 
-    "finalização": "1996", 
-    "episódios": "293", 
+    "lancamento": "1987", 
+    "finalizacao": "1996", 
+    "episodios": "293", 
     "estudio": "Toei Animation", 
     "autor": "Akira Toriyama", 
-    "avaliação": "✴️✴️✴️✴️", 
+    "avaliacao": "✴️✴️✴️✴️", 
     "genero": "ação, comédia, aventura"
   },
   { 
@@ -56,12 +56,12 @@
     "categoria": "Série de Televisão", 
     "imagens": ["smallville1.jpg", "smallville2.jpg"], 
     "descricao": "Smallville é uma série americana que retrata a juventude de Clark Kent e sua transformação em Superman.",
-    "lançamento": "2001", 
-    "finalização": "2011", 
-    "episódios": "154", 
+    "lancamento": "2001", 
+    "finalizacao": "2011", 
+    "episodios": "154", 
     "estudio": "CW Studios", 
     "autor": "Jerry Siegel, Bryan Schumer", 
-    "avaliação": "✴️✴️✴️", 
+    "avaliacao": "✴️✴️✴️", 
     "genero": "ação, drama, aventura"
   },
   { 
@@ -78,16 +78,16 @@
     "religiao": "Zoroastrismo"
   }, 
   { 
-"titulo": "Zaiko", 
-"categoria": "Personagem fictício", 
-"Imagens": ["zaiko1.jpg", "zaiko2.jpg"], 
-"descrição": "Zaiko é um dos vilões que aparecem em Dragon Ball AF, ele é um híbrido de Saiyajin e Kaioshin e busca derrotar Goku e ser o mais forte do Universo.",
-"nascimento": "456", 
-"falecimento": "476", 
-"altura": "1,78m", 
-"raça": "1/2 Saiyajin, 1/2 Kaioshin", 
-"pais": "Goku", "Lila", 
-"esposa": "????", 
-"filhos": "???", 
-}
+    "titulo": "Zaiko", 
+    "categoria": "Personagem fictício", 
+    "imagens": ["zaiko1.jpg", "zaiko2.jpg"], 
+    "descricao": "Zaiko é um dos vilões que aparecem em Dragon Ball AF, ele é um híbrido de Saiyajin e Kaioshin e busca derrotar Goku e ser o mais forte do Universo.",
+    "nascimento": "456", 
+    "falecimento": "476", 
+    "altura": "1,78m", 
+    "raça": "1/2 Saiyajin, 1/2 Kaioshin", 
+    "pais": ["Goku", "Lila"], 
+    "esposa": "????", 
+    "filhos": "???"
+  }
 ]
