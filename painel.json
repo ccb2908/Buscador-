@@ -76,5 +76,18 @@
     "grupos_etnicos": "Persas, Armênios, Egípcios, Indianos, Gregos", 
     "populacao": "50 milhões", 
     "religiao": "Zoroastrismo"
-  }
+  }, 
+  { 
+"titulo": "Zaiko", 
+"categoria": "Personagem fictício", 
+"Imagens": ["zaiko1.jpg", "zaiko2.jpg"], 
+"descrição": "Zaiko é um dos vilões que aparecem em Dragon Ball AF, ele é um híbrido de Saiyajin e Kaioshin e busca derrotar Goku e ser o mais forte do Universo.",
+"nascimento": "456", 
+"falecimento": "476", 
+"altura": "1,78m", 
+"raça": "1/2 Saiyajin, 1/2 Kaioshin", 
+"pais": "Goku", "Lila", 
+"esposa": "????", 
+"filhos": "???", 
+}
 ]
