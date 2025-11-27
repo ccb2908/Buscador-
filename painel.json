@@ -89,5 +89,18 @@
     "pais": ["Goku", "Lila"], 
     "esposa": "????", 
     "filhos": "???"
-  }
+  }, 
+   { 
+    "titulo": "Dragon Ball Daishi", 
+    "categoria": "Fanfic", 
+    "imagens": ["dragonballdaishi1.jpg", "dragonballdaishi2.jpg"], 
+    "descricao": "Dragon Ball Daishi é uma Fanfic criado por Namurovichy, que se passa após a Saga Buu.",
+  "lancamento": "2016", 
+    "finalizacao": "2026", 
+    "episodios": "124", 
+    "estudio": "Vogel Studio", 
+    "autor": "Namurovichy", 
+    "avaliacao": "✴️✴️✴️✴️", 
+    "genero": "ação, comédia, aventura"
+   }
 ]
