@@ -91,11 +91,12 @@
   </div>
 
   <!-- 🧭 ABAS -->
-  <<button class="aba" onclick="location.href='resultados.html?q='+encodeURIComponent(campoBusca.value)+'&aba=tudo'">Tudo</button>
-<button class="aba" onclick="location.href='resultados.html?q='+encodeURIComponent(campoBusca.value)+'&aba=imagens'">Imagens</button>
-<button class="aba" onclick="location.href='resultados.html?q='+encodeURIComponent(campoBusca.value)+'&aba=videos'">Vídeos</button>
-<button class="aba" onclick="location.href='resultados.html?q='+encodeURIComponent(campoBusca.value)+'&aba=noticias'">Notícias</button>
-
+  <nav class="abas">
+  <button class="aba" onclick="irParaAba('tudo')">Tudo</button>
+  <button class="aba" onclick="irParaAba('imagens')">Imagens</button>
+  <button class="aba" onclick="irParaAba('videos')">Vídeos</button>
+  <button class="aba" onclick="irParaAba('noticias')">Notícias</button>
+</nav>
   <!-- 📄 RESULTADOS -->
   <div class="results" id="areaResultados"></div>
 
