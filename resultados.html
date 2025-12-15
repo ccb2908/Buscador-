@@ -106,7 +106,7 @@ let termo = params.get("q") || "";
 let abaAtual = params.get("aba") || "tudo";
 
 const campoBusca = document.getElementById("campoBusca");
-const areaResultados = document.getElementById("lista-resultados");
+const lista = document.getElementById("lista-resultados");
 
 campoBusca.value = termo;
 
@@ -119,14 +119,27 @@ function atualizarURL() {
 }
 
 // ---------------------
+// Navegação entre abas
+// ---------------------
+function irParaAba(aba) {
+  abaAtual = aba;
+  atualizarURL();
+  ativarAba();
+  buscarResultados();
+  carregarPainel();
+}
+
+// ---------------------
 // Ativa aba visualmente
 // ---------------------
-document.querySelectorAll(".aba").forEach(btn => {
-  btn.classList.toggle(
-    "ativa",
-    btn.textContent.toLowerCase() === abaAtual
-  );
-});
+function ativarAba() {
+  document.querySelectorAll(".aba").forEach(btn => {
+    btn.classList.toggle(
+      "ativa",
+      btn.textContent.toLowerCase() === abaAtual
+    );
+  });
+}
 
 // ---------------------
 // BUSCA REAL
@@ -138,7 +151,7 @@ async function buscarResultados() {
     const res = await fetch("index.json");
     const dados = await res.json();
 
-    areaResultados.innerHTML = "";
+    lista.innerHTML = "";
 
     const filtrados = dados.filter(item =>
       item.titulo.toLowerCase().includes(termo.toLowerCase()) ||
@@ -147,7 +160,7 @@ async function buscarResultados() {
     );
 
     if (filtrados.length === 0) {
-      areaResultados.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+      lista.innerHTML = "<p>Nenhum resultado encontrado.</p>";
       return;
     }
 
@@ -161,7 +174,7 @@ async function buscarResultados() {
         <small>${item.link}</small>
         <p>${item.descricao}</p>
       `;
-      areaResultados.appendChild(div);
+      lista.appendChild(div);
     });
 
   } catch (e) {
@@ -173,6 +186,8 @@ async function buscarResultados() {
 // PAINEL SUPERIOR
 // ---------------------
 async function carregarPainel() {
+  if (!termo) return;
+
   try {
     const res = await fetch("painel.json");
     const dados = await res.json();
@@ -181,19 +196,28 @@ async function carregarPainel() {
       p.titulo.toLowerCase() === termo.toLowerCase()
     );
 
-    if (!item) return;
+    const tituloEl = document.getElementById("tituloPainel");
+    const categoriaEl = document.getElementById("categoriaPainel");
+    const descricaoEl = document.getElementById("descricaoPainel");
+    const imagensEl = document.getElementById("imagensPainel");
 
-    document.getElementById("tituloPainel").textContent = item.titulo;
-    document.getElementById("categoriaPainel").textContent = item.categoria;
-    document.getElementById("descricaoPainel").textContent = item.descricao;
+    if (!item) {
+      tituloEl.textContent = "";
+      categoriaEl.textContent = "";
+      descricaoEl.textContent = "";
+      imagensEl.innerHTML = "";
+      return;
+    }
 
-    const imagens = document.getElementById("imagensPainel");
-    imagens.innerHTML = "";
+    tituloEl.textContent = item.titulo;
+    categoriaEl.textContent = item.categoria || "";
+    descricaoEl.textContent = item.descricao;
 
+    imagensEl.innerHTML = "";
     item.imagens.forEach(src => {
       const img = document.createElement("img");
       img.src = src;
-      imagens.appendChild(img);
+      imagensEl.appendChild(img);
     });
 
   } catch (e) {
@@ -202,11 +226,13 @@ async function carregarPainel() {
 }
 
 // ---------------------
-// EVENTOS
+// EVENTOS DE BUSCA
 // ---------------------
 document.getElementById("botaoBusca").onclick = () => {
   termo = campoBusca.value.trim();
+  abaAtual = "tudo";
   atualizarURL();
+  ativarAba();
   buscarResultados();
   carregarPainel();
 };
@@ -214,7 +240,9 @@ document.getElementById("botaoBusca").onclick = () => {
 campoBusca.addEventListener("keypress", e => {
   if (e.key === "Enter") {
     termo = campoBusca.value.trim();
+    abaAtual = "tudo";
     atualizarURL();
+    ativarAba();
     buscarResultados();
     carregarPainel();
   }
@@ -224,6 +252,7 @@ campoBusca.addEventListener("keypress", e => {
 // INICIALIZAÇÃO
 // ---------------------
 if (termo) {
+  ativarAba();
   buscarResultados();
   carregarPainel();
 }
