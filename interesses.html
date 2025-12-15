@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Interesses — ¡Lupa!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo">
+  <h1>Interesses 📌</h1>
+  <p>Escolha o que merece sua atenção.</p>
+</header>
+
+<section id="boasVindas" class="boas-vindas">
+  <p>
+    Aqui você decide os temas que deseja acompanhar.<br>
+    Sem algoritmos ocultos, sem excesso.
+  </p>
+  <button onclick="mostrarTemas()">Começar</button>
+</section>
+
+<section id="selecaoTemas" class="temas oculto">
+  <h2>Temas</h2>
+  <div class="lista-temas">
+    <button class="tema">Política</button>
+    <button class="tema">Religião</button>
+    <button class="tema">Teologia</button>
+    <button class="tema">História</button>
+    <button class="tema">Geografia</button>
+    <button class="tema">Economia</button>
+    <button class="tema">Ecologia</button>
+    <button class="tema">Tecnologia</button>
+    <button class="tema">Música</button>
+    <button class="tema">Rock</button>
+    <button class="tema">Pop</button>
+    <button class="tema">Culinária</button>
+    <button class="tema">Idiomas</button>
+  </div>
+
+  <button class="btn-salvar" onclick="salvarInteresses()">Salvar</button>
+</section>
+
+<section id="painelInteresses" class="painel-interesses oculto">
+  <!-- Cards entram aqui via JS -->
+</section>
+
+<script src="interesses.js"></script>
+</body>
+</html>
