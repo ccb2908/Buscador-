@@ -102,53 +102,34 @@
 
   <!-- 🧠 SCRIPT -->
 <script>
-const params = new URLSearchParams(window.location.search);
-let termo = params.get("q") || "";
-let abaAtual = params.get("aba") || "tudo";
+document.addEventListener("DOMContentLoaded", () => {
 
-const campoBusca = document.getElementById("campoBusca");
-const lista = document.getElementById("lista-resultados");
+  const params = new URLSearchParams(window.location.search);
+  let termo = params.get("q") || "";
+  let abaAtual = params.get("aba") || "tudo";
 
-campoBusca.value = termo;
+  const campoBusca = document.getElementById("campoBusca");
+  const lista = document.getElementById("lista-resultados");
 
-// ---------------------
-// Atualiza URL sem reload
-// ---------------------
-function atualizarURL() {
-  const url = `resultados.html?q=${encodeURIComponent(termo)}&aba=${abaAtual}`;
-  history.replaceState(null, "", url);
-}
+  campoBusca.value = termo;
 
-// ---------------------
-// Navegação entre abas
-// ---------------------
-function irParaAba(aba) {
-  abaAtual = aba;
-  atualizarURL();
-  ativarAba();
-  buscarResultados();
-  carregarPainel();
-}
+  function atualizarURL() {
+    const url = `resultados.html?q=${encodeURIComponent(termo)}&aba=${abaAtual}`;
+    history.replaceState(null, "", url);
+  }
 
-// ---------------------
-// Ativa aba visualmente
-// ---------------------
-function ativarAba() {
-  document.querySelectorAll(".aba").forEach(btn => {
-    btn.classList.toggle(
-      "ativa",
-      btn.textContent.toLowerCase() === abaAtual
-    );
-  });
-}
+  function ativarAba() {
+    document.querySelectorAll(".aba").forEach(btn => {
+      btn.classList.toggle(
+        "ativa",
+        btn.textContent.toLowerCase() === abaAtual
+      );
+    });
+  }
 
-// ---------------------
-// BUSCA REAL
-// ---------------------
-async function buscarResultados() {
-  if (!termo) return;
+  async function buscarResultados() {
+    if (!termo) return;
 
-  try {
     const res = await fetch("index.json");
     const dados = await res.json();
 
@@ -160,7 +141,7 @@ async function buscarResultados() {
       item.categoria.toLowerCase().includes(termo.toLowerCase())
     );
 
-    if (filtrados.length === 0) {
+    if (!filtrados.length) {
       lista.innerHTML = "<p>Nenhum resultado encontrado.</p>";
       return;
     }
@@ -177,19 +158,11 @@ async function buscarResultados() {
       `;
       lista.appendChild(div);
     });
-
-  } catch (e) {
-    console.error("Erro ao carregar index.json", e);
   }
-}
 
-// ---------------------
-// PAINEL SUPERIOR
-// ---------------------
-async function carregarPainel() {
-  if (!termo) return;
+  async function carregarPainel() {
+    if (!termo) return;
 
-  try {
     const res = await fetch("painel.json");
     const dados = await res.json();
 
@@ -197,66 +170,48 @@ async function carregarPainel() {
       p.titulo.toLowerCase() === termo.toLowerCase()
     );
 
-    const tituloEl = document.getElementById("tituloPainel");
-    const categoriaEl = document.getElementById("categoriaPainel");
-    const descricaoEl = document.getElementById("descricaoPainel");
-    const imagensEl = document.getElementById("imagensPainel");
+    if (!item) return;
 
-    if (!item) {
-      tituloEl.textContent = "";
-      categoriaEl.textContent = "";
-      descricaoEl.textContent = "";
-      imagensEl.innerHTML = "";
-      return;
-    }
+    document.getElementById("tituloPainel").textContent = item.titulo;
+    document.getElementById("categoriaPainel").textContent = item.categoria || "";
+    document.getElementById("descricaoPainel").textContent = item.descricao;
 
-    tituloEl.textContent = item.titulo;
-    categoriaEl.textContent = item.categoria || "";
-    descricaoEl.textContent = item.descricao;
-
-    imagensEl.innerHTML = "";
+    const imagens = document.getElementById("imagensPainel");
+    imagens.innerHTML = "";
     item.imagens.forEach(src => {
       const img = document.createElement("img");
       img.src = src;
-      imagensEl.appendChild(img);
+      imagens.appendChild(img);
     });
-
-  } catch (e) {
-    console.error("Erro ao carregar painel.json", e);
   }
-}
 
-// ---------------------
-// EVENTOS DE BUSCA
-// ---------------------
-document.getElementById("botaoBusca").onclick = () => {
-  termo = campoBusca.value.trim();
-  abaAtual = "tudo";
-  atualizarURL();
-  ativarAba();
-  buscarResultados();
-  carregarPainel();
-};
-
-campoBusca.addEventListener("keypress", e => {
-  if (e.key === "Enter") {
+  document.getElementById("botaoBusca").onclick = () => {
     termo = campoBusca.value.trim();
     abaAtual = "tudo";
     atualizarURL();
     ativarAba();
     buscarResultados();
     carregarPainel();
-  }
-});
+  };
 
-// ---------------------
-// INICIALIZAÇÃO
-// ---------------------
-if (termo) {
-  ativarAba();
-  buscarResultados();
-  carregarPainel();
-}
+  campoBusca.addEventListener("keypress", e => {
+    if (e.key === "Enter") {
+      termo = campoBusca.value.trim();
+      abaAtual = "tudo";
+      atualizarURL();
+      ativarAba();
+      buscarResultados();
+      carregarPainel();
+    }
+  });
+
+  if (termo) {
+    ativarAba();
+    buscarResultados();
+    carregarPainel();
+  }
+
+});
 </script>
 
 </body>
