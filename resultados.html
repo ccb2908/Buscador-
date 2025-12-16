@@ -145,11 +145,11 @@
     <button id="botaoBusca">🔍</button>
   </div>
   <nav class="abas">
-    <button class="aba" onclick="location.href='resultados.html?q='+encodeURIComponent(campoBusca.value)+'&aba=tudo'">Tudo</button>
-<button class="aba" onclick="location.href='resultados.html?q='+encodeURIComponent(campoBusca.value)+'&aba=imagens'">Imagens</button>
-<button class="aba" onclick="location.href='resultados.html?q='+encodeURIComponent(campoBusca.value)+'&aba=videos'">Vídeos</button>
-<button class="aba" onclick="location.href='resultados.html?q='+encodeURIComponent(campoBusca.value)+'&aba=noticias'">Notícias</button>
-  </nav>
+  <button class="aba" data-tipo="tudo">Tudo</button>
+  <button class="aba" data-tipo="imagens">Imagens</button>
+  <button class="aba" data-tipo="videos">Vídeos</button>
+  <button class="aba" data-tipo="noticias">Notícias</button>
+</nav>
 </div>
 
 <!-- Painel adicionado abaixo das abas -->
