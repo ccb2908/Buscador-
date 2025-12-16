@@ -48,19 +48,22 @@
     height: 36px;
     cursor: pointer;
   }
+
+  /* Abas centralizadas e proporcionais */
   .abas {
     display: flex;
     justify-content: center;
-    gap: 15px;
     margin-top: 10px;
-    font-size: 14px;
   }
   .aba {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
     background: none;
     border: none;
     cursor: pointer;
     color: #555;
-    padding: 6px 0;
+    font-size: 14px;
   }
   .aba.ativa {
     color: #1b9c48;
@@ -75,7 +78,6 @@
     background: #f8f8f8;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    display: none;
   }
   #painel h2 {
     margin-top: 0;
@@ -147,14 +149,14 @@
     <button id="botaoBusca">🔍</button>
   </div>
   <nav class="abas">
-    <button class="aba" data-tipo="tudo">Tudo</button>
-    <button class="aba" data-tipo="imagens">Imagens</button>
-    <button class="aba" data-tipo="videos">Vídeos</button>
-    <button class="aba" data-tipo="noticias">Notícias</button>
+    <button class="aba" id="aba-tudo">Tudo</button>
+    <button class="aba" id="aba-imagens">Imagens</button>
+    <button class="aba" id="aba-videos">Vídeos</button>
+    <button class="aba" id="aba-noticias">Notícias</button>
   </nav>
 </div>
 
-<!-- Painel adicionado abaixo das abas -->
+<!-- Painel superior (aparece apenas na aba Tudo) -->
 <div id="painel">
   <h2 id="tituloPainel">Título do Painel</h2>
   <div class="categoria" id="categoriaPainel"></div>
@@ -171,30 +173,33 @@
 <script>
 const params = new URLSearchParams(window.location.search);
 let termo = params.get("q") || "";
-let tipo = params.get("aba") || "tudo";
+let abaAtual = params.get("aba") || "tudo";
 
 const campoBusca = document.getElementById("campoBusca");
 const areaResultados = document.getElementById("lista-resultados");
+const painelEl = document.getElementById("painel");
 
+// Preenche campo de busca
 campoBusca.value = termo;
 
-// Atualiza URL sem reload
+// Atualiza URL sem recarregar
 function atualizarURL() {
-  const url = `resultados.html?q=${encodeURIComponent(termo)}&aba=${tipo}`;
+  const url = `resultados.html?q=${encodeURIComponent(termo)}&aba=${abaAtual}`;
   history.replaceState(null, "", url);
 }
 
-// Ativa aba visualmente
-function ativarAba() {
+// Marca aba ativa
+function atualizarAbaVisual() {
   document.querySelectorAll(".aba").forEach(btn => {
-    btn.classList.toggle("ativa", btn.dataset.tipo === tipo);
+    btn.classList.remove("ativa");
   });
+  const btnAtivo = document.getElementById(`aba-${abaAtual}`);
+  if (btnAtivo) btnAtivo.classList.add("ativa");
 }
 
-// BUSCA REAL
+// Busca real
 async function buscarResultados() {
   if (!termo) return;
-
   try {
     const res = await fetch("index.json");
     const dados = await res.json();
@@ -230,10 +235,9 @@ async function buscarResultados() {
   }
 }
 
-// PAINEL SUPERIOR (só aba “Tudo”)
+// Painel (aparece só na aba Tudo)
 async function carregarPainel() {
-  const painelEl = document.getElementById("painel");
-  if (tipo !== "tudo") {
+  if (abaAtual !== "tudo") {
     painelEl.style.display = "none";
     return;
   }
@@ -257,7 +261,6 @@ async function carregarPainel() {
 
     const imagens = document.getElementById("imagensPainel");
     imagens.innerHTML = "";
-
     item.imagens.forEach(src => {
       const img = document.createElement("img");
       img.src = src;
@@ -272,14 +275,19 @@ async function carregarPainel() {
   }
 }
 
-// EVENTOS
+// Eventos das abas
+document.getElementById("aba-tudo").onclick = () => { abaAtual = "tudo"; atualizarURL(); atualizarAbaVisual(); buscarResultados(); carregarPainel(); }
+document.getElementById("aba-imagens").onclick = () => { abaAtual = "imagens"; atualizarURL(); atualizarAbaVisual(); buscarResultados(); carregarPainel(); }
+document.getElementById("aba-videos").onclick = () => { abaAtual = "videos"; atualizarURL(); atualizarAbaVisual(); buscarResultados(); carregarPainel(); }
+document.getElementById("aba-noticias").onclick = () => { abaAtual = "noticias"; atualizarURL(); atualizarAbaVisual(); buscarResultados(); carregarPainel(); }
+
+// Botão de busca
 document.getElementById("botaoBusca").onclick = () => {
   termo = campoBusca.value.trim();
   atualizarURL();
   buscarResultados();
   carregarPainel();
 };
-
 campoBusca.addEventListener("keypress", e => {
   if (e.key === "Enter") {
     termo = campoBusca.value.trim();
@@ -290,21 +298,11 @@ campoBusca.addEventListener("keypress", e => {
 });
 
 // Inicialização
-ativarAba();
-buscarResultados();
-carregarPainel();
-
-// Ajuste das abas para manter pesquisa
-document.querySelectorAll(".aba").forEach(btn => {
-  btn.addEventListener("click", e => {
-    tipo = btn.dataset.tipo;
-    atualizarURL();
-    ativarAba();
-    buscarResultados();
-    carregarPainel();
-    e.preventDefault();
-  });
-});
+atualizarAbaVisual();
+if (termo) {
+  buscarResultados();
+  carregarPainel();
+}
 </script>
 
 </body>
