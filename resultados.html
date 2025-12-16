@@ -50,6 +50,7 @@
   }
   .abas {
     display: flex;
+    justify-content: center;
     gap: 15px;
     margin-top: 10px;
     font-size: 14px;
@@ -74,6 +75,7 @@
     background: #f8f8f8;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: none;
   }
   #painel h2 {
     margin-top: 0;
@@ -145,11 +147,11 @@
     <button id="botaoBusca">🔍</button>
   </div>
   <nav class="abas">
-  <button class="aba" data-tipo="tudo">Tudo</button>
-  <button class="aba" data-tipo="imagens">Imagens</button>
-  <button class="aba" data-tipo="videos">Vídeos</button>
-  <button class="aba" data-tipo="noticias">Notícias</button>
-</nav>
+    <button class="aba" data-tipo="tudo">Tudo</button>
+    <button class="aba" data-tipo="imagens">Imagens</button>
+    <button class="aba" data-tipo="videos">Vídeos</button>
+    <button class="aba" data-tipo="noticias">Notícias</button>
+  </nav>
 </div>
 
 <!-- Painel adicionado abaixo das abas -->
@@ -176,26 +178,20 @@ const areaResultados = document.getElementById("lista-resultados");
 
 campoBusca.value = termo;
 
-// ---------------------
 // Atualiza URL sem reload
-// ---------------------
 function atualizarURL() {
   const url = `resultados.html?q=${encodeURIComponent(termo)}&aba=${tipo}`;
   history.replaceState(null, "", url);
 }
 
-// ---------------------
 // Ativa aba visualmente
-// ---------------------
 function ativarAba() {
   document.querySelectorAll(".aba").forEach(btn => {
     btn.classList.toggle("ativa", btn.dataset.tipo === tipo);
   });
 }
 
-// ---------------------
 // BUSCA REAL
-// ---------------------
 async function buscarResultados() {
   if (!termo) return;
 
@@ -234,11 +230,13 @@ async function buscarResultados() {
   }
 }
 
-// ---------------------
 // PAINEL SUPERIOR (só aba “Tudo”)
-// ---------------------
 async function carregarPainel() {
-  if (tipo !== "tudo") return;
+  const painelEl = document.getElementById("painel");
+  if (tipo !== "tudo") {
+    painelEl.style.display = "none";
+    return;
+  }
 
   try {
     const res = await fetch("painel.json");
@@ -249,7 +247,7 @@ async function carregarPainel() {
     );
 
     if (!item) {
-      document.getElementById("painel").style.display = "none";
+      painelEl.style.display = "none";
       return;
     }
 
@@ -266,17 +264,15 @@ async function carregarPainel() {
       imagens.appendChild(img);
     });
 
-    document.getElementById("painel").style.display = "block";
+    painelEl.style.display = "block";
 
   } catch (e) {
     console.error("Erro ao carregar painel.json", e);
-    document.getElementById("painel").style.display = "none";
+    painelEl.style.display = "none";
   }
 }
 
-// ---------------------
 // EVENTOS
-// ---------------------
 document.getElementById("botaoBusca").onclick = () => {
   termo = campoBusca.value.trim();
   atualizarURL();
@@ -293,16 +289,12 @@ campoBusca.addEventListener("keypress", e => {
   }
 });
 
-// ---------------------
-// INICIALIZAÇÃO
-// ---------------------
+// Inicialização
 ativarAba();
 buscarResultados();
 carregarPainel();
 
-// ---------------------
 // Ajuste das abas para manter pesquisa
-// ---------------------
 document.querySelectorAll(".aba").forEach(btn => {
   btn.addEventListener("click", e => {
     tipo = btn.dataset.tipo;
