@@ -23,6 +23,8 @@
     color: #1b9c48;
     text-decoration: none;
   }
+
+  /* Barra superior e busca */
   .barra-superior {
     max-width: 700px;
     margin: 0 auto;
@@ -52,8 +54,9 @@
   /* Abas centralizadas e proporcionais */
   .abas {
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    justify-content: space-around;
+    max-width: 700px;
+    margin: 10px auto 0 auto;
   }
   .aba {
     flex: 1;
@@ -64,13 +67,14 @@
     cursor: pointer;
     color: #555;
     font-size: 14px;
+    margin: 0 5px;
   }
   .aba.ativa {
     color: #1b9c48;
     border-bottom: 2px solid #1b9c48;
   }
 
-  /* Painel */
+  /* Painel superior */
   #painel {
     max-width: 700px;
     margin: 20px auto;
@@ -79,54 +83,32 @@
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
-  #painel h2 {
-    margin-top: 0;
-    color: #1b9c48;
-  }
-  #painel .categoria {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 10px;
-  }
-  #painel .descricao {
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
+  #painel h2 { margin-top: 0; color: #1b9c48; }
+  #painel .categoria { font-size: 14px; color: #777; margin-bottom: 10px; }
+  #painel .descricao { font-size: 16px; margin-bottom: 15px; }
   #painel .imagens {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
   }
-  #painel .imagens img {
-    width: 100%;
-    border-radius: 5px;
-  }
+  #painel .imagens img { width: 100%; border-radius: 5px; }
 
+  /* Resultados */
   #painelResultados {
     max-width: 700px;
     margin: 20px auto;
     padding: 0 20px;
   }
-  .resultado {
-    margin-bottom: 25px;
-  }
+  .resultado { margin-bottom: 25px; }
   .resultado a.titulo-link h3 {
     font-size: 18px;
     color: #1b9c48;
     margin: 0;
   }
-  .resultado a.titulo-link.visited h3 {
-    color: #6f42c1;
-  }
-  .resultado small {
-    color: #006621;
-    font-size: 13px;
-  }
-  .resultado p {
-    font-size: 14px;
-    color: #4d5156;
-    margin: 4px 0 0;
-  }
+  .resultado a.titulo-link.visited h3 { color: #6f42c1; }
+  .resultado small { color: #006621; font-size: 13px; }
+  .resultado p { font-size: 14px; color: #4d5156; margin: 4px 0 0; }
+
   footer {
     text-align: center;
     padding: 20px;
@@ -149,14 +131,14 @@
     <button id="botaoBusca">🔍</button>
   </div>
   <nav class="abas">
-    <button class="aba" id="aba-tudo">Tudo</button>
-    <button class="aba" id="aba-imagens">Imagens</button>
-    <button class="aba" id="aba-videos">Vídeos</button>
-    <button class="aba" id="aba-noticias">Notícias</button>
+    <button class="aba" id="abaTudo">Tudo</button>
+    <button class="aba" id="abaImagens">Imagens</button>
+    <button class="aba" id="abaVideos">Vídeos</button>
+    <button class="aba" id="abaNoticias">Notícias</button>
   </nav>
 </div>
 
-<!-- Painel superior (aparece apenas na aba Tudo) -->
+<!-- Painel apenas para "Tudo" -->
 <div id="painel">
   <h2 id="tituloPainel">Título do Painel</h2>
   <div class="categoria" id="categoriaPainel"></div>
@@ -179,38 +161,41 @@ const campoBusca = document.getElementById("campoBusca");
 const areaResultados = document.getElementById("lista-resultados");
 const painelEl = document.getElementById("painel");
 
-// Preenche campo de busca
 campoBusca.value = termo;
 
-// Atualiza URL sem recarregar
+// Função para atualizar a URL sem recarregar
 function atualizarURL() {
   const url = `resultados.html?q=${encodeURIComponent(termo)}&aba=${abaAtual}`;
   history.replaceState(null, "", url);
 }
 
-// Marca aba ativa
-function atualizarAbaVisual() {
-  document.querySelectorAll(".aba").forEach(btn => {
-    btn.classList.remove("ativa");
-  });
-  const btnAtivo = document.getElementById(`aba-${abaAtual}`);
-  if (btnAtivo) btnAtivo.classList.add("ativa");
+// Destaca a aba ativa
+function atualizarAbas() {
+  document.getElementById("abaTudo").classList.toggle("ativa", abaAtual === "tudo");
+  document.getElementById("abaImagens").classList.toggle("ativa", abaAtual === "imagens");
+  document.getElementById("abaVideos").classList.toggle("ativa", abaAtual === "videos");
+  document.getElementById("abaNoticias").classList.toggle("ativa", abaAtual === "noticias");
 }
 
-// Busca real
+// Busca e filtra resultados
 async function buscarResultados() {
   if (!termo) return;
+
   try {
     const res = await fetch("index.json");
     const dados = await res.json();
-
     areaResultados.innerHTML = "";
 
-    const filtrados = dados.filter(item =>
+    let filtrados = dados.filter(item =>
       item.titulo.toLowerCase().includes(termo.toLowerCase()) ||
       item.descricao.toLowerCase().includes(termo.toLowerCase()) ||
       item.categoria.toLowerCase().includes(termo.toLowerCase())
     );
+
+    // Filtra por aba
+    if (abaAtual === "imagens") filtrados = filtrados.filter(i => i.tipo === "imagem");
+    else if (abaAtual === "videos") filtrados = filtrados.filter(i => i.tipo === "video");
+    else if (abaAtual === "noticias") filtrados = filtrados.filter(i => i.tipo === "noticia");
 
     if (filtrados.length === 0) {
       areaResultados.innerHTML = "<p>Nenhum resultado encontrado.</p>";
@@ -235,21 +220,16 @@ async function buscarResultados() {
   }
 }
 
-// Painel (aparece só na aba Tudo)
+// Carrega painel apenas na aba "Tudo"
 async function carregarPainel() {
   if (abaAtual !== "tudo") {
     painelEl.style.display = "none";
     return;
   }
-
   try {
     const res = await fetch("painel.json");
     const dados = await res.json();
-
-    const item = dados.find(p =>
-      p.titulo.toLowerCase() === termo.toLowerCase()
-    );
-
+    const item = dados.find(p => p.titulo.toLowerCase() === termo.toLowerCase());
     if (!item) {
       painelEl.style.display = "none";
       return;
@@ -276,12 +256,12 @@ async function carregarPainel() {
 }
 
 // Eventos das abas
-document.getElementById("aba-tudo").onclick = () => { abaAtual = "tudo"; atualizarURL(); atualizarAbaVisual(); buscarResultados(); carregarPainel(); }
-document.getElementById("aba-imagens").onclick = () => { abaAtual = "imagens"; atualizarURL(); atualizarAbaVisual(); buscarResultados(); carregarPainel(); }
-document.getElementById("aba-videos").onclick = () => { abaAtual = "videos"; atualizarURL(); atualizarAbaVisual(); buscarResultados(); carregarPainel(); }
-document.getElementById("aba-noticias").onclick = () => { abaAtual = "noticias"; atualizarURL(); atualizarAbaVisual(); buscarResultados(); carregarPainel(); }
+document.getElementById("abaTudo").onclick = () => { abaAtual = "tudo"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };
+document.getElementById("abaImagens").onclick = () => { abaAtual = "imagens"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };
+document.getElementById("abaVideos").onclick = () => { abaAtual = "videos"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };
+document.getElementById("abaNoticias").onclick = () => { abaAtual = "noticias"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };
 
-// Botão de busca
+// Eventos de busca
 document.getElementById("botaoBusca").onclick = () => {
   termo = campoBusca.value.trim();
   atualizarURL();
@@ -298,7 +278,7 @@ campoBusca.addEventListener("keypress", e => {
 });
 
 // Inicialização
-atualizarAbaVisual();
+atualizarAbas();
 if (termo) {
   buscarResultados();
   carregarPainel();
