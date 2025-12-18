@@ -52,6 +52,19 @@
     "genero": "ação, comédia, aventura"
   },
   { 
+  titulo": "Dragon Ball GT", 
+    "categoria": "Série de Animação", 
+    "imagens": ["dragonballgt1.jpg", "dragonballgt2.jpg"], 
+    "descricao": "Dragon Ball GT é uma série japonesa de animação que retrata as aventuras de Son Goku e seus amigos 10 anis depois da luta contra Majin Buu. com a aparição de novos inimigos como Rild, Dr. Myuu, Baby, Super 17 e os Dragões Malignos e novas transformações como o Super Saiyajin 4.",
+    "lancamento": "1997", 
+    "finalizacao": "1997", 
+    "episodios": "164", 
+    "estudio": "Toei Animation", 
+    "autor": "Akira Toriyama", 
+    "avaliacao": "✴️✴️", 
+    "genero": "ação, comédia, aventura"
+  }, 
+  { 
     "titulo": "Smallville", 
     "categoria": "Série de Televisão", 
     "imagens": ["smallville1.jpg", "smallville2.jpg"], 
@@ -115,5 +128,45 @@
     "autor": "Namurovichy", 
     "avaliacao": "✴️✴️✴️✴️", 
     "genero": "ação, comédia, aventura"
-   }
+   }, 
+  { 
+    "titulo": "Bulma", 
+    "categoria": "Personagem fictício", 
+    "imagens": ["bulma1.jpg", "bulma2.jpg"], 
+    "descricao": "Bulma é uma cientista bem sucedida e milionária, ela foi uma das primeiras personagens a aparecer logo nos primeiros episódios do Dragon Ball Clássico, onde ela e Goku foram encontrar as esferas do Dragão. e a sua influência se entendeu ao longo do Anime como com a criação do Radar do Dragão e da máquina do Tempo.",
+    "nascimento": "434", 
+    "falecimento": "4671", 
+    "altura": "1,65m", 
+    "raça": "Humana", 
+    "pais": ["Dr. Briefs", "Dr. Briefs"], 
+    "esposo": "Vegeta", 
+    "filhos": ["Trunks", "Bra"]
+  }, 
+   { 
+    "titulo": "Paikuhan", 
+    "categoria": "Personagem fictício", 
+    "imagens": ["paikuhan1.jpg", "paikuhan2.jpg"], 
+    "descricao": "Paikuhan é um dos personagens não oficiais que apareceu na Saga Filler do Torneio do outro mundo, onde ele ajudou Goku a derrotar Freeza, King Gold e Cell, e ele lutou com o Goku na final do campeonato e apareceu na Saga Majin Buu.",
+    "nascimento": "405", 
+    "falecimento": "447", 
+    "altura": "1,85m", 
+    "raça": "Desconhecida", 
+    "pais": ["Desconhecido", "Desconhecido"], 
+    "esposa": "Desconhecido", 
+    "filhos": ["Desconhecido", "Desconhecido"]
+  }, 
+    { 
+    "titulo": "Gorbachev", 
+    "categoria": "líder da União Soviética", 
+    "imagens": ["gorbachev1.jpg", "gorbachev2.jpg"], 
+    "descricao": "Mikhail Gorbachev foi o último líder da URSS (União das Repúblics Socialists Soviétics) o seu período ficou marcado por reformas como a Perestroika e Glasnost.",
+    "nascimento": "1954", 
+    "falecimento": "2021", 
+    "altura": "1,68m", 
+    "raça": "Humano", 
+    "pais": ["Vegeta", "Desconhecido"], 
+    "esposa": "Bulma", 
+    "filhos": ["Trunks", "Bra"]
+  }, 
+  
 ]
