@@ -64,6 +64,19 @@
     "avaliacao": "✴️✴️✴️", 
     "genero": "ação, drama, aventura"
   },
+   
+    "titulo": "Supernatural", 
+    "categoria": "Série de Televisão", 
+    "imagens": ["supernatural1.jpg", "supernatural2.jpg"], 
+    "descricao": "Supernatural é uma série americana que retrata a vida dos irmãos Dean e Sam Winchester que são caçadores de seres sobrenaturais",
+    "lancamento": "2005", 
+    "finalizacao": "2020", 
+    "episodios": "225", 
+    "estudio": "CW Studios", 
+    "autor": "Jerry Siegel, Bryan Schumer", 
+    "avaliacao": "⭐⭐⭐⭐", 
+    "genero": "ação, terror, drama, aventura"
+}, 
   { 
     "titulo": "Império Aquemênida", 
     "categoria": "Império da Antiguidade", 
