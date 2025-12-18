@@ -52,7 +52,7 @@
     "genero": "ação, comédia, aventura"
   },
   { 
-  titulo": "Dragon Ball GT", 
+  "titulo": "Dragon Ball GT", 
     "categoria": "Série de Animação", 
     "imagens": ["dragonballgt1.jpg", "dragonballgt2.jpg"], 
     "descricao": "Dragon Ball GT é uma série japonesa de animação que retrata as aventuras de Son Goku e seus amigos 10 anis depois da luta contra Majin Buu. com a aparição de novos inimigos como Rild, Dr. Myuu, Baby, Super 17 e os Dragões Malignos e novas transformações como o Super Saiyajin 4.",
