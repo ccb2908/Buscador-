@@ -27,13 +27,18 @@ async function buscarResultados(termo, aba = "todos") {
       resultados.forEach(item => {
         const div = document.createElement("div");
         div.className = "resultado";
-        div.innerHTML = `
-          <a href="${item.link}" class="titulo-link" target="_blank">
-            <h3>${item.titulo}</h3>
-          </a>
-          <small>${item.link}</small>
-          <p>${item.descricao}</p>
-        `;
+       div.innerHTML = `
+  <a href="${item.link}" class="titulo-link">
+    <h3>${item.titulo}</h3>
+  </a>
+  <small>${item.link}</small>
+  <p>${item.descricao}</p>
+
+  <div class="acoes-resultados">
+    <button class="btn-favorito" title="Favoritar">⭐</button>
+    <button class="btn-salvar" title="Salvar">📌</button>
+  </div>
+`;
         lista.appendChild(div);
       });
     }
