@@ -39,6 +39,11 @@ async function buscarResultados(termo, aba = "todos") {
     <button class="btn-salvar" title="Salvar">📌</button>
   </div>
 `;
+        const btnFav = div.querySelector(".btn-favorito");
+const btnSalvar = div.querySelector(".btn-salvar");
+
+btnFav.onclick = () => salvarItem("favoritos", item);
+btnSalvar.onclick = () => salvarItem("salvos", item);
         lista.appendChild(div);
       });
     }
