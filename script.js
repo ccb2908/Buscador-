@@ -45,7 +45,16 @@ const btnSalvar = div.querySelector(".btn-salvar");
 btnFav.onclick = () => salvarItem("favoritos", item);
 btnSalvar.onclick = () => salvarItem("salvos", item);
         lista.appendChild(div);
-      });
+      }); 
+      function salvarItem(tipo, item) {
+  let lista = JSON.parse(localStorage.getItem(tipo)) || [];
+
+  if (!lista.some(i => i.link === item.link)) {
+    lista.push(item);
+    localStorage.setItem(tipo, JSON.stringify(lista));
+    alert(tipo === "favoritos" ? "Adicionado aos Favoritos ⭐" : "Salvo 📌");
+  }
+      }
     }
   } catch (erro) {
     console.error("Erro ao carregar JSON:", erro);
