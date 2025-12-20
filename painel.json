@@ -138,7 +138,7 @@
     "falecimento": "4671", 
     "altura": "1,65m", 
     "raça": "Humana", 
-    "pais": ["Dr. Briefs", "Dr. Briefs"], 
+    "pais": ["Dr. Briefs", "Dra. Briefs"], 
     "esposo": "Vegeta", 
     "filhos": ["Trunks", "Bra"]
   }, 
@@ -167,6 +167,5 @@
     "pais": ["Vegeta", "Desconhecido"], 
     "esposa": "Bulma", 
     "filhos": ["Trunks", "Bra"]
-  }, 
-  
+  }
 ]
