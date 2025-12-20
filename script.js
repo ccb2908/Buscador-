@@ -15,6 +15,12 @@ async function buscarResultados(termo, aba = "todos") {
       (item.categoria || "").toLowerCase().includes(termo)
     );
 
+    let extras = "";
+if (item.nascimento) extras += `<li><strong>Nascimento:</strong> ${item.nascimento}</li>`;
+if (item.morte) extras += `<li><strong>Morte:</strong> ${item.morte}</li>`;
+if (item.altura) extras += `<li><strong>Altura:</strong> ${item.altura}</li>`;
+if (item.familia) extras += `<li><strong>Família:</strong> ${item.familia}</li>`;
+if (item.filhos) extras += `<li><strong>Filhos:</strong> ${item.filhos}</li>`;
     const lista = document.getElementById("lista-resultados");
     lista.innerHTML = "";
 
