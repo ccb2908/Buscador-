@@ -103,7 +103,10 @@ async function carregarPainel(termo) {
           painel.appendChild(linha);
         }
       }
-
+    
+<ul class="painel-detalhes">
+  ${extras}
+</ul>
     } else {
       painel.innerHTML = `<p>Nenhuma informação encontrada para "<strong>${termo}</strong>".</p>`;
     }
