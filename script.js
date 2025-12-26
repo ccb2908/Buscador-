@@ -26,6 +26,53 @@ async function buscarResultados(termo, aba = "todos") {
     default: return "index.json";
   }
 }
+    function renderizarResultado(item, aba) {
+  if (aba === "filosofia") {
+    return `
+      <div class="resultado filosofia">
+        <h3>${item.termo}</h3>
+
+        <p><strong>Contexto filosófico:</strong></p>
+        <p>${item.contexto}</p>
+
+        <p><strong>Tradições:</strong> ${item.tradicoes.join(", ")}</p>
+
+        <ul>
+          ${item.questoes.map(q => `<li>${q}</li>`).join("")}
+        </ul>
+      </div>
+    `;
+  }
+
+  if (aba === "sociologia") {
+    return `
+      <div class="resultado sociologia">
+        <h3>${item.termo}</h3>
+        <p>${item.contexto_social}</p>
+        <p><strong>Grupos:</strong> ${item.grupos.join(", ")}</p>
+      </div>
+    `;
+  }
+
+  if (aba === "geopolitica") {
+    return `
+      <div class="resultado geopolitica">
+        <h3>${item.termo}</h3>
+        <p>${item.contexto}</p>
+        <p><strong>Atores:</strong> ${item.atores.join(", ")}</p>
+        <p><strong>Regiões:</strong> ${item.regioes.join(", ")}</p>
+      </div>
+    `;
+  }
+
+  // padrão (Tudo)
+  return `
+    <div class="resultado">
+      <h3>${item.titulo}</h3>
+      <p>${item.descricao}</p>
+    </div>
+  `;
+    }
 
     let extras = "";
 if (item.nascimento) extras += `<li><strong>Nascimento:</strong> ${item.nascimento}</li>`;
