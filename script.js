@@ -30,3 +30,15 @@ async function buscarResultados(termo, aba = "todos") {
     console.error("Erro ao carregar dados:", e);
   }
 }
+
+function arquivoPorAba(aba) {
+  switch (aba) {
+    case "imagens": return "imagens.json";
+    case "videos": return "videos.json";
+    case "noticias": return "noticias.json";
+    case "filosofia": return "filosofia.json";
+    case "sociologia": return "sociologia.json";
+    case "geopolitica": return "geopolitica.json";
+    default: return "index.json";
+  }
+}
