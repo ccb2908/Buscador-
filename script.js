@@ -100,6 +100,27 @@ if (item.filhos) extras += `<li><strong>Filhos:</strong> ${item.filhos}</li>`;
         </a>
         <small>${item.link || ""}</small>
         <p>${item.descricao || ""}</p>
+        <p>${item.nascimento || ""}</p>
+        <p>${item.morte || ""}</p>
+        <p>${item.altura || ""}</p>
+        <p>${item.familia || ""}</p>
+        <p>${item.esposa || ""}</p>
+        <p>${item.filhos || ""}</p>
+        <p>${item.lancamento || ""}</p>
+        <p>${item.finalizacao || ""}</p>
+        <p>${item.capitulos || ""}</p>
+        <p>${item.autor || ""}</p>
+        <p>${item.avaliacao || ""}</p>
+        <p>${item.genero || ""}</p>
+        <p>${item.capital || ""}</p>
+        <p>${item.idiomas || ""}</p>
+        <p>${item.grupos_etnicos || ""}</p>
+        <p>${item.fundacao || ""}</p>
+        <p>${item.moeda || ""}</p>
+        <p>${item.area || ""}</p>
+        painel.innerHTML = `
+  
+`;
 
         <div class="acoes-resultados">
           <button class="btn-favorito">⭐</button>
