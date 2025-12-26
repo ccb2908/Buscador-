@@ -1,0 +1,96 @@
+[
+  {
+    "termo": "Império Aquemênida",
+    "contexto": "Geopoliticamente, o Império Aquemênida estabeleceu um modelo de dominação baseado na administração indireta, tolerância religiosa e integração de povos diversos sob uma autoridade central forte.",
+    "regiao": "Oriente Médio, Ásia Central, Mediterrâneo",
+    "atores_principais": [
+      "Ciro, o Grande",
+      "Dario I",
+      "Xerxes I"
+    ],
+    "eixos_geopoliticos": [
+      "Controle territorial",
+      "Pluralismo cultural",
+      "Administração imperial"
+    ],
+    "conceitos_chave": [
+      "Hegemonia",
+      "Legitimidade",
+      "Soft power antigo",
+      "Infraestrutura imperial"
+    ],
+    "impactos_historicos": [
+      "Modelo administrativo duradouro",
+      "Influência em impérios posteriores",
+      "Equilíbrio entre força e tolerância"
+    ],
+    "questoes_geopoliticas": [
+      "Impérios caem por excesso de força ou perda de legitimidade?",
+      "A diversidade fortalece ou fragiliza estados?"
+    ],
+    "vies": "histórico-estratégico"
+  },
+
+  {
+    "termo": "Israel",
+    "contexto": "Israel ocupa uma posição geopolítica singular, combinando alta tecnologia, forte identidade nacional e permanente pressão regional. Sua existência é marcada pela tensão entre segurança, diplomacia e sobrevivência.",
+    "regiao": "Oriente Médio",
+    "atores_principais": [
+      "Estado de Israel",
+      "Países árabes vizinhos",
+      "Potências globais"
+    ],
+    "eixos_geopoliticos": [
+      "Segurança nacional",
+      "Tecnologia militar",
+      "Diplomacia assimétrica"
+    ],
+    "conceitos_chave": [
+      "Estado sitiado",
+      "Dissuasão",
+      "Identidade nacional",
+      "Alianças estratégicas"
+    ],
+    "impactos_atuais": [
+      "Influência tecnológica global",
+      "Conflitos regionais persistentes",
+      "Modelo de resiliência estatal"
+    ],
+    "questoes_geopoliticas": [
+      "Estados pequenos podem sobreviver sem alianças?",
+      "A segurança justifica exceções éticas?"
+    ],
+    "vies": "analítico, não militante"
+  },
+
+  {
+    "termo": "Globalização",
+    "contexto": "A globalização redefiniu fronteiras econômicas e culturais, mas também gerou assimetrias de poder, dependência estratégica e crises identitárias nos Estados nacionais.",
+    "regiao": "Global",
+    "atores_principais": [
+      "Estados nacionais",
+      "Corporações multinacionais",
+      "Organizações internacionais"
+    ],
+    "eixos_geopoliticos": [
+      "Economia",
+      "Cadeias de suprimento",
+      "Cultura"
+    ],
+    "conceitos_chave": [
+      "Interdependência",
+      "Soberania",
+      "Assimetria de poder"
+    ],
+    "impactos_atuais": [
+      "Erosão da soberania",
+      "Choques culturais",
+      "Reações nacionalistas"
+    ],
+    "questoes_geopoliticas": [
+      "A globalização enfraquece o Estado?",
+      "Existe globalização sem hegemonia?"
+    ],
+    "vies": "estrutural e crítico"
+  }
+]
