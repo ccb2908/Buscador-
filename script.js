@@ -14,6 +14,18 @@ async function buscarResultados(termo, aba = "todos") {
       (item.descricao || "").toLowerCase().includes(termo) ||
       (item.categoria || "").toLowerCase().includes(termo)
     );
+    
+    function arquivoPorAba(aba) {
+  switch (aba) {
+    case "imagens": return "imagens.json";
+    case "videos": return "videos.json";
+    case "noticias": return "noticias.json";
+    case "filosofia": return "filosofia.json";
+    case "sociologia": return "sociologia.json";
+    case "geopolitica": return "geopolitica.json";
+    default: return "index.json";
+  }
+}
 
     let extras = "";
 if (item.nascimento) extras += `<li><strong>Nascimento:</strong> ${item.nascimento}</li>`;
