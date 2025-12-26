@@ -89,8 +89,8 @@
     "autor": "Jerry Siegel, Bryan Schumer", 
     "avaliacao": "⭐⭐⭐⭐", 
     "genero": "ação, terror, drama, aventura"
-  }, 
-  { 
+   }, 
+   { 
     "titulo": "Império Aquemênida", 
     "categoria": "Império da Antiguidade", 
     "imagens": ["mapaimperioaquemenida1.jpg", "bandeiraaquemenida2.jpg"], 
@@ -102,8 +102,8 @@
     "grupos_etnicos": "Persas, Armênios, Egípcios, Indianos, Gregos", 
     "populacao": "50 milhões", 
     "religiao": "Zoroastrismo"
-  }, 
-  { 
+   }, 
+   { 
     "titulo": "Zaiko", 
     "categoria": "Personagem fictício", 
     "imagens": ["zaiko1.jpg", "zaiko2.jpg"], 
@@ -121,7 +121,7 @@
     "categoria": "Fanfic", 
     "imagens": ["dragonballdaishi1.jpg", "dragonballdaishi2.jpg"], 
     "descricao": "Dragon Ball Daishi é uma Fanfic criado por Namurovichy, que se passa após a Saga Buu.",
-  "lancamento": "2016", 
+    "lancamento": "2016", 
     "finalizacao": "2026", 
     "episodios": "124", 
     "estudio": "Vogel Studio", 
@@ -154,8 +154,8 @@
     "pais": ["Desconhecido", "Desconhecido"], 
     "esposa": "Desconhecido", 
     "filhos": ["Desconhecido", "Desconhecido"]
-  }, 
-  { 
+   }, 
+   { 
     "titulo": "Rússia", 
     "categoria": "País na Eurásia", 
     "Imagens": ["bandeiradarussia1.jpg", "bandeiradarussia2.jpg"], 
