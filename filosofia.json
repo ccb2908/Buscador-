@@ -1,0 +1,128 @@
+[
+  {
+    "termo": "Goku",
+    "contexto": "Goku pode ser interpretado filosoficamente como a figura do herói em constante superação, cuja ética não nasce da lei ou do dever, mas do cultivo interior da virtude e da força moral. Diferente do herói trágico ocidental, ele não é movido por culpa ou destino, mas por aperfeiçoamento contínuo.",
+    "tradicoes": [
+      "Estoicismo",
+      "Budismo",
+      "Taoismo",
+      "Virtude Aristotélica"
+    ],
+    "conceitos_chave": [
+      "Autossuperação",
+      "Disciplina",
+      "Força interior",
+      "Caminho pessoal"
+    ],
+    "questoes_filosoficas": [
+      "A força deve ser buscada pelo poder ou pelo aperfeiçoamento moral?",
+      "Existe virtude sem sofrimento?",
+      "O combate pode ser uma forma de autoconhecimento?"
+    ],
+    "pensadores_relacionados": [
+      "Aristóteles",
+      "Epicteto",
+      "Lao-Tsé",
+      "Siddhartha Gautama"
+    ],
+    "leituras_sugeridas": [
+      "Ética a Nicômaco",
+      "Enquirídio",
+      "Tao Te Ching"
+    ],
+    "vies": "plural, ético e comparativo"
+  },
+
+  {
+    "termo": "Império Aquemênida",
+    "contexto": "O Império Aquemênida representa uma concepção filosófica de poder baseada na ordem, na lei e na tolerância cultural. Diferente de impérios fundamentados na assimilação forçada, sua legitimidade derivava da administração justa e do respeito às tradições locais.",
+    "tradicoes": [
+      "Zoroastrismo",
+      "Filosofia Política Antiga",
+      "Ética da Justiça"
+    ],
+    "conceitos_chave": [
+      "Asha (ordem)",
+      "Justiça",
+      "Pluralismo cultural",
+      "Autoridade legítima"
+    ],
+    "questoes_filosoficas": [
+      "O poder pode ser moralmente legítimo?",
+      "A tolerância fortalece ou enfraquece um império?",
+      "Existe governo justo sem liberdade total?"
+    ],
+    "pensadores_relacionados": [
+      "Zaratustra",
+      "Platão",
+      "Xenofonte"
+    ],
+    "leituras_sugeridas": [
+      "Ciropédia",
+      "Avesta"
+    ],
+    "vies": "histórico-filosófico, não-teleológico"
+  },
+
+  {
+    "termo": "Tecnologia",
+    "contexto": "A tecnologia, filosoficamente, não é apenas um conjunto de ferramentas, mas uma extensão da vontade humana. Ela pode libertar ou submeter, dependendo de quem a controla e de como molda a consciência, o tempo e a atenção.",
+    "tradicoes": [
+      "Filosofia da Técnica",
+      "Existencialismo",
+      "Humanismo"
+    ],
+    "conceitos_chave": [
+      "Instrumentalização",
+      "Autonomia",
+      "Controle",
+      "Alienação"
+    ],
+    "questoes_filosoficas": [
+      "A tecnologia serve ao humano ou o redefine?",
+      "Existe progresso sem perda ética?",
+      "Quem controla a técnica controla a cultura?"
+    ],
+    "pensadores_relacionados": [
+      "Martin Heidegger",
+      "Hannah Arendt",
+      "Jacques Ellul"
+    ],
+    "leituras_sugeridas": [
+      "A Questão da Técnica",
+      "A Condição Humana"
+    ],
+    "vies": "crítico-humanista"
+  },
+
+  {
+    "termo": "Guerra",
+    "contexto": "A guerra levanta dilemas centrais da filosofia moral e política, pois coloca em conflito a autopreservação coletiva, a ética da violência e a responsabilidade individual. Ao longo da história, foi vista tanto como tragédia inevitável quanto como instrumento político.",
+    "tradicoes": [
+      "Just War Theory",
+      "Realismo Político",
+      "Pacifismo"
+    ],
+    "conceitos_chave": [
+      "Violência",
+      "Legitimidade",
+      "Responsabilidade",
+      "Estado"
+    ],
+    "questoes_filosoficas": [
+      "A guerra pode ser justa?",
+      "A obediência isenta o indivíduo da culpa?",
+      "A paz é ausência de guerra ou construção ética?"
+    ],
+    "pensadores_relacionados": [
+      "Agostinho",
+      "Thomas Hobbes",
+      "Immanuel Kant"
+    ],
+    "leituras_sugeridas": [
+      "À Paz Perpétua",
+      "Leviatã"
+    ],
+    "vies": "plural, histórico e moral"
+  }
+]
