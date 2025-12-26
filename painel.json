@@ -76,7 +76,7 @@
     "autor": "Jerry Siegel, Bryan Schumer", 
     "avaliacao": "✴️✴️✴️", 
     "genero": "ação, drama, aventura"
-  },
+   },
    {
     "titulo": "Supernatural", 
     "categoria": "Série de Televisão", 
@@ -89,7 +89,7 @@
     "autor": "Jerry Siegel, Bryan Schumer", 
     "avaliacao": "⭐⭐⭐⭐", 
     "genero": "ação, terror, drama, aventura"
-}, 
+  }, 
   { 
     "titulo": "Império Aquemênida", 
     "categoria": "Império da Antiguidade", 
@@ -115,7 +115,7 @@
     "pais": ["Goku", "Lila"], 
     "esposa": "????", 
     "filhos": "???"
-  }, 
+   }, 
    { 
     "titulo": "Dragon Ball Daishi", 
     "categoria": "Fanfic", 
@@ -129,7 +129,7 @@
     "avaliacao": "✴️✴️✴️✴️", 
     "genero": "ação, comédia, aventura"
    }, 
-  { 
+   { 
     "titulo": "Bulma", 
     "categoria": "Personagem fictício", 
     "imagens": ["bulma1.jpg", "bulma2.jpg"], 
@@ -141,7 +141,7 @@
     "pais": ["Dr. Briefs", "Dra. Briefs"], 
     "esposo": "Vegeta", 
     "filhos": ["Trunks", "Bra"]
-  }, 
+   }, 
    { 
     "titulo": "Paikuhan", 
     "categoria": "Personagem fictício", 
@@ -172,8 +172,8 @@
     "população": "140 milhões", 
     "religião": "Ortodoxia 78%, outras 33%", 
     "área": "17 124 442[7] km² (1.º)", 
-    "moeda": "Rublo Russo", 
-}, 
+    "moeda": "Rublo Russo"
+    }, 
     { 
     "titulo": "Gorbachev", 
     "categoria": "líder da União Soviética", 
