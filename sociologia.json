@@ -1,0 +1,98 @@
+[
+  {
+    "termo": "Goku",
+    "contexto": "Do ponto de vista sociológico, Goku representa o arquétipo do herói meritocrático, cuja legitimidade social não vem da herança, do status ou da instituição, mas da prática, da disciplina e do reconhecimento comunitário.",
+    "eixos_sociais": [
+      "Meritocracia",
+      "Modelo de masculinidade",
+      "Comunidade",
+      "Rituais de passagem"
+    ],
+    "conceitos_chave": [
+      "Capital simbólico",
+      "Reconhecimento social",
+      "Disciplina",
+      "Exemplo moral"
+    ],
+    "dinamicas_sociais": [
+      "Treinamento como ascensão social",
+      "Força associada à responsabilidade",
+      "Valorização do esforço contínuo"
+    ],
+    "teoricos_relacionados": [
+      "Pierre Bourdieu",
+      "Max Weber",
+      "Émile Durkheim"
+    ],
+    "questoes_sociologicas": [
+      "Por que sociedades admiram figuras de superação?",
+      "A força sem ética gera coesão ou medo?",
+      "O herói educa ou impõe valores?"
+    ],
+    "vies": "analítico-cultural, não moralista"
+  },
+
+  {
+    "termo": "Família",
+    "contexto": "A família é uma das instituições sociais mais antigas, responsável pela transmissão de valores, identidade, normas e capital cultural. Sua forma varia historicamente, mas sua função estruturante permanece central.",
+    "eixos_sociais": [
+      "Instituição social",
+      "Socialização primária",
+      "Transmissão cultural"
+    ],
+    "conceitos_chave": [
+      "Capital social",
+      "Papel social",
+      "Coesão",
+      "Autoridade"
+    ],
+    "dinamicas_sociais": [
+      "Formação moral",
+      "Reprodução cultural",
+      "Conflitos geracionais"
+    ],
+    "teoricos_relacionados": [
+      "Émile Durkheim",
+      "Talcott Parsons",
+      "Zygmunt Bauman"
+    ],
+    "questoes_sociologicas": [
+      "A família está em crise ou em transformação?",
+      "Existe sociedade coesa sem vínculos familiares?",
+      "Qual o impacto da fragmentação social?"
+    ],
+    "vies": "estrutural e comparativo"
+  },
+
+  {
+    "termo": "Tecnologia",
+    "contexto": "Sociologicamente, a tecnologia redefine relações sociais, tempo, trabalho e identidade. Ela não é neutra: molda comportamentos, cria dependências e reorganiza o poder simbólico.",
+    "eixos_sociais": [
+      "Modernidade",
+      "Controle social",
+      "Cultura digital"
+    ],
+    "conceitos_chave": [
+      "Alienação",
+      "Vigilância",
+      "Aceleração social",
+      "Individualismo"
+    ],
+    "dinamicas_sociais": [
+      "Redução do contato humano direto",
+      "Centralização de poder informacional",
+      "Mudança nos laços comunitários"
+    ],
+    "teoricos_relacionados": [
+      "Zygmunt Bauman",
+      "Manuel Castells",
+      "Byung-Chul Han"
+    ],
+    "questoes_sociologicas": [
+      "A tecnologia aproxima ou isola?",
+      "Quem controla os dados controla a sociedade?",
+      "Existe liberdade real no ambiente digital?"
+    ],
+    "vies": "crítico-social"
+  }
+]
