@@ -74,6 +74,8 @@ async function buscarResultados(termo, aba = "todos") {
   `;
     }
 
+    lista.innerHTML += renderizarResultado(item, aba);
+
     let extras = "";
 if (item.nascimento) extras += `<li><strong>Nascimento:</strong> ${item.nascimento}</li>`;
 if (item.morte) extras += `<li><strong>Morte:</strong> ${item.morte}</li>`;
