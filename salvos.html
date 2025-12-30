@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Salvos 📌</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Itens Salvos 📌</h1>
+  <a href="index.html">⬅ Voltar</a>
+</header>
+
+<main id="lista-salvos">
+  <p>Carregando salvos...</p>
+</main>
+
+<script>
+  const container = document.getElementById("lista-salvos");
+  const salvos = JSON.parse(localStorage.getItem("salvos")) || [];
+
+  container.innerHTML = "";
+
+  if (salvos.length === 0) {
+    container.innerHTML = "<p>Nenhum item salvo ainda.</p>";
+  } else {
+    salvos.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "resultado";
+
+      div.innerHTML = `
+        <h3>${item.titulo || "Sem título"}</h3>
+        <p>${item.descricao || ""}</p>
+        ${item.link ? `<a href="${item.link}" target="_blank">${item.link}</a>` : ""}
+        <button>🗑 Remover</button>
+      `;
+
+      div.querySelector("button").onclick = () => {
+        removerItem("salvos", item);
+      };
+
+      container.appendChild(div);
+    });
+  }
+
+  function removerItem(tipo, item) {
+    let lista = JSON.parse(localStorage.getItem(tipo)) || [];
+    lista = lista.filter(i => i.titulo !== item.titulo);
+    localStorage.setItem(tipo, JSON.stringify(lista));
+    location.reload();
+  }
+</script>
+
+</body>
+</html>
