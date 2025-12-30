@@ -1,37 +1,12 @@
-async function buscarResultados(termo, aba = "todos") {
-  termo = termo.toLowerCase().trim();
-  if (!termo) return;
+let termoAtual = "";
+let abaAtual = "tudo";
 
-  const arquivo = arquivoPorAba(aba);
-
-  try {
-    const res = await fetch(arquivo);
-    const dados = await res.json();
-
-    const resultados = dados.filter(item =>
-      Object.values(item).some(valor =>
-        String(valor).toLowerCase().includes(termo)
-      )
-    );
-
-    const lista = document.getElementById("lista-resultados");
-    lista.innerHTML = "";
-
-    if (resultados.length === 0) {
-      lista.innerHTML = "<p>Nenhum resultado encontrado.</p>";
-      return;
-    }
-
-    resultados.forEach(item => {
-      lista.innerHTML += renderizarResultado(item, aba);
-    });
-
-  } catch (e) {
-    console.error("Erro ao carregar dados:", e);
-  }
+function atualizarURL() {
+  const url = `resultados.html?q=${encodeURIComponent(termoAtual)}&aba=${abaAtual}`;
+  history.replaceState(null, "", url);
 }
 
-function arquivoPorAba(aba) {
+function fontePorAba(aba) {
   switch (aba) {
     case "imagens": return "imagens.json";
     case "videos": return "videos.json";
@@ -43,31 +18,145 @@ function arquivoPorAba(aba) {
   }
 }
 
-function renderizarResultado(item, aba) {
+async function carregarDados(arquivo) {
+  const res = await fetch(arquivo);
+  return await res.json();
+}
 
-  let extras = "";
+function filtrarPorTermo(lista, termo) {
+  termo = termo.toLowerCase();
+  return lista.filter(item =>
+    Object.values(item).some(valor =>
+      typeof valor === "string" && valor.toLowerCase().includes(termo)
+    )
+  );
+}
 
-  if (item.nascimento) extras += `<li><strong>Nascimento:</strong> ${item.nascimento}</li>`;
-  if (item.morte) extras += `<li><strong>Morte:</strong> ${item.morte}</li>`;
-  if (item.capital) extras += `<li><strong>Capital:</strong> ${item.capital}</li>`;
-  if (item.governo) extras += `<li><strong>Governo:</strong> ${item.governo}</li>`;
-  if (item.presidente) extras += `<li><strong>Presidente:</strong> ${item.presidente}</li>`;
-  if (item.populacao) extras += `<li><strong>População:</strong> ${item.populacao}</li>`;
-  if (item.moeda) extras += `<li><strong>Moeda:</strong> ${item.moeda}</li>`;
-  if (item.area) extras += `<li><strong>Área:</strong> ${item.area}</li>`;
-
+function acoesGlobais(item) {
   return `
-    <div class="resultado">
-      <h3>${item.titulo}</h3>
-      <p>${item.categoria || ""}</p>
-      <p>${item.descricao || ""}</p>
+    <div class="acoes">
+      <button onclick='salvarItem("salvos", ${JSON.stringify(item)})'>⭐</button>
+      <button onclick='salvarItem("favoritos", ${JSON.stringify(item)})'>❤️</button>
+    </div>
+  `;
+}
 
-      ${extras ? `<ul class="detalhes">${extras}</ul>` : ""}
+function renderTexto(item) {
+  return `
+    <div class="resultado texto">
+      <h3>${item.titulo || item.termo}</h3>
+      <p>${item.descricao || item.contexto || ""}</p>
+      ${acoesGlobais(item)}
+    </div>
+  `;
+}
 
-      <div class="acoes-resultados">
-        <button onclick='salvarItem("favoritos", ${JSON.stringify(item)})'>⭐</button>
-        <button onclick='salvarItem("salvos", ${JSON.stringify(item)})'>📌</button>
+function renderGrid(item) {
+  return `
+    <div class="grid-item">
+      <img src="${item.src}" alt="${item.titulo || ""}">
+      <div class="overlay">
+        <span>${item.titulo || ""}</span>
+        ${acoesGlobais(item)}
       </div>
     </div>
   `;
 }
+
+function renderCard(item) {
+  return `
+    <div class="resultado card">
+      <img src="${item.thumbnail || ""}">
+      <h3>${item.titulo}</h3>
+      <p>${item.descricao || ""}</p>
+      ${acoesGlobais(item)}
+    </div>
+  `;
+}
+
+function renderizarResultados(lista, aba) {
+  const container = document.getElementById("lista-resultados");
+  container.innerHTML = "";
+
+  if (lista.length === 0) {
+    container.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+    return;
+  }
+
+  lista.forEach(item => {
+    let html = "";
+
+    if (aba === "imagens") html = renderGrid(item);
+    else if (aba === "videos" || aba === "noticias") html = renderCard(item);
+    else html = renderTexto(item);
+
+    container.innerHTML += html;
+  });
+}
+
+async function controlarPainel() {
+  const painel = document.getElementById("painel");
+  if (abaAtual !== "tudo") {
+    painel.style.display = "none";
+    return;
+  }
+
+  try {
+    const dados = await carregarDados("painel.json");
+    const item = dados.find(p => p.titulo.toLowerCase() === termoAtual.toLowerCase());
+    if (!item) {
+      painel.style.display = "none";
+      return;
+    }
+
+    document.getElementById("tituloPainel").textContent = item.titulo;
+    document.getElementById("categoriaPainel").textContent = item.categoria || "";
+    document.getElementById("descricaoPainel").textContent = item.descricao || "";
+
+    const imgs = document.getElementById("imagensPainel");
+    imgs.innerHTML = "";
+    (item.imagens || []).forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      imgs.appendChild(img);
+    });
+
+    painel.style.display = "block";
+  } catch {
+    painel.style.display = "none";
+  }
+}
+
+async function carregarAba(aba) {
+  abaAtual = aba;
+  atualizarURL();
+
+  const arquivo = fontePorAba(aba);
+  const dados = await carregarDados(arquivo);
+  const filtrados = filtrarPorTermo(dados, termoAtual);
+
+  renderizarResultados(filtrados, aba);
+  controlarPainel();
+}
+
+
+function salvarItem(tipo, item) {
+  let lista = JSON.parse(localStorage.getItem(tipo)) || [];
+  if (!lista.some(i => JSON.stringify(i) === JSON.stringify(item))) {
+    lista.push(item);
+    localStorage.setItem(tipo, JSON.stringify(lista));
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  termoAtual = params.get("q") || "";
+  abaAtual = params.get("aba") || "tudo";
+
+  const campo = document.getElementById("campoBusca");
+  if (campo) campo.value = termoAtual;
+
+  if (termoAtual) carregarAba(abaAtual);
+});
+
+
