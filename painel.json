@@ -91,7 +91,7 @@
     "genero": "ação, terror, drama, aventura"
    }, 
    { 
-    "titulo": "Império Aquemênida", 
+   "titulo": "Império Aquemênida", 
     "categoria": "Império da Antiguidade", 
     "imagens": ["mapaimperioaquemenida1.jpg", "bandeiraaquemenida2.jpg"], 
     "descricao": "O Império Aquemênida foi um dos maiores impérios da Antiguidade, fundado por Ciro, o Grande, e rival do Império Romano por séculos.",
@@ -115,8 +115,8 @@
     "pais": ["Goku", "Lila"], 
     "esposa": "????", 
     "filhos": "???"
-   }, 
-   { 
+    }, 
+    { 
     "titulo": "Evil Goku", 
     "categoria": "Personagem fictício", 
     "imagens": ["evilgoku1.jpg", "evilgoku2.jpg"], 
@@ -275,7 +275,7 @@
    { 
     "titulo": "Rússia", 
     "categoria": "País na Eurásia", 
-    "Imagens": ["bandeiradarussia1.jpg", "bandeiradarussia2.jpg"], 
+    "imagens": ["bandeiradarussia1.jpg", "bandeiradarussia2.jpg"], 
     "descricao": "A Federação Russa é uma pais transcontinental localizando entre a Europa e a Ásia e exerce uma influência na Europa e no Mundo.",
     "hino": "Государственный гимн Российской Федерации",
     "fundacao": "1991", 
@@ -290,6 +290,19 @@
     "religiao": "Ortodoxia 78%, outras 33%", 
     "area": "17 124 442[7] km² (1.º)", 
     "moeda": "Rublo Russo"
+    }, 
+    { 
+    "titulo": "União Soviética", 
+    "categoria": "País na Eurásia", 
+    "imagens": ["imagem 1.jpg", "imagem 2.jpg"], 
+    "descricao": "A União Soviética foi um dos maiores países da idade moderna e tinha uma rivalidade com os Estados Unidos que durou décadas.",
+    "fundacao": "1922", 
+    "dissolucao": "1991", 
+    "capital": "Moscou", 
+    "idiomas": "Russo, Ucraniano, Bielorusso, Armênio, Azeri, Letão, Lituano, Estoniano, Cazaque, Uzbeque, Turcomeno, Quirguiz", 
+    "grupos_etnicos": "Russos, Ucranianos, Bielorusss, Armênios, Letões, Lituanos, Estonianos, Cazaque, Uzbeques, Turcomenos, Quirguizes", 
+    "populacao": "260 milhões", 
+    "religiao": "Ateísmo Estatal", 
     }, 
     { 
     "titulo": "Gorbachev", 
