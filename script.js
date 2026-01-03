@@ -145,17 +145,6 @@ function renderizarResultados(lista, tipoRender) {
   });
 }
 
-/* =========================
-   PAINEL (ABA TUDO) — EXPANSIVO
-========================= */
-async function controlarPainel() {
-  const painel = document.getElementById("painel");
-
-  if (!ABAS[abaAtual]?.painel) {
-    painel.style.display = "none";
-    return;
-  }
-
   try {
     const dados = await carregarDados("painel.json");
     const item = dados.find(p =>
@@ -166,11 +155,6 @@ async function controlarPainel() {
       painel.style.display = "none";
       return;
     }
-
-    /* ===== CAMPOS FIXOS (mantidos) ===== */
-    document.getElementById("tituloPainel").textContent = item.titulo || "";
-    document.getElementById("categoriaPainel").textContent = item.categoria || "";
-    document.getElementById("descricaoPainel").textContent = item.descricao || "";
 
     /* ===== IMAGENS ===== */
     const imgs = document.getElementById("imagensPainel");
@@ -193,18 +177,7 @@ async function controlarPainel() {
           dadosExtras[chave] = item[chave];
         }
       });
-    }
 
-    let containerExtras = document.getElementById("dadosExtrasPainel");
-
-    // cria o container se não existir
-    if (!containerExtras) {
-      containerExtras = document.createElement("div");
-      containerExtras.id = "dadosExtrasPainel";
-      painel.appendChild(containerExtras);
-    }
-
-    containerExtras.innerHTML = "";
 
     Object.entries(dadosExtras).forEach(([chave, valor]) => {
       if (!valor) return;
