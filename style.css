@@ -318,3 +318,39 @@ background: #e0e0e0;
     order: -1; /* painel vem antes */
   }
 }
+
+/* Header */
+.topo {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Conteúdo principal */
+.conteudo {
+  display: flex;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px;
+  align-items: flex-start;
+}
+
+/* Resultados */
+.resultados {
+  flex: 1;
+}
+
+/* Painel lateral */
+.painel {
+  flex: 0 0 320px;
+  max-width: 320px;
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+/* Painel não “vaza” */
+.painel * {
+  max-width: 100%;
+}
