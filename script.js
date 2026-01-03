@@ -36,7 +36,9 @@ function filtrar(lista) {
 function renderTexto(item) {
   return `
     <div class="resultado">
-      <h3>${item.titulo}</h3>
+      <a href="${item.link || '#'}" class="resultado-link">
+        <h3>${item.titulo}</h3>
+      </a>
       <p>${item.descricao || ""}</p>
     </div>
   `;
