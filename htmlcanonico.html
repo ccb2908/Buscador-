@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>¡Lupa! — Motor Ético de Busca</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="pagina">
+
+  <!-- ===== TOPO ===== -->
+  <header class="topo">
+    <a href="index.html" class="logo">¡Lupa!</a>
+
+    <div class="search-bar">
+      <input id="campoBusca" type="text" placeholder="Pesquisar...">
+      <button id="botaoBusca">🔍</button>
+    </div>
+  </header>
+
+  <!-- ===== ABAS ===== -->
+  <nav class="abas">
+    <button class="aba" data-aba="tudo">Tudo</button>
+    <button class="aba" data-aba="imagens">Imagens</button>
+    <button class="aba" data-aba="videos">Vídeos</button>
+    <button class="aba" data-aba="noticias">Notícias</button>
+    <button class="aba" data-aba="filosofia">Filosofia</button>
+    <button class="aba" data-aba="sociologia">Sociologia</button>
+    <button class="aba" data-aba="geopolitica">Geopolítica</button>
+  </nav>
+
+  <!-- ===== PAINEL CONTEXTUAL ===== -->
+  <aside id="painel" class="painel oculto">
+    <h2 id="painelTitulo"></h2>
+    <p id="painelCategoria" class="categoria"></p>
+    <p id="painelDescricao" class="descricao"></p>
+
+    <div id="painelImagens" class="painel-imagens"></div>
+
+    <div id="painelDados" class="painel-dados"></div>
+  </aside>
+
+  <!-- ===== RESULTADOS ===== -->
+  <main id="lista-resultados" class="resultados"></main>
+
+  <!-- ===== NAVEGAÇÃO INFERIOR ===== -->
+  <nav class="bottom-nav">
+    <a href="index.html">🏠</a>
+    <a href="salvos.html">⭐</a>
+    <a href="favoritos.html">❤️</a>
+    <a href="configuracoes.html">⚙️</a>
+  </nav>
+
+  <!-- ===== SCRIPT ÚNICO ===== -->
+  <script src="app.js"></script>
+</body>
+</html>
