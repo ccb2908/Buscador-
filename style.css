@@ -354,3 +354,14 @@ background: #e0e0e0;
 .painel * {
   max-width: 100%;
 }
+
+@media (max-width: 768px) {
+  .conteudo {
+    flex-direction: column;
+  }
+
+  .painel {
+    max-width: 100%;
+    order: -1; /* painel aparece antes */
+  }
+}
