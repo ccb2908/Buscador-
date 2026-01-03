@@ -279,3 +279,31 @@ background: #e0e0e0;
 .resultado-link:hover h3 {
   text-decoration: underline;
 }
+
+/* Container principal */
+.conteudo {
+  display: flex;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* Painel lateral */
+.painel {
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+
+/* Resultados */
+.resultados {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Imagens do painel */
+.painel img {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 8px;
+}
