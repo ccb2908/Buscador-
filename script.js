@@ -146,7 +146,7 @@ function renderizarResultados(lista, tipoRender) {
 }
 
 /* =========================
-   PAINEL (ABA TUDO)
+   PAINEL (ABA TUDO) — EXPANSIVO
 ========================= */
 async function controlarPainel() {
   const painel = document.getElementById("painel");
@@ -159,7 +159,7 @@ async function controlarPainel() {
   try {
     const dados = await carregarDados("painel.json");
     const item = dados.find(p =>
-      p.titulo.toLowerCase() === termoAtual.toLowerCase()
+      p.titulo?.toLowerCase() === termoAtual.toLowerCase()
     );
 
     if (!item) {
@@ -167,10 +167,12 @@ async function controlarPainel() {
       return;
     }
 
-    document.getElementById("tituloPainel").textContent = item.titulo;
+    /* ===== CAMPOS FIXOS (mantidos) ===== */
+    document.getElementById("tituloPainel").textContent = item.titulo || "";
     document.getElementById("categoriaPainel").textContent = item.categoria || "";
     document.getElementById("descricaoPainel").textContent = item.descricao || "";
 
+    /* ===== IMAGENS ===== */
     const imgs = document.getElementById("imagensPainel");
     imgs.innerHTML = "";
     (item.imagens || []).forEach(src => {
@@ -179,12 +181,53 @@ async function controlarPainel() {
       imgs.appendChild(img);
     });
 
+    /* ===== DADOS EXPANSIVOS ===== */
+    let dadosExtras = item.dados || {};
+
+    // Caso os dados estejam soltos no objeto
+    if (!item.dados) {
+      dadosExtras = {};
+      const ignorar = ["titulo", "categoria", "descricao", "imagens"];
+      Object.keys(item).forEach(chave => {
+        if (!ignorar.includes(chave)) {
+          dadosExtras[chave] = item[chave];
+        }
+      });
+    }
+
+    let containerExtras = document.getElementById("dadosExtrasPainel");
+
+    // cria o container se não existir
+    if (!containerExtras) {
+      containerExtras = document.createElement("div");
+      containerExtras.id = "dadosExtrasPainel";
+      painel.appendChild(containerExtras);
+    }
+
+    containerExtras.innerHTML = "";
+
+    Object.entries(dadosExtras).forEach(([chave, valor]) => {
+      if (!valor) return;
+
+      const linha = document.createElement("p");
+      linha.innerHTML = `<strong>${formatarChave(chave)}:</strong> ${valor}`;
+      containerExtras.appendChild(linha);
+    });
+
     painel.style.display = "block";
-  } catch {
+  } catch (e) {
     painel.style.display = "none";
   }
 }
 
+/* =========================
+   UTIL
+========================= */
+function formatarChave(chave) {
+  return chave
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, l => l.toUpperCase());
+}
 /* =========================
    CONTROLE CENTRAL
 ========================= */
