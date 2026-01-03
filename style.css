@@ -270,3 +270,12 @@ background: #e0e0e0;
   height: auto;
   border-radius: 8px;
 }
+
+.resultado-link {
+  text-decoration: none;
+  color: #1b9c48;
+}
+
+.resultado-link:hover h3 {
+  text-decoration: underline;
+}
