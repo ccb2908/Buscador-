@@ -151,10 +151,9 @@ function renderizarResultados(lista, tipoRender) {
       p.titulo?.toLowerCase() === termoAtual.toLowerCase()
     );
 
-    if (!item) {
-      painel.style.display = "none";
-      return;
-    }
+    if (abaAtual === "tudo" && termoAtual) {
+  carregarPainel(termoAtual);
+}
 
     /* ===== IMAGENS ===== */
     const imgs = document.getElementById("imagensPainel");
