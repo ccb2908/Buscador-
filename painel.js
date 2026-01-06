@@ -8,43 +8,39 @@ async function carregarPainel(termo) {
 
   try {
     const dados = await fetch("painel.json").then(r => r.json());
-
-    // Procura o item correspondente ao termo
-    const item = dados.find(p =>
-      p.titulo.toLowerCase() === termo.toLowerCase()
-    );
+    const item = dados.find(p => p.titulo.toLowerCase() === termo.toLowerCase());
 
     if (!item) {
       painel.style.display = "none";
       return;
     }
 
-    // Monta o conteúdo do painel incluindo a imagem
-    let extras = "";
-
-for (const [chave, valor] of Object.entries(item)) {
-  if (
-    ["titulo", "descricao", "imagem"].includes(chave) ||
-    !valor
-  ) continue;
-
-  extras += `<p><strong>${formatar(chave)}:</strong> ${valor}</p>`;
-}
-
-painel.innerHTML = `
-  <div class="painel-box">
-    ${galeria}
-    <h2>${item.titulo}</h2>
-    <p>${item.descricao}</p>
-    ${extras}
-  </div>
-`;
-    function formatar(chave) {
-  return chave
-    .replace(/_/g, " ")
-    .replace(/\b\w/g, l => l.toUpperCase());
+    // Monta galeria de imagens
+    let galeria = "";
+    if (Array.isArray(item.imagens) && item.imagens.length > 0) {
+      galeria = `<div class="painel-galeria">
+        ${item.imagens.map(img => `<img src="${img}" alt="${item.titulo}">`).join("")}
+      </div>`;
     }
-    
+
+    // Monta campos extras
+    let extras = "";
+    for (const [chave, valor] of Object.entries(item)) {
+      if (["titulo", "descricao", "imagens"].includes(chave) || !valor) continue;
+      extras += `<p><strong>${formatar(chave)}:</strong> ${valor}</p>`;
+    }
+
+    function formatar(chave) {
+      return chave.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    painel.innerHTML = `
+      ${galeria}
+      <h2>${item.titulo}</h2>
+      <p>${item.descricao || ""}</p>
+      ${extras}
+    `;
+
     painel.style.display = "block";
 
   } catch (err) {
@@ -53,20 +49,7 @@ painel.innerHTML = `
   }
 }
 
-// Esconde o painel manualmente
 function esconderPainel() {
   const painel = document.getElementById("painel");
   painel.style.display = "none";
-}
-
-let galeria = "";
-
-if (Array.isArray(item.imagens) && item.imagens.length > 0) {
-  galeria = `
-    <div class="painel-galeria">
-      ${item.imagens.map(img =>
-        `<img src="${img}" alt="${item.titulo}">`
-      ).join("")}
-    </div>
-  `;
 }
