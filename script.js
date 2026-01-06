@@ -30,7 +30,7 @@ function filtrar(lista) {
 function renderTexto(item) {
   return `
     <div class="resultado">
-      <a href="${item.link || '#'}" class="resultado-link">
+      <a href="${item.link || '#'}" class="resultado-link" target="_blank" rel="noopener noreferrer">
         <h3>${item.titulo}</h3>
       </a>
       <p>${item.descricao || ""}</p>
@@ -49,6 +49,7 @@ function renderCard(item) {
       <p>${item.descricao || ""}</p>
     </div>
   `;
+}
 }
 
 const RENDER = { texto: renderTexto, grid: renderGrid, card: renderCard };
