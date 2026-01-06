@@ -39,6 +39,12 @@ painel.innerHTML = `
     ${extras}
   </div>
 `;
+    function formatar(chave) {
+  return chave
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, l => l.toUpperCase());
+    }
+    
     painel.style.display = "block";
 
   } catch (err) {
