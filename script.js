@@ -131,3 +131,8 @@ document.querySelectorAll(".aba").forEach(aba => {
     aba.classList.add("ativa");
   });
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+  const abaTudo = document.querySelector('.aba[data-aba="tudo"]');
+  if (abaTudo) abaTudo.classList.add("ativa");
+});
