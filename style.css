@@ -247,13 +247,6 @@ font-size: 14px;
 background: #e0e0e0;
 }
 
-/* Painel lateral / superior */
-#painel {
-  max-width: 300px;
-  float: right;
-  margin-left: 24px;
-}
-
 #painel img {
   width: 100%;
   max-width: 260px;
