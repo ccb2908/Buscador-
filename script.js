@@ -118,6 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (termoAtual) carregarAba(abaAtual);
 });
 
+if (aba === "imagens") {
+  renderImagens(dadosImagens);
+  esconderPainel();
+}
+
 document.querySelectorAll(".aba").forEach(aba => {
   aba.addEventListener("click", () => {
     document.querySelectorAll(".aba").forEach(a =>
