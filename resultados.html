@@ -1,242 +1,41 @@
-<!DOCTYPE html>  <html lang="pt-BR">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>¡Lupa! — Resultados</title>  
-<link rel="stylesheet" href="style.css">  
-<style>  
-  body {  
-    background: #fff;  
-    font-family: Arial, sans-serif;  
-    margin: 0;  
-    padding: 0;  
-    color: #202124;  
-  }  
-  header {  
-    padding: 20px 0;  
-    text-align: center;  
-  }  
-  .logo {  
-    font-size: 32px;  
-    font-weight: bold;  
-    color: #1b9c48;  
-    text-decoration: none;  
-  }  /* Barra superior e busca */
-.barra-superior {
-max-width: 700px;
-margin: 0 auto;
-padding: 10px 0;
-}
-.search-bar {
-display: flex;
-gap: 8px;
-}
-.search-bar input {
-flex: 1;
-padding: 8px 12px;
-font-size: 16px;
-border: 1px solid #ccc;
-border-radius: 20px;
-}
-.search-bar button {
-border: none;
-background: #6f42c1;
-color: white;
-border-radius: 50%;
-width: 36px;
-height: 36px;
-cursor: pointer;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Lupa! — Resultados</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-resultados">
 
-/* Abas centralizadas e proporcionais */
-.abas {
-display: flex;
-justify-content: space-around;
-max-width: 700px;
-margin: 10px auto 0 auto;
-}
-.aba {
-flex: 1;
-text-align: center;
-padding: 10px 0;
-background: none;
-border: none;
-cursor: pointer;
-color: #555;
-font-size: 14px;
-margin: 0 5px;
-}
-.aba.ativa {
-color: #1b9c48;
-border-bottom: 2px solid #1b9c48;
-}
+<header class="topo">
+  <a href="index.html" class="logo">¡Lupa!</a>
+  <div class="search-bar">
+    <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>
+    <button id="botaoBusca">🔍</button>
+  </div>
+  <nav class="abas">
+    <button class="aba" data-aba="tudo">Tudo</button>
+    <button class="aba" data-aba="imagens">Imagens</button>
+    <button class="aba" data-aba="videos">Vídeos</button>
+    <button class="aba" data-aba="noticias">Notícias</button>
+    <button class="aba" data-aba="filosofia">Filosofia</button>
+    <button class="aba" data-aba="sociologia">Sociologia</button>
+    <button class="aba" data-aba="geopolitica">Geopolítica</button>
+  </nav>
+</header>
 
-/* Painel superior */
-#painel {
-max-width: 700px;
-margin: 20px auto;
-padding: 20px;
-background: #f8f8f8;
-border-radius: 10px;
-box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-#painel h2 { margin-top: 0; color: #1b9c48; }
-#painel .categoria { font-size: 14px; color: #777; margin-bottom: 10px; }
-#painel .descricao { font-size: 16px; margin-bottom: 15px; }
-#painel .imagens {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-gap: 10px;
-}
-#painel .imagens img { width: 100%; border-radius: 5px; }
+<div class="conteudo">
+  <main class="resultados" id="painelResultados">
+    <div id="lista-resultados"></div>
+  </main>
 
-/* Resultados */
-#painelResultados {
-max-width: 700px;
-margin: 20px auto;
-padding: 0 20px;
-}
-.resultado { margin-bottom: 25px; }
-.resultado a.titulo-link h3 {
-font-size: 18px;
-color: #1b9c48;
-margin: 0;
-}
-.resultado a.titulo-link.visited h3 { color: #6f42c1; }
-.resultado small { color: #006621; font-size: 13px; }
-.resultado p { font-size: 14px; color: #4d5156; margin: 4px 0 0; }
+  <aside class="painel" id="painel"></aside>
+</div>
 
-footer {
-text-align: center;
-padding: 20px;
-font-size: 13px;
-color: #777;
-border-top: 1px solid #eee;
-margin-top: 40px;
-}
-</style>
+<footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>
 
-</head>  
-<body>  <header>  
-  <a href="index.html" class="logo">¡Lupa!</a>  
-</header>  <div class="barra-superior">  
-  <div class="search-bar">  
-    <input type="text" id="campoBusca" placeholder="Pesquisar..." autofocus>  
-    <button id="botaoBusca">🔍</button>  
-  </div>  
-  <nav class="abas">  
-    <button class="aba" id="abaTudo">Tudo</button>  
-    <button class="aba" id="abaImagens">Imagens</button>  
-    <button class="aba" id="abaVideos">Vídeos</button>  
-    <button class="aba" id="abaNoticias">Notícias</button>  
-  <button class="aba" data-aba="filosofia">Filosofia</button>  
-  <button class="aba" data-aba="sociologia">Sociologia</button>  
-  <button class="aba" data-aba="geopolitica">Geopolítica</button>  
-  </nav>  
-</div>  <!-- Painel apenas para "Tudo" -->  <div id="painel">  
-  <h2 id="tituloPainel">Título do Painel</h2>  
-  <div class="categoria" id="categoriaPainel"></div>  
-  <div class="descricao" id="descricaoPainel"></div>  
-  <div class="imagens" id="imagensPainel"></div>  
-</div>  <main id="painelResultados">  
-  <div id="lista-resultados"></div>  
-</main>  <footer>© 2025 ¡Lupa! — Motor Ético de Busca</footer>  <script>  
-const params = new URLSearchParams(window.location.search);  
-let termo = params.get("q") || "";  
-let abaAtual = params.get("aba") || "tudo";  
-  
-const campoBusca = document.getElementById("campoBusca");  
-const areaResultados = document.getElementById("lista-resultados");  
-const painelEl = document.getElementById("painel");  
-  
-campoBusca.value = termo;  
-  
-// Função para atualizar a URL sem recarregar  
-function atualizarURL() {  
-  const url = `resultados.html?q=${encodeURIComponent(termo)}&aba=${abaAtual}`;  
-  history.replaceState(null, "", url);  
-}  
-  
-// Destaca a aba ativa  
-function atualizarAbas() {  
-  document.getElementById("abaTudo").classList.toggle("ativa", abaAtual === "tudo");  
-  document.getElementById("abaImagens").classList.toggle("ativa", abaAtual === "imagens");  
-  document.getElementById("abaVideos").classList.toggle("ativa", abaAtual === "videos");  
-  document.getElementById("abaNoticias").classList.toggle("ativa", abaAtual === "noticias");  
-}  
-  
-// Busca e filtra resultados  
-async function buscarResultados() {  
-  if (!termo) return;  
-  
-  try {  
-    const res = await fetch("index.json");  
-    const dados = await res.json();  
-    areaResultados.innerHTML = "";  
-  
-    let filtrados = dados.filter(item =>  
-      item.titulo.toLowerCase().includes(termo.toLowerCase()) ||  
-      item.descricao.toLowerCase().includes(termo.toLowerCase()) ||  
-      item.categoria.toLowerCase().includes(termo.toLowerCase())  
-    );  
-  
-    // Filtra por aba  
-    if (abaAtual === "imagens") filtrados = filtrados.filter(i => i.tipo === "imagem");  
-    else if (abaAtual === "videos") filtrados = filtrados.filter(i => i.tipo === "video");  
-    else if (abaAtual === "noticias") filtrados = filtrados.filter(i => i.tipo === "noticia");  
-  
-    if (filtrados.length === 0) {  
-      areaResultados.innerHTML = "<p>Nenhum resultado encontrado.</p>";  
-      return;  
-    }  
-  
-    filtrados.forEach(item => {  
-      const div = document.createElement("div");  
-      div.className = "resultado";  
-      div.innerHTML = `  
-        <a href="${item.link}" class="titulo-link">  
-          <h3>${item.titulo}</h3>  
-        </a>  
-        <small>${item.link}</small>  
-        <p>${item.descricao}</p>  
-      `;  
-      areaResultados.appendChild(div);  
-    });  
-  
-  } catch (e) {  
-    console.error("Erro ao carregar index.json", e);  
-  }  
-}  
-
-  
-// Eventos das abas  
-document.getElementById("abaTudo").onclick = () => { abaAtual = "tudo"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };  
-document.getElementById("abaImagens").onclick = () => { abaAtual = "imagens"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };  
-document.getElementById("abaVideos").onclick = () => { abaAtual = "videos"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };  
-document.getElementById("abaNoticias").onclick = () => { abaAtual = "noticias"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };  
-  
-// Eventos de busca  
-document.getElementById("botaoBusca").onclick = () => {  
-  termo = campoBusca.value.trim();  
-  atualizarURL();  
-  buscarResultados();  
-  carregarPainel();  
-};  
-campoBusca.addEventListener("keypress", e => {  
-  if (e.key === "Enter") {  
-    termo = campoBusca.value.trim();  
-    atualizarURL();  
-    buscarResultados();  
-    carregarPainel();  
-  }  
-});  
-  
-// Inicialização  
-atualizarAbas();  
-if (termo) {  
-  buscarResultados();  
 <script src="script.js"></script>
 <script src="painel.js"></script>
-}  
-</script>  </body>  
-</html>  
+</body>
+</html>
