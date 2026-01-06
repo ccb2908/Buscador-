@@ -382,3 +382,10 @@ background: #e0e0e0;
 .topo > .search-bar {
   align-self: center;
 }
+
+.topo-linha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
