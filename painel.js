@@ -33,7 +33,7 @@ for (const [chave, valor] of Object.entries(item)) {
 
 painel.innerHTML = `
   <div class="painel-box">
-    ${item.imagem ? `<img src="${item.imagem}" alt="${item.titulo}">` : ""}
+    ${galeria}
     <h2>${item.titulo}</h2>
     <p>${item.descricao}</p>
     ${extras}
