@@ -58,3 +58,15 @@ function esconderPainel() {
   const painel = document.getElementById("painel");
   painel.style.display = "none";
 }
+
+let galeria = "";
+
+if (Array.isArray(item.imagens) && item.imagens.length > 0) {
+  galeria = `
+    <div class="painel-galeria">
+      ${item.imagens.map(img =>
+        `<img src="${img}" alt="${item.titulo}">`
+      ).join("")}
+    </div>
+  `;
+}
