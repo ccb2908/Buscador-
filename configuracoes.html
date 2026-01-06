@@ -1,29 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Lupa! — Configurações</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== TOPO ===== */
+.config-topo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 16px 0;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fff;
+}
+
+.config-topo h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #1b9c48;
+}
+
+.btn-voltar {
+  position: absolute;
+  left: 16px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #555;
+}
+
+.btn-voltar:hover {
+  color: #1b9c48;
+}
+
+/* ===== CONTEÚDO ===== */
+#configuracoes {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: Arial, sans-serif;
+}
+
+#configuracoes label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+#configuracoes select,
+#configuracoes input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+#configuracoes button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #1b9c48;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#configuracoes button:hover {
+  background: #147037;
+}
+
+/* ===== LISTA DE PALAVRAS ===== */
+#listaPalavras {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#listaPalavras li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+#listaPalavras li button {
+  background: none;
+  border: none;
+  color: #c00;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#listaPalavras li button:hover {
+  color: #900;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 500px) {
+  .config-topo h2 {
+    font-size: 18px;
+  }
+
+  #configuracoes {
+    margin: 16px auto;
+    gap: 16px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="config-topo">
+  <button class="btn-voltar" onclick="history.back()">←</button>
+  <h2>Configurações</h2>
+</div>
+
 <div id="configuracoes">
-  <label>Modo:</label>
-  <select id="modo">
-    <option value="claro">Claro</option>
-    <option value="escuro">Escuro</option>
-  </select>
+  <div>
+    <label for="modo">Modo:</label>
+    <select id="modo">
+      <option value="claro">Claro</option>
+      <option value="escuro">Escuro</option>
+    </select>
+  </div>
 
-  <label>Tema:</label>
-  <select id="tema">
-    <option value="google">Google</option>
-    <option value="bing">Bing</option>
-    <option value="startpage">Startpage</option>
-    <option value="brave">Brave</option>
-    <option value="ecosia">Ecosia</option>
-    <option value="yahoo">Yahoo</option>
-  </select>
+  <div>
+    <label for="tema">Tema:</label>
+    <select id="tema">
+      <option value="google">Google</option>
+      <option value="bing">Bing</option>
+      <option value="startpage">Startpage</option>
+      <option value="brave">Brave</option>
+      <option value="ecosia">Ecosia</option>
+      <option value="yahoo">Yahoo</option>
+    </select>
+  </div>
 
-  <label>Filtro de Busca:</label>
-  <select id="filtroBusca">
-    <option value="estrito">Estrito</option>
-    <option value="moderado">Moderado</option>
-    <option value="desativado">Desativado</option>
-  </select>
+  <div>
+    <label for="filtroBusca">Filtro de Busca:</label>
+    <select id="filtroBusca">
+      <option value="estrito">Estrito</option>
+      <option value="moderado">Moderado</option>
+      <option value="desativado">Desativado</option>
+    </select>
+  </div>
 
-  <h3>Filtro de Palavras</h3>
-  <input id="novaPalavra" placeholder="Adicionar palavra">
-  <button id="addPalavra">Adicionar</button>
-  <ul id="listaPalavras"></ul>
+  <div>
+    <h3>Filtro de Palavras</h3>
+    <div style="display:flex; gap:8px; margin-bottom:12px;">
+      <input id="novaPalavra" placeholder="Adicionar palavra">
+      <button id="addPalavra">Adicionar</button>
     </div>
+    <ul id="listaPalavras"></ul>
+  </div>
+</div>
+
+<script src="configuracoes.js"></script>
+</body>
+</html>
