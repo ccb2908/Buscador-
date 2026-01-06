@@ -20,13 +20,25 @@ async function carregarPainel(termo) {
     }
 
     // Monta o conteúdo do painel incluindo a imagem
-    painel.innerHTML = `
-      <div class="painel-box">
-        ${item.imagem ? `<img src="${item.imagem}" alt="${item.titulo}">` : ''}
-        <h2>${item.titulo}</h2>
-        <p>${item.descricao}</p>
-      </div>
-    `;
+    let extras = "";
+
+for (const [chave, valor] of Object.entries(item)) {
+  if (
+    ["titulo", "descricao", "imagem"].includes(chave) ||
+    !valor
+  ) continue;
+
+  extras += `<p><strong>${formatar(chave)}:</strong> ${valor}</p>`;
+}
+
+painel.innerHTML = `
+  <div class="painel-box">
+    ${item.imagem ? `<img src="${item.imagem}" alt="${item.titulo}">` : ""}
+    <h2>${item.titulo}</h2>
+    <p>${item.descricao}</p>
+    ${extras}
+  </div>
+`;
     painel.style.display = "block";
 
   } catch (err) {
