@@ -12,11 +12,7 @@ const ABAS = {
 };
 
 function atualizarURL() {
-  history.replaceState(
-    null,
-    "",
-    `resultados.html?q=${encodeURIComponent(termoAtual)}&aba=${abaAtual}`
-  );
+  history.replaceState(null, "", `resultados.html?q=${encodeURIComponent(termoAtual)}&aba=${abaAtual}`);
 }
 
 async function carregarDados(arquivo) {
@@ -27,9 +23,7 @@ async function carregarDados(arquivo) {
 function filtrar(lista) {
   const t = termoAtual.toLowerCase();
   return lista.filter(item =>
-    Object.values(item).some(v =>
-      typeof v === "string" && v.toLowerCase().includes(t)
-    )
+    Object.values(item).some(v => typeof v === "string" && v.toLowerCase().includes(t))
   );
 }
 
@@ -45,7 +39,7 @@ function renderTexto(item) {
 }
 
 function renderGrid(item) {
-  return `<img src="${item.src}" alt="">`;
+  return `<img src="${item.src}" alt="${item.titulo || ''}">`;
 }
 
 function renderCard(item) {
@@ -57,24 +51,7 @@ function renderCard(item) {
   `;
 }
 
-function renderImagens(resultados) {
-  const lista = document.getElementById("lista-resultados");
-  lista.innerHTML = "";
-
-  resultados.forEach(img => {
-    lista.innerHTML += `
-      <div class="imagem-card">
-        <img src="${img.src}" alt="${img.titulo}">
-      </div>
-    `;
-  });
-}
-
-const RENDER = {
-  texto: renderTexto,
-  grid: renderGrid,
-  card: renderCard
-};
+const RENDER = { texto: renderTexto, grid: renderGrid, card: renderCard };
 
 async function carregarAba(aba) {
   abaAtual = ABAS[aba] ? aba : "tudo";
@@ -86,12 +63,9 @@ async function carregarAba(aba) {
 
   const container = document.getElementById("lista-resultados");
   container.innerHTML = "";
+  filtrados.forEach(item => container.innerHTML += RENDER[config.render](item));
 
-  filtrados.forEach(item => {
-    container.innerHTML += RENDER[config.render](item);
-  });
-
-  if (config.painel) {
+  if (config.painel && abaAtual === "tudo") {
     carregarPainel(termoAtual);
   } else {
     esconderPainel();
@@ -116,28 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   if (termoAtual) carregarAba(abaAtual);
-  
-if (termo) {
-  buscarResultados()
-  carregarPainel(termo)
-    }
-});
 
-if (aba === "imagens") {
-  renderImagens(dadosImagens);
-  esconderPainel();
-}
-
-document.querySelectorAll(".aba").forEach(aba => {
-  aba.addEventListener("click", () => {
-    document.querySelectorAll(".aba").forEach(a =>
-      a.classList.remove("ativa")
-    );
-    aba.classList.add("ativa");
-  });
-});
-
-window.addEventListener("DOMContentLoaded", () => {
-  const abaTudo = document.querySelector('.aba[data-aba="tudo"]');
-  if (abaTudo) abaTudo.classList.add("ativa");
+  // Destaque inicial da aba
+  document.querySelectorAll(".aba").forEach(a => a.classList.remove("ativa"));
+  const abaBtn = document.querySelector(`.aba[data-aba="${abaAtual}"]`);
+  if (abaBtn) abaBtn.classList.add("ativa");
 });
