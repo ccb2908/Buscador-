@@ -26,7 +26,7 @@ async function carregarPainel(termo) {
     // Monta campos extras
     let extras = "";
     for (const [chave, valor] of Object.entries(item)) {
-      if (["titulo", "descricao", "imagens"].includes(chave) || !valor) continue;
+      if (["titulo", "descricao", "imagens", "links"].includes(chave) || !valor) continue;
       extras += `<p><strong>${formatar(chave)}:</strong> ${valor}</p>`;
     }
 
@@ -34,11 +34,20 @@ async function carregarPainel(termo) {
       return chave.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
     }
 
+    // Monta links externos (YouTube, Instagram, etc.)
+    let linksHTML = "";
+    if (Array.isArray(item.links)) {
+      linksHTML = item.links.map(link =>
+        `<p><a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.titulo}</a></p>`
+      ).join("");
+    }
+
     painel.innerHTML = `
       ${galeria}
       <h2>${item.titulo}</h2>
       <p>${item.descricao || ""}</p>
       ${extras}
+      ${linksHTML}
     `;
 
     painel.style.display = "block";
