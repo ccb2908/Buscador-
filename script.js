@@ -57,6 +57,19 @@ function renderCard(item) {
   `;
 }
 
+function renderImagens(resultados) {
+  const lista = document.getElementById("lista-resultados");
+  lista.innerHTML = "";
+
+  resultados.forEach(img => {
+    lista.innerHTML += `
+      <div class="imagem-card">
+        <img src="${img.src}" alt="${img.titulo}">
+      </div>
+    `;
+  });
+}
+
 const RENDER = {
   texto: renderTexto,
   grid: renderGrid,
