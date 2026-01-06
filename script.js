@@ -116,6 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   if (termoAtual) carregarAba(abaAtual);
+  
+if (termo) {
+  buscarResultados()
+  carregarPainel(termo)
+    }
 });
 
 if (aba === "imagens") {
