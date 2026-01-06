@@ -104,3 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (termoAtual) carregarAba(abaAtual);
 });
+
+document.querySelectorAll(".aba").forEach(aba => {
+  aba.addEventListener("click", () => {
+    document.querySelectorAll(".aba").forEach(a =>
+      a.classList.remove("ativa")
+    );
+    aba.classList.add("ativa");
+  });
+});
