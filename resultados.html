@@ -207,41 +207,7 @@ async function buscarResultados() {
     console.error("Erro ao carregar index.json", e);  
   }  
 }  
-  
-// Carrega painel apenas na aba "Tudo"  
-async function carregarPainel() {  
-  if (abaAtual !== "tudo") {  
-    painelEl.style.display = "none";  
-    return;  
-  }  
-  try {  
-    const res = await fetch("painel.json");  
-    const dados = await res.json();  
-    const item = dados.find(p => p.titulo.toLowerCase() === termo.toLowerCase());  
-    if (!item) {  
-      painelEl.style.display = "none";  
-      return;  
-    }  
-  
-    document.getElementById("tituloPainel").textContent = item.titulo;  
-    document.getElementById("categoriaPainel").textContent = item.categoria || "";  
-    document.getElementById("descricaoPainel").textContent = item.descricao;  
-  
-    const imagens = document.getElementById("imagensPainel");  
-    imagens.innerHTML = "";  
-    item.imagens.forEach(src => {  
-      const img = document.createElement("img");  
-      img.src = src;  
-      imagens.appendChild(img);  
-    });  
-  
-    painelEl.style.display = "block";  
-  
-  } catch (e) {  
-    console.error("Erro ao carregar painel.json", e);  
-    painelEl.style.display = "none";  
-  }  
-}  
+
   
 // Eventos das abas  
 document.getElementById("abaTudo").onclick = () => { abaAtual = "tudo"; atualizarURL(); atualizarAbas(); buscarResultados(); carregarPainel(); };  
