@@ -398,3 +398,16 @@ background: #e0e0e0;
   width: 40px;
   height: 40px;
 }
+
+.painel-galeria {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.painel-galeria img {
+  width: 100%;
+  max-width: 140px;
+  border-radius: 8px;
+  object-fit: cover;
+}
