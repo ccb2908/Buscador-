@@ -3,6 +3,26 @@ const POR_PAGINA = 10;
 let termoAtual = "";
 let abaAtual = "tudo";
 
+function renderPaginacao(total) {
+  const paginas = Math.ceil(total / POR_PAGINA);
+  const nav = document.getElementById("paginacao") || document.createElement("div");
+  nav.id = "paginacao";
+  nav.innerHTML = "";
+
+  for (let i = 1; i <= paginas; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.className = i === paginaAtual ? "ativa" : "";
+    btn.onclick = () => {
+      paginaAtual = i;
+      carregarAba("imagens");
+    };
+    nav.appendChild(btn);
+  }
+
+  document.getElementById("lista-resultados").after(nav);
+}
+
 const ABAS = {
   tudo: { fonte: "index.json", render: "texto", painel: true },
   imagens: { fonte: "imagens.json", render: "grid" },
