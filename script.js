@@ -1,3 +1,5 @@
+let paginaAtual = 1;
+const POR_PAGINA = 10;
 let termoAtual = "";
 let abaAtual = "tudo";
 
