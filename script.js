@@ -86,7 +86,35 @@ async function carregarAba(aba) {
 
   const container = document.getElementById("lista-resultados");
   container.innerHTML = "";
-  filtrados.forEach(item => container.innerHTML += RENDER[config.render](item));
+
+  let lista = filtrados;
+
+  // ===== PAGINAÇÃO APENAS PARA IMAGENS =====
+  if (abaAtual === "imagens") {
+    const inicio = (paginaAtual - 1) * POR_PAGINA;
+    const fim = inicio + POR_PAGINA;
+    lista = filtrados.slice(inicio, fim);
+  }
+
+  lista.forEach(item => {
+    const html = RENDER[config.render](item);
+    const div = document.createElement("div");
+    div.innerHTML = html;
+
+    // clique abre painel
+    if (abaAtual === "imagens") {
+      div.onclick = () => carregarPainel(item.id);
+    }
+
+    container.appendChild(div);
+  });
+
+  // ===== CRIA BOTÕES DE PÁGINA =====
+  if (abaAtual === "imagens") {
+    renderPaginacao(filtrados.length);
+  } else {
+    removerPaginacao();
+  }
 
   if (config.painel && abaAtual === "tudo") {
     carregarPainel(termoAtual);
