@@ -72,7 +72,6 @@ function renderCard(item) {
     </div>
   `;
 }
-}
 
 const RENDER = { texto: renderTexto, grid: renderGrid, card: renderCard };
 
