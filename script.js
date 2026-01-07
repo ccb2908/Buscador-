@@ -20,6 +20,9 @@ function renderPaginacao(total) {
     nav.appendChild(btn);
   }
 
+  document.getElementById("lista-resultados").after(nav);
+}
+
 function removerPaginacao() {
   const nav = document.getElementById("paginacao");
   if (nav) nav.remove();
