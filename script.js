@@ -20,6 +20,11 @@ function renderPaginacao(total) {
     nav.appendChild(btn);
   }
 
+function removerPaginacao() {
+  const nav = document.getElementById("paginacao");
+  if (nav) nav.remove();
+}
+  
   document.getElementById("lista-resultados").after(nav);
 }
 
