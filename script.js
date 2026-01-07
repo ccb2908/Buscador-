@@ -128,7 +128,8 @@ async function carregarAba(aba) {
   } else {
     esconderPainel();
   }
-
+  
+  } 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(location.search);
   termoAtual = params.get("q") || "";
