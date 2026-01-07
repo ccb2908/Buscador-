@@ -1,37 +1,50 @@
-async function carregarPainel(idOuTermo) {
+async function carregarPainel(termo) {
   const painel = document.getElementById("painel");
-  if (!idOuTermo) {
+
+  if (!termo) {
     painel.style.display = "none";
     return;
   }
 
   try {
-    const fontes = ["painel.json", "imagens.json"];
-    let item = null;
-
-    for (const f of fontes) {
-      const dados = await fetch(f).then(r => r.json());
-      item = dados.find(p =>
-        p.id === idOuTermo ||
-        p.titulo?.toLowerCase() === idOuTermo.toLowerCase()
-      );
-      if (item) break;
-    }
+    const dados = await fetch("painel.json").then(r => r.json());
+    const item = dados.find(p => p.titulo.toLowerCase() === termo.toLowerCase());
 
     if (!item) {
       painel.style.display = "none";
       return;
     }
 
-    if (item.tipo === "imagem") {
-      renderPainelImagem(item);
-    } else {
-      renderPainelTexto(item);
+    // Monta galeria de imagens
+    let galeria = "";
+    if (Array.isArray(item.imagens) && item.imagens.length > 0) {
+      galeria = `<div class="painel-galeria">
+        ${item.imagens.map(img => `<img src="${img}" alt="${item.titulo}">`).join("")}
+      </div>`;
     }
 
+    // Monta campos extras
+    let extras = "";
+    for (const [chave, valor] of Object.entries(item)) {
+      if (["titulo", "descricao", "imagens"].includes(chave) || !valor) continue;
+      extras += `<p><strong>${formatar(chave)}:</strong> ${valor}</p>`;
+    }
+
+    function formatar(chave) {
+      return chave.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    painel.innerHTML = `
+      ${galeria}
+      <h2>${item.titulo}</h2>
+      <p>${item.descricao || ""}</p>
+      ${extras}
+    `;
+
     painel.style.display = "block";
-  } catch (e) {
-    console.error("Erro no painel:", e);
+
+  } catch (err) {
+    console.error("Erro ao carregar painel:", err);
     painel.style.display = "none";
   }
 }
@@ -39,33 +52,4 @@ async function carregarPainel(idOuTermo) {
 function esconderPainel() {
   const painel = document.getElementById("painel");
   painel.style.display = "none";
-}
-
-function renderPainelTexto(item) {
-  let extras = "";
-  for (const [k, v] of Object.entries(item)) {
-    if (["id","titulo","descricao","tipo","imagens"].includes(k)) continue;
-    extras += `<p><strong>${formatar(k)}:</strong> ${v}</p>`;
-  }
-
-  document.getElementById("painel").innerHTML = `
-    <h2>${item.titulo}</h2>
-    <p>${item.descricao || ""}</p>
-    ${extras}
-  `;
-}
-
-function renderPainelImagem(item) {
-  document.getElementById("painel").innerHTML = `
-    <img src="${item.src}" class="imagem-principal">
-    <h2>${item.titulo}</h2>
-    <p>${item.descricao || ""}</p>
-    <p><strong>Site:</strong> ${item.origem?.site || "-"}</p>
-    <p><strong>Autor:</strong> ${item.origem?.autor || "-"}</p>
-    <p><strong>Licença:</strong> ${item.origem?.licenca || "-"}</p>
-  `;
-}
-
-function formatar(chave) {
-  return chave.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
 }
