@@ -1,35 +1,5 @@
-let paginaAtual = 1;
-const POR_PAGINA = 10;
 let termoAtual = "";
 let abaAtual = "tudo";
-
-function renderPaginacao(total) {
-  const paginas = Math.ceil(total / POR_PAGINA);
-  const nav = document.getElementById("paginacao") || document.createElement("div");
-  nav.id = "paginacao";
-  nav.innerHTML = "";
-
-  for (let i = 1; i <= paginas; i++) {
-    const btn = document.createElement("button");
-    btn.textContent = i;
-    btn.className = i === paginaAtual ? "ativa" : "";
-    btn.onclick = () => {
-      paginaAtual = i;
-      carregarAba("imagens");
-    };
-    nav.appendChild(btn);
-  }
-
-  document.getElementById("lista-resultados").after(nav);
-}
-
-function removerPaginacao() {
-  const nav = document.getElementById("paginacao");
-  if (nav) nav.remove();
-}
-  
-  document.getElementById("lista-resultados").after(nav);
-}
 
 const ABAS = {
   tudo: { fonte: "index.json", render: "texto", painel: true },
@@ -60,7 +30,7 @@ function filtrar(lista) {
 function renderTexto(item) {
   return `
     <div class="resultado">
-      <a href="${item.link || '#'}" class="resultado-link" target="_blank" rel="noopener noreferrer">
+      <a href="${item.link || '#'}" class="resultado-link">
         <h3>${item.titulo}</h3>
       </a>
       <p>${item.descricao || ""}</p>
@@ -93,43 +63,15 @@ async function carregarAba(aba) {
 
   const container = document.getElementById("lista-resultados");
   container.innerHTML = "";
-
-  let lista = filtrados;
-
-  // ===== PAGINAÇÃO APENAS PARA IMAGENS =====
-  if (abaAtual === "imagens") {
-    const inicio = (paginaAtual - 1) * POR_PAGINA;
-    const fim = inicio + POR_PAGINA;
-    lista = filtrados.slice(inicio, fim);
-  }
-
-  lista.forEach(item => {
-    const html = RENDER[config.render](item);
-    const div = document.createElement("div");
-    div.innerHTML = html;
-
-    // clique abre painel
-    if (abaAtual === "imagens") {
-      div.onclick = () => carregarPainel(item.id);
-    }
-
-    container.appendChild(div);
-  });
-
-  // ===== CRIA BOTÕES DE PÁGINA =====
-  if (abaAtual === "imagens") {
-    renderPaginacao(filtrados.length);
-  } else {
-    removerPaginacao();
-  }
+  filtrados.forEach(item => container.innerHTML += RENDER[config.render](item));
 
   if (config.painel && abaAtual === "tudo") {
     carregarPainel(termoAtual);
   } else {
     esconderPainel();
   }
-  
-  
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(location.search);
   termoAtual = params.get("q") || "";
