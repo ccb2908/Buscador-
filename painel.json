@@ -65,6 +65,19 @@
     "genero": "ação, comédia, aventura"
   }, 
   { 
+    "titulo": "Dragon Ball AF", 
+    "categoria": "Série de Animação", 
+    "imagens": ["dragonballaf1.jpg", "dragonballaf2.jpg"], 
+    "descricao": "Dragon Ball AF é uma série japonesa de animação que retrata as aventuras de Son Goku e seus amigos 10 anis depois da luta contra Majin Buu. com a aparição de novos inimigos como Rild, Dr. Myuu, Baby, Super 17 e os Dragões Malignos e novas transformações como o Super Saiyajin 4.",
+    "lancamento": "1997", 
+    "finalizacao": "ainda em exibição", 
+    "episodios": "200+", 
+    "estudio": "Vários fãs animadores da Internet", 
+    "autor": "Tablos, Toyotaro, Youngjijii, PGV, Majingokuable, DBNews", 
+    "avaliacao": "✴️✴️", 
+    "genero": "ação, comédia, aventura"
+  }, 
+  { 
     "titulo": "Smallville", 
     "categoria": "Série de Televisão", 
     "imagens": ["smallville1.jpg", "smallville2.jpg"], 
