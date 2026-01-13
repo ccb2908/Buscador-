@@ -8,18 +8,41 @@ async function carregarPainel(termo) {
   try {
     const dados = await fetch("painel.json").then(r => r.json());
     const idioma = LUPA_STATE.idioma || "pt";
-    const item = dados.find(p => p.titulo.toLowerCase() === termo.toLowerCase());
 
-const registro = dados.find(p =>
+    const registro = dados.find(p =>
       Object.values(p.dados).some(d =>
         d.titulo.toLowerCase() === termo.toLowerCase()
       )
     );
-    
-    if (!item) {
+
+    if (!registro) {
       painel.style.display = "none";
       return;
     }
+
+    const item = registro.dados[idioma] || registro.dados["pt"];
+
+    let galeria = "";
+    if (item.imagens?.length) {
+      galeria = `<div class="painel-galeria">
+        ${item.imagens.map(img => `<img src="${img}">`).join("")}
+      </div>`;
+    }
+
+    painel.innerHTML = `
+      ${galeria}
+      <h2>${item.titulo}</h2>
+      <p>${item.categoria || ""}</p>
+      <p>${item.descricao || ""}</p>
+    `;
+
+    painel.style.display = "block";
+
+  } catch (e) {
+    console.error(e);
+    painel.style.display = "none";
+  }
+}
 
     // Monta galeria de imagens
     let galeria = "";
@@ -39,21 +62,6 @@ const registro = dados.find(p =>
     function formatar(chave) {
       return chave.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
     }
-
-    painel.innerHTML = `
-      ${galeria}
-      <h2>${item.titulo}</h2>
-      <p>${item.descricao || ""}</p>
-      ${extras}
-    `;
-
-    painel.style.display = "block";
-
-  } catch (err) {
-    console.error("Erro ao carregar painel:", err);
-    painel.style.display = "none";
-  }
-}
 
 function esconderPainel() {
   const painel = document.getElementById("painel");
