@@ -5,7 +5,7 @@
 const LUPA_STATE = {
   tema: localStorage.getItem("lupa_tema") || "google",
   modo: localStorage.getItem("lupa_modo") || "claro",
-  idioma: localStorage.getItem("lupa_idioma") || "pt-BR",
+  idioma: localStorage.getItem("lupa_idioma") || "pt",
   filtroBusca: localStorage.getItem("lupa_filtro_busca") || "moderado",
   palavrasBloqueadas: JSON.parse(localStorage.getItem("lupa_palavras")) || []
 };
