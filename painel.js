@@ -7,6 +7,7 @@ async function carregarPainel(termo) {
 
   try {
     const dados = await fetch("painel.json").then(r => r.json());
+    const idioma = LUPA_STATE.idioma || "pt";
     const item = dados.find(p => p.titulo.toLowerCase() === termo.toLowerCase());
 
     if (!item) {
@@ -52,3 +53,6 @@ function esconderPainel() {
   const painel = document.getElementById("painel");
   painel.style.display = "none";
 }
+
+
+
