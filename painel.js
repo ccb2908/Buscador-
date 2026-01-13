@@ -10,6 +10,12 @@ async function carregarPainel(termo) {
     const idioma = LUPA_STATE.idioma || "pt";
     const item = dados.find(p => p.titulo.toLowerCase() === termo.toLowerCase());
 
+const registro = dados.find(p =>
+      Object.values(p.dados).some(d =>
+        d.titulo.toLowerCase() === termo.toLowerCase()
+      )
+    );
+    
     if (!item) {
       painel.style.display = "none";
       return;
