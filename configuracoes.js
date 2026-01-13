@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modo = document.getElementById("modo");
   const tema = document.getElementById("tema");
   const filtroBusca = document.getElementById("filtroBusca");
+  const idioma = document.getElementById("idioma");
   const palavraInput = document.getElementById("novaPalavra");
   const listaPalavras = document.getElementById("listaPalavras");
 
