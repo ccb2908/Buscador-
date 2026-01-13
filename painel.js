@@ -1,6 +1,5 @@
 async function carregarPainel(termo) {
   const painel = document.getElementById("painel");
-
   if (!termo) {
     painel.style.display = "none";
     return;
