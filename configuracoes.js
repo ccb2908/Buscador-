@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const listaPalavras = document.getElementById("listaPalavras");
 
   /* ===== CARREGAR ESTADO ===== */
+  idioma.value = LUPA_STATE.idioma;
   modo.value = LUPA_STATE.modo;
   tema.value = LUPA_STATE.tema;
   filtroBusca.value = LUPA_STATE.filtroBusca;
