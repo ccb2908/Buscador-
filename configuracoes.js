@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
   renderPalavras();
 
   /* ===== EVENTOS ===== */
+  idioma.onchange = () => {
+  LUPA_STATE.idioma = idioma.value;
+  salvarEstado();
+};
+   
   modo.onchange = () => {
     LUPA_STATE.modo = modo.value;
     salvarEstado();
