@@ -22,9 +22,20 @@ async function carregarDados(arquivo) {
 
 function filtrar(lista) {
   const t = termoAtual.toLowerCase();
-  return lista.filter(item =>
-    Object.values(item).some(v => typeof v === "string" && v.toLowerCase().includes(t))
-  );
+  const idioma = LUPA_STATE.idioma;
+
+  return lista.filter(item => {
+
+    // idioma
+    if (item.idioma && idioma !== "todos" && item.idioma !== idioma) {
+      return false;
+    }
+
+    // texto
+    return Object.values(item).some(v =>
+      typeof v === "string" && v.toLowerCase().includes(t)
+    );
+  });
 }
 
 function renderTexto(item) {
