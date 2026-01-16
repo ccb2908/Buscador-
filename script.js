@@ -107,3 +107,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const abaBtn = document.querySelector(`.aba[data-aba="${abaAtual}"]`);
   if (abaBtn) abaBtn.classList.add("ativa");
 });
+
+// ===== Filtros estilo Brave =====
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btnFiltros = document.getElementById("btnFiltros");
+  const barraFiltros = document.getElementById("barraFiltros");
+
+  if (btnFiltros && barraFiltros) {
+    btnFiltros.onclick = () => {
+      barraFiltros.style.display =
+        barraFiltros.style.display === "flex" ? "none" : "flex";
+    };
+  }
+
+});
