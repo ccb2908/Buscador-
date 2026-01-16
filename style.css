@@ -458,3 +458,54 @@ background: #e0e0e0;
 .pagina-inicial .search-bar input {
   background: rgba(255,255,255,0.9);
 }
+
+/* ===== Abas compactas estilo Startpage ===== */
+
+.linha-abas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.abas {
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.aba {
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+/* Botão de filtros */
+
+.btn-filtros {
+  background: #f1f3f4;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-filtros:hover {
+  background: #e0e0e0;
+}
+
+/* Barra de filtros */
+
+.barra-filtros {
+  display: none;
+  gap: 12px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.barra-filtros select {
+  padding: 6px 10px;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  font-size: 13px;
+}
