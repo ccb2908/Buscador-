@@ -4,6 +4,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["goku1.jpg", "goku2.jpg"], 
     "descricao": "Goku é um Saiyajin que foi mandado para a Terra quando seu Planeta iria ser destruído por Freeza.",
+    "idioma": "pt" 
     "nascimento": "434", 
     "falecimento": "454", 
     "altura": "1,75m", 
@@ -17,6 +18,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["vegeta1.jpg", "vegeta2.jpg"], 
     "descricao": "Vegeta é um Saiyajin que foi mandado para a Terra para conquistar e vender o Planeta, mas ele se livrou de Freeza e a Terra é o seu novo lar.",
+    "idioma": "pt" 
     "nascimento": "428", 
     "falecimento": "455", 
     "altura": "1,65m", 
@@ -30,6 +32,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["gohan1.jpg", "gohan2.jpg"], 
     "descricao": "Gohan é um Saiyajin que foi criado na Terra, ele é um híbrido metade Saiyajin e metade terráqueo.",
+    "idioma": "pt" 
     "nascimento": "450", 
     "falecimento": "467", 
     "altura": "1,76m", 
@@ -43,6 +46,7 @@
     "categoria": "Série de Animação", 
     "imagens": ["dragonballz1.jpg", "dragonballz2.jpg"], 
     "descricao": "Dragon Ball Z é uma série japonesa de animação que retrata as aventuras de Son Goku e seus amigos.",
+    "idioma": "pt" 
     "lancamento": "1987", 
     "finalizacao": "1996", 
     "episodios": "293", 
@@ -56,6 +60,7 @@
     "categoria": "Série de Animação", 
     "imagens": ["dragonballgt1.jpg", "dragonballgt2.jpg"], 
     "descricao": "Dragon Ball GT é uma série japonesa de animação que retrata as aventuras de Son Goku e seus amigos 10 anis depois da luta contra Majin Buu. com a aparição de novos inimigos como Rild, Dr. Myuu, Baby, Super 17 e os Dragões Malignos e novas transformações como o Super Saiyajin 4.",
+    "idioma": "pt" 
     "lancamento": "1997", 
     "finalizacao": "1997", 
     "episodios": "164", 
@@ -69,6 +74,7 @@
     "categoria": "Série de Animação", 
     "imagens": ["dragonballaf1.jpg", "dragonballaf2.jpg"], 
     "descricao": "Dragon Ball AF é uma série japonesa de animação que retrata as aventuras de Son Goku e seus amigos 10 anis depois da luta contra Majin Buu. com a aparição de novos inimigos como Rild, Dr. Myuu, Baby, Super 17 e os Dragões Malignos e novas transformações como o Super Saiyajin 4.",
+    "idioma": "pt" 
     "lancamento": "1997", 
     "finalizacao": "ainda em exibição", 
     "episodios": "200+", 
@@ -82,6 +88,7 @@
     "categoria": "Série de Televisão", 
     "imagens": ["smallville1.jpg", "smallville2.jpg"], 
     "descricao": "Smallville é uma série americana que retrata a juventude de Clark Kent e sua transformação em Superman.",
+    "idioma": "pt" 
     "lancamento": "2001", 
     "finalizacao": "2011", 
     "episodios": "154", 
@@ -95,6 +102,7 @@
     "categoria": "Série de Televisão", 
     "imagens": ["supernatural1.jpg", "supernatural2.jpg"], 
     "descricao": "Supernatural é uma série americana que retrata a vida dos irmãos Dean e Sam Winchester que são caçadores de seres sobrenaturais",
+    "idioma": "pt" 
     "lancamento": "2005", 
     "finalizacao": "2020", 
     "episodios": "225", 
@@ -108,6 +116,7 @@
     "categoria": "Império da Antiguidade", 
     "imagens": ["mapaimperioaquemenida1.jpg", "bandeiraaquemenida2.jpg"], 
     "descricao": "O Império Aquemênida foi um dos maiores impérios da Antiguidade, fundado por Ciro, o Grande, e rival do Império Romano por séculos.",
+    "idioma": "pt" 
     "fundacao": "550 a.C.", 
     "dissolucao": "330 a.C.", 
     "capital": "Susa, Persépolis", 
@@ -121,6 +130,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["zaiko1.jpg", "zaiko2.jpg"], 
     "descricao": "Zaiko é um dos vilões que aparecem em Dragon Ball AF, ele é um híbrido de Saiyajin e Kaioshin e busca derrotar Goku e ser o mais forte do Universo.",
+    "idioma": "pt" 
     "nascimento": "456", 
     "falecimento": "476", 
     "altura": "1,78m", 
@@ -134,6 +144,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["evilgoku1.jpg", "evilgoku2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "1,75m", 
@@ -147,6 +158,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["kaarat1.jpg", "kaarat2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "2,65m", 
@@ -160,6 +172,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["Zeel1.jpg", "zeel2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "1,79m", 
@@ -173,6 +186,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["angelzeta1.jpg", "angelzeta2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "1,79m", 
@@ -186,6 +200,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["kidnapped1.jpg", "kidnapped2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "1,65m", 
@@ -199,6 +214,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["cellbuzer1.jpg", "cellbuzer2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "1,54m", 
@@ -212,6 +228,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["demiyari1.jpg", "demiyari2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "1,85m", 
@@ -225,6 +242,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["demoniotengu1.jpg", "demoniotengu2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "1,85m", 
@@ -238,6 +256,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["supersaiyajin20mil1.jpg", "supersaiyajin20mil2.jpg"], 
     "descricao": "descrição geral com as informações sobre o personagem citado no título.",
+    "idioma": "pt" 
     "nascimento": "400+", 
     "falecimento": "???", 
     "altura": "1,85m", 
@@ -251,6 +270,7 @@
     "categoria": "Fanfic", 
     "imagens": ["dragonballdaishi1.jpg", "dragonballdaishi2.jpg"], 
     "descricao": "Dragon Ball Daishi é uma Fanfic criado por Namurovichy, que se passa após a Saga Buu.",
+    "idioma": "pt" 
     "lancamento": "2016", 
     "finalizacao": "2026", 
     "episodios": "124", 
@@ -264,6 +284,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["bulma1.jpg", "bulma2.jpg"], 
     "descricao": "Bulma é uma cientista bem sucedida e milionária, ela foi uma das primeiras personagens a aparecer logo nos primeiros episódios do Dragon Ball Clássico, onde ela e Goku foram encontrar as esferas do Dragão. e a sua influência se entendeu ao longo do Anime como com a criação do Radar do Dragão e da máquina do Tempo.",
+    "idioma": "pt" 
     "nascimento": "434", 
     "falecimento": "4671", 
     "altura": "1,65m", 
@@ -277,6 +298,7 @@
     "categoria": "Personagem fictício", 
     "imagens": ["paikuhan1.jpg", "paikuhan2.jpg"], 
     "descricao": "Paikuhan é um dos personagens não oficiais que apareceu na Saga Filler do Torneio do outro mundo, onde ele ajudou Goku a derrotar Freeza, King Gold e Cell, e ele lutou com o Goku na final do campeonato e apareceu na Saga Majin Buu.",
+    "idioma": "pt" 
     "nascimento": "405", 
     "falecimento": "447", 
     "altura": "1,85m", 
@@ -290,6 +312,7 @@
     "categoria": "País na Eurásia", 
     "imagens": ["bandeiradarussia1.jpg", "bandeiradarussia2.jpg"], 
     "descricao": "A Federação Russa é uma pais transcontinental localizando entre a Europa e a Ásia e exerce uma influência na Europa e no Mundo.",
+    "idioma": "pt" 
     "hino": "Государственный гимн Российской Федерации",
     "fundacao": "1991", 
     "dissolucao": "desconhecido", 
@@ -309,6 +332,7 @@
     "categoria": "País na Eurásia", 
     "imagens": ["imagem 1.jpg", "imagem 2.jpg"], 
     "descricao": "A União Soviética foi um dos maiores países da idade moderna e tinha uma rivalidade com os Estados Unidos que durou décadas.",
+    "idioma": "pt" 
     "fundacao": "1922", 
     "dissolucao": "1991", 
     "capital": "Moscou", 
@@ -322,6 +346,7 @@
     "categoria": "líder da União Soviética", 
     "imagens": ["gorbachev1.jpg", "gorbachev2.jpg"], 
     "descricao": "Mikhail Gorbachev foi o último líder da URSS (União das Repúblics Socialists Soviétics) o seu período ficou marcado por reformas como a Perestroika e Glasnost.",
+    "idioma": "pt" 
     "nascimento": "1954", 
     "falecimento": "2021", 
     "altura": "1,68m", 
