@@ -1,42 +1,67 @@
-<!DOCTYPE html>  <html lang="pt-BR">  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>¡Lupa!</title>  
-  <link rel="stylesheet" href="style.css">  
-</head>  
-<body class="pagina-inicial">    <main class="home-container">  
-    <div class="logo">¡Lupa!</div>  <div class="search-bar">  
-  <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>  
-  <button id="btnInicial">🔍</button>  
-</div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Lupa!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  </main>    <!-- Barra inferior fixa -->    <nav class="bottom-nav">    <a href="index.html" class="nav-item ativo">  
-    <span>🏡</span>  
-    <small>Início</small>  
-  </a>    <a href="interesses.html" class="nav-item">  
-    <span>📌</span>  
-    <small>Interesses</small>  
-  </a>    <a href="salvos.html" class="nav-item">  
-    <span>⭐</span>  
-    <small>Salvos</small>  
-  </a>    <a href="favoritos.html" class="nav-item">  
-    <span>❤️</span>  
-    <small>Favoritos</small>  
-  </a>    <a href="configuracoes.html" class="nav-item">  
-    <span>⚙️</span>  
-    <small>Config.</small>  
-  </a>  </nav>    <script>  
-    function pesquisar() {  
-      const termo = document.getElementById('campoInicial').value.trim();  
-      if (termo) {  
-        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;  
-      }  
-    }  
-  
-    document.getElementById('btnInicial').addEventListener('click', pesquisar);  
-    document.getElementById('campoInicial').addEventListener('keydown', e => {  
-      if (e.key === 'Enter') pesquisar();  
-    });  
-  </script>  </body>  
-</html>  
+<body class="pagina-inicial">
+
+  <!-- Fundo -->
+  <div class="bg-slideshow"></div>
+  <div class="bg-overlay"></div>
+
+  <main class="home-container">
+    <div class="logo">¡Lupa!</div>
+
+    <div class="search-bar">
+      <input type="text" id="campoInicial" placeholder="Pesquisar..." autofocus>
+      <button id="btnInicial">🔍</button>
+    </div>
+  </main>
+
+  <!-- Barra inferior fixa -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item ativo"><span>🏡</span><small>Início</small></a>
+    <a href="interesses.html" class="nav-item"><span>📌</span><small>Interesses</small></a>
+    <a href="salvos.html" class="nav-item"><span>⭐</span><small>Salvos</small></a>
+    <a href="favoritos.html" class="nav-item"><span>❤️</span><small>Favoritos</small></a>
+    <a href="configuracoes.html" class="nav-item"><span>⚙️</span><small>Config.</small></a>
+  </nav>
+
+  <script>
+    function pesquisar() {
+      const termo = document.getElementById('campoInicial').value.trim();
+      if (termo) {
+        window.location.href = `resultados.html?q=${encodeURIComponent(termo)}`;
+      }
+    }
+
+    document.getElementById('btnInicial').addEventListener('click', pesquisar);
+    document.getElementById('campoInicial').addEventListener('keydown', e => {
+      if (e.key === 'Enter') pesquisar();
+    });
+
+    // ===== BACKGROUND SLIDESHOW =====
+    const imagens = [
+      "backgrounds/bg1.jpg",
+      "backgrounds/bg2.jpg",
+      "backgrounds/bg3.jpg"
+    ];
+
+    let atual = 0;
+    const bg = document.querySelector(".bg-slideshow");
+
+    function trocarFundo() {
+      bg.style.backgroundImage = `url('${imagens[atual]}')`;
+      atual = (atual + 1) % imagens.length;
+    }
+
+    trocarFundo();
+    setInterval(trocarFundo, 15000); // troca a cada 15s
+  </script>
+
+</body>
+  </html>
