@@ -431,3 +431,30 @@ background: #e0e0e0;
   background: #1b9c48;
   color: #fff;
 }
+
+/* Fundo */
+.bg-slideshow {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  transition: background-image 1s ease-in-out;
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: -1;
+}
+
+/* Ajustes para manter legibilidade */
+.pagina-inicial .logo,
+.pagina-inicial .search-bar {
+  color: #fff;
+}
+
+.pagina-inicial .search-bar input {
+  background: rgba(255,255,255,0.9);
+}
