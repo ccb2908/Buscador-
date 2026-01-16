@@ -20,13 +20,15 @@
 
   {
     "titulo": "Dragon Ball Daishi — Informações Gerais",
-    "descricao": "História do guerreiro que superou o SSJ6 e enfrentou o divino Goku.",
+   "descricao": "História do guerreiro que superou o SSJ6 e enfrentou o divino Goku.",
+    "idioma": "pt" 
     "link": "dragon_ball_daishi.html",
     "categoria": "Animes"
   },
   {
     "titulo": "Dragon Ball Daishi — Transformações",
     "descricao": "Lista das formas e poderes adquiridos: SSJ1 a SSJ7 e Bartiszu Infinito.",
+    "idioma": "pt" 
     "link": "dragon_ball_daishi.html",
     "categoria": "Animes"
   },
