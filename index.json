@@ -2,18 +2,21 @@
   {
     "titulo": "Filosofia Persa Antiga — Visão Geral",
     "descricao": "Estudo ético do Zoroastrismo e das escolas do Império Aquemênida.",
+    "idioma": "pt" 
     "link": "filosofia_persa.html",
     "categoria": "Filosofia"
   },
   {
     "titulo": "Filosofia Persa Antiga — Ética",
     "descricao": "Análise da moral, deveres e virtudes segundo o Zoroastrismo.",
+    "idioma": "pt" 
     "link": "filosofia_persa.html",
     "categoria": "Filosofia"
   },
   {
     "titulo": "Filosofia Persa Antiga — História",
     "descricao": "Contexto histórico e evolução das escolas filosóficas no Império Aquemênida.",
+    "idioma": "pt" 
     "link": "filosofia_persa.html",
     "categoria": "Filosofia"
   },
@@ -28,13 +31,14 @@
   {
     "titulo": "Dragon Ball Daishi — Transformações",
     "descricao": "Lista das formas e poderes adquiridos: SSJ1 a SSJ7 e Bartiszu Infinito.",
-    "idioma": "pt" 
+    "idioma": "pt", 
     "link": "dragon_ball_daishi.html",
     "categoria": "Animes"
   },
   {
     "titulo": "Dragon Ball Daishi — Raça e Linhagem",
     "descricao": "Raça Saiyajin e origem divina da linhagem, com detalhes familiares.",
+    "idioma": "pt" 
     "link": "dragon_ball_daishi.html",
     "categoria": "Animes"
   },
@@ -42,11 +46,13 @@
   {
     "titulo": "Cosmovisão Persa Latino — Visão Geral",
     "descricao": "Análise da literatura, filosofia e espiritualidade do Persa Latino.",
+    "idioma": "pt" 
     "link": "cosmovisao_persa_latino.html",
     "categoria": "Linguística"
   },
   {
     "titulo": "Cosmovisão Persa Latino — Literatura",
+    "idioma": "pt" 
     "descricao": "Obras e estilos literários do Persa Latino com influência antiga e moderna.",
     "link": "cosmovisao_persa_latino.html",
     "categoria": "Linguística"
@@ -54,6 +60,7 @@
   {
     "titulo": "Cosmovisão Persa Latino — Filosofia",
     "descricao": "Pensamento ético e cosmovisão, inspirados em tradição e liberdade.",
+    "idioma": "pt" 
     "link": "cosmovisao_persa_latino.html",
     "categoria": "Linguística"
   },
@@ -61,18 +68,21 @@
   {
     "titulo": "História do Império Aquemênida — Visão Geral",
     "descricao": "Linha do tempo e conquistas do Império Persa antigo.",
+    "idioma": "pt" 
     "link": "imperio_aquemênida.html",
     "categoria": "História"
   },
   {
     "titulo": "História do Império Aquemênida — Administração",
     "descricao": "Estrutura administrativa e governança centralizada e regional.",
+    "idioma": "pt" 
     "link": "imperio_aquemênida.html",
     "categoria": "História"
   },
   {
     "titulo": "História do Império Aquemênida — Cultura",
     "descricao": "Religiões, línguas e práticas culturais sob o domínio persa.",
+    "idioma": "pt" 
     "link": "imperio_aquemênida.html",
     "categoria": "História"
   },
@@ -80,24 +90,28 @@
   {
     "titulo": "Zaiko — Informações Gerais",
     "descricao": "Vilão de Dragon Ball AF (ano 793). Sexo: Masculino, Idade: 29-30 anos, Raça: 1,2 Saiyajin e 1,3 Kaioshin. Relações: Lyla (mãe), Goku (pai), Gohan (meio-irmão), Goten (meio-irmão), Pan (sobrinha).",
+    "idioma": "pt" 
     "link": "dragonballafviloes.html",
     "categoria": "Personagens"
   },
   {
     "titulo": "Zeel — Informações Gerais",
     "descricao": "Vilão de Dragon Ball AF. Sexo: Masculino, Idade: 50-60 anos, Raça: Tsufurujin. Altura: 1,75cm (humano), 1,75cm (corpo robótico), 2,25cm (2ª forma), 4-5cm (forma final). Afiliação: Exército Tsufurujin. Relações: Saber, Kutiengo, Greyn (subordinados).",
+    "idioma": "pt" 
     "link": "dragonballafviloes.html",
     "categoria": "Personagens"
   },
   {
     "titulo": "Kaarat — Informações Gerais",
     "descricao": "Vilão de Dragon Ball AF. Sexo: Masculino, Idade: milhares de anos, Raça: Demônio. Altura: 2,25cm. Afiliação: Exército de Kaarat. Relações: três subordinados sem nome.",
+    "idioma": "pt" 
     "link": "zaiko.html",
     "categoria": "Personagens"
   },
   {
     "titulo": "Evil Goku — Informações Gerais",
     "descricao": "Vilão de Dragon Ball AF. Sexo: Masculino, Idade: 50 anos, Raça: ser de energia Maligna e Negativa. Altura: 1,75cm, Peso: 60-64kg. Relações: Goku (criador, forma base).",
+    "idioma": "pt" 
     "link": "dragonballafviloes.html",
     "categoria": "Personagens"
   },
