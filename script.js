@@ -29,10 +29,11 @@ function filtrar(lista) {
   return lista.filter(item => {
 
     // idioma (mais tolerante)
-    if (item.idioma && idioma !== "todos" && item.idioma !== idioma) {
-      return false;
-    }
-
+    if (item.idioma && idioma !== "todos") {
+  if (!item.idioma.startsWith(idioma)) {
+    return false;
+  }
+}
     // texto
     return Object.values(item).some(v =>
       typeof v === "string" && v.toLowerCase().includes(t)
