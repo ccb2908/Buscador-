@@ -22,11 +22,13 @@ async function carregarDados(arquivo) {
 
 function filtrar(lista) {
   const t = termoAtual.toLowerCase();
-  const idioma = LUPA_STATE.idioma;
+
+  // fallback seguro
+  const idioma = (window.LUPA_STATE && LUPA_STATE.idioma) || "todos";
 
   return lista.filter(item => {
 
-    // idioma
+    // idioma (mais tolerante)
     if (item.idioma && idioma !== "todos" && item.idioma !== idioma) {
       return false;
     }
