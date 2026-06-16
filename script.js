@@ -25,8 +25,9 @@ function filtrar(lista) {
 
   // fallback seguro
   const idioma =
-(window.LUPA_STATE?.idioma) || "todos";
-
+(typeof LUPA_STATE !== "undefined" && LUPA_STATE.idioma)
+? LUPA_STATE.idioma
+: "todos";
   return lista.filter(item => {
 
     // idioma (mais tolerante)
