@@ -24,7 +24,8 @@ function filtrar(lista) {
   const t = termoAtual.toLowerCase();
 
   // fallback seguro
-  const idioma = (window.LUPA_STATE && LUPA_STATE.idioma) || "todos";
+  const idioma =
+(window.LUPA_STATE?.idioma) || "todos";
 
   return lista.filter(item => {
 
