@@ -128,3 +128,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+function esconderPainel() {
+  const painel = document.getElementById("painel");
+
+  if (painel) {
+    painel.style.display = "none";
+    painel.innerHTML = "";
+  }
+}
